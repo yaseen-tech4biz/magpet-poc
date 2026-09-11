@@ -1,0 +1,29 @@
+{
+  "pmCompliance": 60.2,
+  "totalDowntimeMTD": 144.8,
+  "downtimeCostMTD": 67679975,
+  "openJobsCount": 3,
+  "todayOutput": 156625,
+  "todayRejects": 3383,
+  "todayRejectionRate": 2.2,
+  "mtdRejectionRate": 2.1,
+  "rejectionBillMTD": 88033,
+  "alertCount": 3,
+  "pmWorstAssets": [
+    {
+      "asset": "CH-01",
+      "name": "Chiller 1",
+      "compliance": 41
+    },
+    {
+      "asset": "AC-01",
+      "name": "Air compressor",
+      "compliance": 45
+    },
+    {
+      "asset": "ETP-01",
+      "name": "Effluent treatment pumps",
+      "compliance": 48
+    }
+  ]
+}

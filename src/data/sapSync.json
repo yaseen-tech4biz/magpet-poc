@@ -1,0 +1,22 @@
+[
+  {
+    "time": "07:12",
+    "entry": "Production order PRD-1042 · synced",
+    "type": "production"
+  },
+  {
+    "time": "06:40",
+    "entry": "GRN 8831 · resin lot RL-2209 · synced",
+    "type": "grn"
+  },
+  {
+    "time": "06:15",
+    "entry": "Production order PRD-1041 · synced",
+    "type": "production"
+  },
+  {
+    "time": "05:30",
+    "entry": "GRN 8830 · resin lot RL-2208 · synced",
+    "type": "grn"
+  }
+]

@@ -1,0 +1,111 @@
+[
+  {
+    "id": "PLAN-001",
+    "asset": "EX-02",
+    "task": "Gearbox bearing temperature check",
+    "priority": "P1",
+    "dueReason": "Follow up · last night breakdown",
+    "shift": "A",
+    "technician": "Ramesh",
+    "technicianId": "T1",
+    "status": "ASSIGNED",
+    "trade": "mechanical"
+  },
+  {
+    "id": "PLAN-002",
+    "asset": "WL-01",
+    "task": "Friction washer bearing greasing",
+    "priority": "P2",
+    "dueReason": "Due by calendar · every 15 d",
+    "shift": "A",
+    "technician": "Prakash",
+    "technicianId": "T2",
+    "status": "ASSIGNED",
+    "trade": "mechanical"
+  },
+  {
+    "id": "PLAN-003",
+    "asset": "EX-01",
+    "task": "Screen changer inspection",
+    "priority": "P2",
+    "dueReason": "Due by calendar · every 7 d",
+    "shift": "B",
+    "technician": "Bikash",
+    "technicianId": "T4",
+    "status": "ASSIGNED",
+    "trade": "mechanical"
+  },
+  {
+    "id": "PLAN-004",
+    "asset": "WL-01",
+    "task": "Float sink tank density check",
+    "priority": "P2",
+    "dueReason": "Due by calendar · every 3 d",
+    "shift": "B",
+    "technician": "Sunil",
+    "technicianId": "T3",
+    "status": "ASSIGNED",
+    "trade": "mechanical"
+  },
+  {
+    "id": "PLAN-005",
+    "asset": "SSP-01",
+    "task": "Rotary valve lubrication",
+    "priority": "P2",
+    "dueReason": "Due by runtime · 502 h since last",
+    "shift": "B",
+    "technician": null,
+    "technicianId": null,
+    "status": "UNASSIGNED",
+    "trade": "mechanical"
+  },
+  {
+    "id": "PLAN-006",
+    "asset": "MS-01",
+    "task": "Metal separator calibration",
+    "priority": "P3",
+    "dueReason": "Due by calendar · every 30 d",
+    "shift": "C",
+    "technician": null,
+    "technicianId": null,
+    "status": "ESCALATED",
+    "trade": "electrical",
+    "note": "No technician available"
+  },
+  {
+    "id": "PLAN-007",
+    "asset": "DR-01",
+    "task": "Dryer filter inspection",
+    "priority": "P3",
+    "dueReason": "Due by runtime · 168 h since last",
+    "shift": "A",
+    "technician": null,
+    "technicianId": null,
+    "status": "UNASSIGNED",
+    "trade": "mechanical"
+  },
+  {
+    "id": "PLAN-008",
+    "asset": "CV-02",
+    "task": "Belt tracking adjustment",
+    "priority": "P3",
+    "dueReason": "Operator report · drifting left",
+    "shift": "B",
+    "technician": "Bikash",
+    "technicianId": "T4",
+    "status": "ASSIGNED",
+    "trade": "mechanical"
+  },
+  {
+    "id": "PLAN-009",
+    "asset": "CH-01",
+    "task": "Condenser coil cleaning",
+    "priority": "P3",
+    "dueReason": "Carried over from yesterday",
+    "shift": "A",
+    "technician": "Prakash",
+    "technicianId": "T2",
+    "status": "ASSIGNED",
+    "trade": "utilities"
+  }
+]

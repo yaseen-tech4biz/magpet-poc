@@ -1,0 +1,110 @@
+[
+  {
+    "code": "BO-01",
+    "name": "Bale opener",
+    "criticality": "High",
+    "notes": "Front of line"
+  },
+  {
+    "code": "WL-01",
+    "name": "Herbold Meckesheim washing line",
+    "criticality": "High",
+    "notes": "Sub-systems: pre-wash, friction washers, float-sink tank, rinse",
+    "subSystems": [
+      "pre-wash",
+      "friction washers",
+      "float-sink tank",
+      "rinse"
+    ]
+  },
+  {
+    "code": "MS-01",
+    "name": "Metal separator",
+    "criticality": "Medium",
+    "notes": ""
+  },
+  {
+    "code": "DR-01",
+    "name": "Flake dryer 1",
+    "criticality": "Medium",
+    "notes": ""
+  },
+  {
+    "code": "DR-02",
+    "name": "Flake dryer 2",
+    "criticality": "Medium",
+    "notes": ""
+  },
+  {
+    "code": "EX-01",
+    "name": "Coperion extruder 1",
+    "criticality": "High",
+    "notes": ""
+  },
+  {
+    "code": "EX-02",
+    "name": "Coperion extruder 2",
+    "criticality": "High",
+    "notes": "Carries the planted gearbox story"
+  },
+  {
+    "code": "SSP-01",
+    "name": "SSP reactor",
+    "criticality": "High",
+    "notes": "Solid state polycondensation"
+  },
+  {
+    "code": "GR-01",
+    "name": "Granulator",
+    "criticality": "Medium",
+    "notes": ""
+  },
+  {
+    "code": "CH-01",
+    "name": "Chiller 1",
+    "criticality": "Medium",
+    "notes": "Utilities"
+  },
+  {
+    "code": "CH-02",
+    "name": "Chiller 2",
+    "criticality": "Medium",
+    "notes": "Utilities"
+  },
+  {
+    "code": "AC-01",
+    "name": "Air compressor",
+    "criticality": "Medium",
+    "notes": "Utilities"
+  },
+  {
+    "code": "CV-01",
+    "name": "Conveyor 1",
+    "criticality": "Low",
+    "notes": ""
+  },
+  {
+    "code": "CV-02",
+    "name": "Conveyor 2",
+    "criticality": "Low",
+    "notes": ""
+  },
+  {
+    "code": "CV-03",
+    "name": "Conveyor 3",
+    "criticality": "Low",
+    "notes": ""
+  },
+  {
+    "code": "CV-04",
+    "name": "Conveyor 4",
+    "criticality": "Low",
+    "notes": ""
+  },
+  {
+    "code": "ETP-01",
+    "name": "Effluent treatment pumps",
+    "criticality": "Low",
+    "notes": "Washing line effluent"
+  }
+]

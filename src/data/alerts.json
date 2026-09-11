@@ -1,0 +1,29 @@
+[
+  {
+    "id": "ALT-001",
+    "time": "07:41",
+    "type": "cavity_drift",
+    "title": "H-03 cavity 41, 42 weight drift",
+    "detail": "+0.4 g over 3 weeks · rule: > 1.5% off target, 3 shifts",
+    "link": "/preform/cavity/H-03",
+    "severity": "red"
+  },
+  {
+    "id": "ALT-002",
+    "time": "06:12",
+    "type": "shift_pattern",
+    "title": "Shift C black specks 1.6× day shifts",
+    "detail": "All Husky machines · pattern held for 21 days",
+    "link": "/preform/machine/H-03",
+    "severity": "amber"
+  },
+  {
+    "id": "ALT-003",
+    "time": "Mon",
+    "type": "rising_trend",
+    "title": "Rejection rising 3 weeks",
+    "detail": "1.7% to 2.1% plant wide",
+    "link": "/preform",
+    "severity": "amber"
+  }
+]

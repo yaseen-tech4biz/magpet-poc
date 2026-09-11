@@ -1,0 +1,13 @@
+{
+  "rpetLineRate": 5.5,
+  "resinPrice": 85,
+  "contribution": 12,
+  "machineWeights": {
+    "H-01": 19.5,
+    "H-02": 19.5,
+    "H-03": 26,
+    "H-04": 26,
+    "S-01": 680,
+    "S-02": 680
+  }
+}

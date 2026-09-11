@@ -1,0 +1,213 @@
+{
+  "table": [
+    {
+      "asset": "WL-01",
+      "assetName": "Herbold Meckesheim washing line",
+      "mtbf": 180,
+      "mttr": 3.7,
+      "events": 10,
+      "downtime": 37,
+      "pattern": "7 of 10 failures in shift C · pattern points at night practice"
+    },
+    {
+      "asset": "CV-04",
+      "assetName": "Conveyor 4",
+      "mtbf": 257,
+      "mttr": 5,
+      "events": 7,
+      "downtime": 35.1,
+      "pattern": "stable"
+    },
+    {
+      "asset": "MS-01",
+      "assetName": "Metal separator",
+      "mtbf": 257,
+      "mttr": 4.8,
+      "events": 7,
+      "downtime": 33.3,
+      "pattern": "stable"
+    },
+    {
+      "asset": "CH-01",
+      "assetName": "Chiller 1",
+      "mtbf": 360,
+      "mttr": 6.4,
+      "events": 5,
+      "downtime": 32,
+      "pattern": "stable"
+    },
+    {
+      "asset": "EX-01",
+      "assetName": "Coperion extruder 1",
+      "mtbf": 300,
+      "mttr": 4.8,
+      "events": 6,
+      "downtime": 29.1,
+      "pattern": "stable"
+    },
+    {
+      "asset": "CV-03",
+      "assetName": "Conveyor 3",
+      "mtbf": 360,
+      "mttr": 5.7,
+      "events": 5,
+      "downtime": 28.3,
+      "pattern": "stable"
+    },
+    {
+      "asset": "ETP-01",
+      "assetName": "Effluent treatment pumps",
+      "mtbf": 257,
+      "mttr": 4,
+      "events": 7,
+      "downtime": 27.7,
+      "pattern": "stable"
+    },
+    {
+      "asset": "DR-02",
+      "assetName": "Flake dryer 2",
+      "mtbf": 225,
+      "mttr": 3.2,
+      "events": 8,
+      "downtime": 25.9,
+      "pattern": "stable"
+    },
+    {
+      "asset": "SSP-01",
+      "assetName": "SSP reactor",
+      "mtbf": 300,
+      "mttr": 3.7,
+      "events": 6,
+      "downtime": 21.9,
+      "pattern": "stable"
+    },
+    {
+      "asset": "EX-02",
+      "assetName": "Coperion extruder 2",
+      "mtbf": 300,
+      "mttr": 3.5,
+      "events": 6,
+      "downtime": 21,
+      "pattern": "MTTR rising · 2.5 h to 5.0 h · likely wearing gearbox bearing"
+    },
+    {
+      "asset": "GR-01",
+      "assetName": "Granulator",
+      "mtbf": 300,
+      "mttr": 3.4,
+      "events": 6,
+      "downtime": 20.1,
+      "pattern": "stable"
+    },
+    {
+      "asset": "CH-02",
+      "assetName": "Chiller 2",
+      "mtbf": 360,
+      "mttr": 3.9,
+      "events": 5,
+      "downtime": 19.6,
+      "pattern": "stable"
+    },
+    {
+      "asset": "CV-01",
+      "assetName": "Conveyor 1",
+      "mtbf": 360,
+      "mttr": 3.9,
+      "events": 5,
+      "downtime": 19.3,
+      "pattern": "stable"
+    },
+    {
+      "asset": "DR-01",
+      "assetName": "Flake dryer 1",
+      "mtbf": 450,
+      "mttr": 4.2,
+      "events": 4,
+      "downtime": 17,
+      "pattern": "stable"
+    },
+    {
+      "asset": "AC-01",
+      "assetName": "Air compressor",
+      "mtbf": 450,
+      "mttr": 4,
+      "events": 4,
+      "downtime": 15.9,
+      "pattern": "stable"
+    },
+    {
+      "asset": "CV-02",
+      "assetName": "Conveyor 2",
+      "mtbf": 900,
+      "mttr": 7.3,
+      "events": 2,
+      "downtime": 14.5,
+      "pattern": "stable"
+    },
+    {
+      "asset": "BO-01",
+      "assetName": "Bale opener",
+      "mtbf": 600,
+      "mttr": 3.8,
+      "events": 3,
+      "downtime": 11.5,
+      "pattern": "stable"
+    }
+  ],
+  "repeatFlags": [
+    {
+      "asset": "EX-02",
+      "assetName": "Coperion extruder 2",
+      "cause": "gearbox",
+      "events": 6,
+      "rule": "6 events · 30 d rule"
+    },
+    {
+      "asset": "WL-01",
+      "assetName": "Herbold Meckesheim washing line",
+      "cause": "bearing failure",
+      "events": 7,
+      "rule": "7 events · 30 d rule"
+    },
+    {
+      "asset": "CV-04",
+      "assetName": "Conveyor 4",
+      "cause": "bearing failure",
+      "events": 3,
+      "rule": "3 events · 30 d rule"
+    },
+    {
+      "asset": "DR-02",
+      "assetName": "Flake dryer 2",
+      "cause": "blockage",
+      "events": 3,
+      "rule": "3 events · 30 d rule"
+    },
+    {
+      "asset": "EX-01",
+      "assetName": "Coperion extruder 1",
+      "cause": "electrical trip",
+      "events": 3,
+      "rule": "3 events · 30 d rule"
+    }
+  ],
+  "downtimeByAsset": {
+    "GR-01": 20.119999999999997,
+    "CV-03": 28.25,
+    "ETP-01": 27.699999999999996,
+    "EX-02": 21,
+    "CV-01": 19.27,
+    "WL-01": 37.03,
+    "DR-02": 25.860000000000007,
+    "CV-02": 14.52,
+    "SSP-01": 21.95,
+    "DR-01": 16.96,
+    "MS-01": 33.269999999999996,
+    "CH-02": 19.61,
+    "CV-04": 35.06,
+    "CH-01": 31.959999999999997,
+    "BO-01": 11.48,
+    "EX-01": 29.05,
+    "AC-01": 15.89
+  }
+}

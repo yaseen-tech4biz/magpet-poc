@@ -1,0 +1,50 @@
+[
+  {
+    "code": "H-01",
+    "name": "Husky fully automatic",
+    "cavities": 96,
+    "productWeight": 19.5,
+    "product": "19.5 g water preforms",
+    "type": "husky"
+  },
+  {
+    "code": "H-02",
+    "name": "Husky fully automatic",
+    "cavities": 96,
+    "productWeight": 19.5,
+    "product": "19.5 g water preforms",
+    "type": "husky"
+  },
+  {
+    "code": "H-03",
+    "name": "Husky fully automatic",
+    "cavities": 72,
+    "productWeight": 26,
+    "product": "26 g CSD preforms",
+    "type": "husky"
+  },
+  {
+    "code": "H-04",
+    "name": "Husky fully automatic",
+    "cavities": 72,
+    "productWeight": 26,
+    "product": "26 g CSD preforms",
+    "type": "husky"
+  },
+  {
+    "code": "S-01",
+    "name": "ABS semi automatic",
+    "cavities": 4,
+    "productWeight": 680,
+    "product": "680 g preforms for 20 litre jars",
+    "type": "abs"
+  },
+  {
+    "code": "S-02",
+    "name": "ABS semi automatic",
+    "cavities": 4,
+    "productWeight": 680,
+    "product": "680 g preforms for 20 litre jars",
+    "type": "abs"
+  }
+]

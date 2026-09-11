@@ -1,0 +1,242 @@
+[
+  {
+    "id": "PM-001",
+    "asset": "BO-01",
+    "task": "Blade inspection and sharpening",
+    "type": "calendar",
+    "intervalDays": 14,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-002",
+    "asset": "BO-01",
+    "task": "Hydraulic system check",
+    "type": "calendar",
+    "intervalDays": 30,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-003",
+    "asset": "WL-01",
+    "task": "Friction washer bearing greasing",
+    "type": "calendar",
+    "intervalDays": 15,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-004",
+    "asset": "WL-01",
+    "task": "Float sink tank density check",
+    "type": "calendar",
+    "intervalDays": 3,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-005",
+    "asset": "WL-01",
+    "task": "Pre-wash screen cleaning",
+    "type": "calendar",
+    "intervalDays": 7,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-006",
+    "asset": "MS-01",
+    "task": "Metal separator calibration",
+    "type": "calendar",
+    "intervalDays": 30,
+    "trade": "electrical"
+  },
+  {
+    "id": "PM-007",
+    "asset": "MS-01",
+    "task": "Sensor alignment check",
+    "type": "calendar",
+    "intervalDays": 14,
+    "trade": "electrical"
+  },
+  {
+    "id": "PM-008",
+    "asset": "DR-01",
+    "task": "Dryer filter inspection",
+    "type": "runtime",
+    "runtimeHours": 168,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-009",
+    "asset": "DR-01",
+    "task": "Temperature calibration",
+    "type": "calendar",
+    "intervalDays": 30,
+    "trade": "electrical"
+  },
+  {
+    "id": "PM-010",
+    "asset": "DR-02",
+    "task": "Dryer filter inspection",
+    "type": "runtime",
+    "runtimeHours": 168,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-011",
+    "asset": "EX-01",
+    "task": "Screen changer inspection",
+    "type": "calendar",
+    "intervalDays": 7,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-012",
+    "asset": "EX-01",
+    "task": "Barrel heater check",
+    "type": "calendar",
+    "intervalDays": 14,
+    "trade": "electrical"
+  },
+  {
+    "id": "PM-013",
+    "asset": "EX-02",
+    "task": "Screen changer inspection",
+    "type": "calendar",
+    "intervalDays": 7,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-014",
+    "asset": "EX-02",
+    "task": "Gearbox oil check",
+    "type": "runtime",
+    "runtimeHours": 500,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-015",
+    "asset": "EX-02",
+    "task": "Barrel heater check",
+    "type": "calendar",
+    "intervalDays": 14,
+    "trade": "electrical"
+  },
+  {
+    "id": "PM-016",
+    "asset": "SSP-01",
+    "task": "Rotary valve lubrication",
+    "type": "runtime",
+    "runtimeHours": 500,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-017",
+    "asset": "SSP-01",
+    "task": "Vacuum pump inspection",
+    "type": "calendar",
+    "intervalDays": 21,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-018",
+    "asset": "GR-01",
+    "task": "Blade gap adjustment",
+    "type": "calendar",
+    "intervalDays": 14,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-019",
+    "asset": "GR-01",
+    "task": "Screen mesh replacement",
+    "type": "runtime",
+    "runtimeHours": 336,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-020",
+    "asset": "CH-01",
+    "task": "Condenser coil cleaning",
+    "type": "calendar",
+    "intervalDays": 30,
+    "trade": "utilities"
+  },
+  {
+    "id": "PM-021",
+    "asset": "CH-01",
+    "task": "Refrigerant pressure check",
+    "type": "calendar",
+    "intervalDays": 14,
+    "trade": "utilities"
+  },
+  {
+    "id": "PM-022",
+    "asset": "CH-02",
+    "task": "Condenser coil cleaning",
+    "type": "calendar",
+    "intervalDays": 30,
+    "trade": "utilities"
+  },
+  {
+    "id": "PM-023",
+    "asset": "AC-01",
+    "task": "Air filter replacement",
+    "type": "calendar",
+    "intervalDays": 21,
+    "trade": "utilities"
+  },
+  {
+    "id": "PM-024",
+    "asset": "AC-01",
+    "task": "Belt tension check",
+    "type": "calendar",
+    "intervalDays": 14,
+    "trade": "utilities"
+  },
+  {
+    "id": "PM-025",
+    "asset": "CV-01",
+    "task": "Belt tracking adjustment",
+    "type": "calendar",
+    "intervalDays": 30,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-026",
+    "asset": "CV-02",
+    "task": "Belt tracking adjustment",
+    "type": "calendar",
+    "intervalDays": 30,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-027",
+    "asset": "CV-03",
+    "task": "Belt tracking adjustment",
+    "type": "calendar",
+    "intervalDays": 30,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-028",
+    "asset": "CV-04",
+    "task": "Belt tracking adjustment",
+    "type": "calendar",
+    "intervalDays": 30,
+    "trade": "mechanical"
+  },
+  {
+    "id": "PM-029",
+    "asset": "ETP-01",
+    "task": "Pump seal inspection",
+    "type": "calendar",
+    "intervalDays": 21,
+    "trade": "utilities"
+  },
+  {
+    "id": "PM-030",
+    "asset": "ETP-01",
+    "task": "pH sensor calibration",
+    "type": "calendar",
+    "intervalDays": 14,
+    "trade": "electrical"
+  }
+]

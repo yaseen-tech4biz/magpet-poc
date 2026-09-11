@@ -1,0 +1,170 @@
+[
+  {
+    "id": "T1",
+    "name": "Ramesh",
+    "trade": "mechanical",
+    "phone": "9876500101",
+    "currentShift": "A",
+    "shiftTimes": {
+      "A": {
+        "start": "06:00",
+        "end": "14:00"
+      },
+      "B": {
+        "start": "14:00",
+        "end": "22:00"
+      },
+      "C": {
+        "start": "22:00",
+        "end": "06:00"
+      }
+    }
+  },
+  {
+    "id": "T2",
+    "name": "Prakash",
+    "trade": "mechanical",
+    "phone": "9876500102",
+    "currentShift": "B",
+    "shiftTimes": {
+      "A": {
+        "start": "06:00",
+        "end": "14:00"
+      },
+      "B": {
+        "start": "14:00",
+        "end": "22:00"
+      },
+      "C": {
+        "start": "22:00",
+        "end": "06:00"
+      }
+    }
+  },
+  {
+    "id": "T3",
+    "name": "Sunil",
+    "trade": "mechanical",
+    "phone": "9876500103",
+    "currentShift": "C",
+    "shiftTimes": {
+      "A": {
+        "start": "06:00",
+        "end": "14:00"
+      },
+      "B": {
+        "start": "14:00",
+        "end": "22:00"
+      },
+      "C": {
+        "start": "22:00",
+        "end": "06:00"
+      }
+    }
+  },
+  {
+    "id": "T4",
+    "name": "Bikash",
+    "trade": "electrical",
+    "phone": "9876500104",
+    "currentShift": "A",
+    "shiftTimes": {
+      "A": {
+        "start": "06:00",
+        "end": "14:00"
+      },
+      "B": {
+        "start": "14:00",
+        "end": "22:00"
+      },
+      "C": {
+        "start": "22:00",
+        "end": "06:00"
+      }
+    }
+  },
+  {
+    "id": "T5",
+    "name": "Joydeep",
+    "trade": "electrical",
+    "phone": "9876500105",
+    "currentShift": "B",
+    "shiftTimes": {
+      "A": {
+        "start": "06:00",
+        "end": "14:00"
+      },
+      "B": {
+        "start": "14:00",
+        "end": "22:00"
+      },
+      "C": {
+        "start": "22:00",
+        "end": "06:00"
+      }
+    }
+  },
+  {
+    "id": "T6",
+    "name": "Amit",
+    "trade": "electrical",
+    "phone": "9876500106",
+    "currentShift": "C",
+    "shiftTimes": {
+      "A": {
+        "start": "06:00",
+        "end": "14:00"
+      },
+      "B": {
+        "start": "14:00",
+        "end": "22:00"
+      },
+      "C": {
+        "start": "22:00",
+        "end": "06:00"
+      }
+    }
+  },
+  {
+    "id": "T7",
+    "name": "Manoj",
+    "trade": "utilities",
+    "phone": "9876500107",
+    "currentShift": "A",
+    "shiftTimes": {
+      "A": {
+        "start": "06:00",
+        "end": "14:00"
+      },
+      "B": {
+        "start": "14:00",
+        "end": "22:00"
+      },
+      "C": {
+        "start": "22:00",
+        "end": "06:00"
+      }
+    }
+  },
+  {
+    "id": "T8",
+    "name": "Debashis",
+    "trade": "utilities",
+    "phone": "9876500108",
+    "currentShift": "B",
+    "shiftTimes": {
+      "A": {
+        "start": "06:00",
+        "end": "14:00"
+      },
+      "B": {
+        "start": "14:00",
+        "end": "22:00"
+      },
+      "C": {
+        "start": "22:00",
+        "end": "06:00"
+      }
+    }
+  }
+]
