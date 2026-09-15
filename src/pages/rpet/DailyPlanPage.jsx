@@ -26,7 +26,7 @@ export const DailyPlanPage = () => {
       crumb={<span><b>Kharagpur Unit 3</b> · Daily Maintenance Plan & WhatsApp Dispatch</span>}
     >
       <div className="space-y-5">
-        
+
         {/* Top Summary & Quick Actions Navigation Bar */}
         <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -52,13 +52,6 @@ export const DailyPlanPage = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
               <span><b>8</b> Techs Connected</span>
             </span>
-            <button
-              onClick={() => assignTask('A', 0, 'Ramesh')}
-              className="bg-[#143a72] hover:bg-[#0c2347] text-white text-xs font-semibold px-3.5 py-1.5 rounded-xl shadow-xs transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5"
-              title="Quick Dispatch PA-1 to Ramesh"
-            >
-              <span>Demo Dispatch</span>
-            </button>
           </div>
         </div>
 
@@ -70,11 +63,10 @@ export const DailyPlanPage = () => {
               <button
                 key={sKey}
                 onClick={() => setActiveShiftFilter(sKey)}
-                className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer text-xs ${
-                  activeShiftFilter === sKey
+                className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer text-xs ${activeShiftFilter === sKey
                     ? 'bg-[#143a72] text-white font-bold shadow-2xs'
                     : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-                }`}
+                  }`}
               >
                 {sKey === 'ALL' ? 'All Shifts (3)' : `Shift ${sKey}`}
               </button>
@@ -88,7 +80,7 @@ export const DailyPlanPage = () => {
 
         {/* Responsive Grid: Phone is TOP for Mobile (order-first), and FIXED/STICKY for Desktop (order-last lg:sticky) */}
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 items-start">
-          
+
           {/* WhatsApp Simulator: TOP on Mobile (order-first), FIXED on Desktop (order-last lg:sticky) */}
           <div className="w-full lg:w-auto order-first lg:order-last lg:col-span-4 xl:col-span-4 2xl:col-span-3 flex justify-center lg:sticky lg:top-20 self-start">
             <PhoneMock />

@@ -17,12 +17,10 @@ export const AskAssistant = () => {
 
   // Search input state (what is typed or populated from suggestions)
   const [query, setQuery] = useState('');
-  // Submitted query (ONLY set when user clicks 'Ask' button or presses Enter)
+  // Submitted query
   const [submittedQuery, setSubmittedQuery] = useState('');
   // Loading/thinking animation state
   const [isThinking, setIsThinking] = useState(false);
-  // Visual feedback banner when suggestion is selected
-  const [notice, setNotice] = useState('');
   // Ref to search input field
   const inputRef = useRef(null);
 
@@ -431,37 +429,34 @@ export const AskAssistant = () => {
   ];
 
   /**
-   * User interaction: Clicking a suggestion ONLY populates the input field.
-   * It DOES NOT generate or display the output immediately.
+   * User interaction: Clicking a suggestion populates the input field.
+   * The output shows ONLY when the user clicks the "Ask" button or presses Enter.
    */
   const handleSelectSuggestion = (selectedText) => {
     setQuery(selectedText);
-    setNotice('Prompt selected. Click "Ask" below to run.');
     setTimeout(() => {
       inputRef.current?.focus();
     }, 50);
   };
 
   /**
-   * User interaction: Output is ONLY generated when the user explicitly clicks "Ask" or presses Enter.
+   * User interaction: Output is generated when the user clicks "Ask" or presses Enter.
    */
   const handleExecuteAsk = () => {
     if (!query || !query.trim()) {
       inputRef.current?.focus();
       return;
     }
-    setNotice('');
     setIsThinking(true);
     setTimeout(() => {
       setSubmittedQuery(query.trim());
       setIsThinking(false);
-    }, 300);
+    }, 250);
   };
 
   const handleClear = () => {
     setQuery('');
     setSubmittedQuery('');
-    setNotice('');
     inputRef.current?.focus();
   };
 
@@ -609,18 +604,7 @@ export const AskAssistant = () => {
       {/* 2. Search & Command Bar (Intuitive & Clean) */}
       <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm transition-all focus-within:border-[#143a72] focus-within:shadow-md">
 
-        {/* Notice Banner when a suggestion is clicked */}
-        {notice && (
-          <div className="mb-3 px-3 py-1.5 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-between text-xs text-blue-900 animate-fadeIn">
-            <span className="font-medium">{notice}</span>
-            <button
-              onClick={() => setNotice('')}
-              className="text-blue-500 hover:text-blue-700 text-sm font-bold cursor-pointer ml-2"
-            >
-              ✕
-            </button>
-          </div>
-        )}
+
 
         <div className="flex flex-col sm:flex-row items-stretch gap-2.5">
           <div className="relative flex-1 flex items-center">
@@ -633,10 +617,7 @@ export const AskAssistant = () => {
               ref={inputRef}
               type="text"
               value={query}
-              onChange={(e) => {
-                setQuery(e.target.value);
-                if (notice) setNotice('');
-              }}
+              onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') handleExecuteAsk();
               }}
@@ -677,7 +658,7 @@ export const AskAssistant = () => {
 
         <div className="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-100 text-xs text-slate-500">
           <span className="text-[11px] text-slate-400">
-            Click any prompt below to populate the input box, then press <b>Ask</b>.
+            Click any suggested question below to fill the input field, then press <b>Ask</b>.
           </span>
           {submittedQuery && (
             <button
@@ -920,59 +901,48 @@ export const AskAssistant = () => {
         )}
       </AnimatePresence>
 
-      {/* 4. Categorized Suggested Scenarios (8 Spec Intents, Clean Design, No Emojis, No Arrows) */}
+      {/* 4. Categorized Suggested Questions (Clean Standard Copilot Prompt Cards) */}
       <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-3 mb-4 border-b border-slate-100">
           <div>
             <h2 className="text-sm font-bold text-slate-900 font-heading flex items-center gap-2">
-              <span>Suggested Plant Scenarios</span>
+              <span>Suggested Questions</span>
               <span className="bg-blue-50 text-[#143a72] border border-blue-200 text-[10px] font-mono px-2 py-0.5 rounded-full font-bold">
-                8 Core Scenarios
+                8 Scenarios
               </span>
             </h2>
             <p className="text-xs text-slate-500 mt-0.5">
-              Clicking a card fills the question into the input field above.
+              Click any question card to fill the search bar, then click Ask to run.
             </p>
           </div>
-          <span className="text-[11px] text-slate-400 font-mono">
-            Requires clicking "Ask" to run
-          </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {curatedQuestions.map((item) => {
-            const isPopulatedInInput = query === item.q;
+            const isSelected = submittedQuery === item.q || query === item.q;
             return (
               <div
                 key={item.id}
                 onClick={() => handleSelectSuggestion(item.q)}
-                className={`group p-3.5 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between hover:shadow-sm ${isPopulatedInInput
-                  ? 'border-[#143a72] bg-blue-50/50 ring-2 ring-[#143a72]/15'
-                  : 'border-slate-200 bg-slate-50/50 hover:bg-white hover:border-slate-300'
+                className={`group p-4 rounded-xl border transition-all duration-200 cursor-pointer flex flex-col justify-between hover:shadow-md ${isSelected
+                  ? 'border-[#143a72] bg-blue-50/40 ring-2 ring-[#143a72]/15 shadow-xs'
+                  : 'border-slate-200 bg-slate-50/40 hover:bg-white hover:border-[#143a72]/50'
                   }`}
               >
                 <div>
-                  <div className="flex items-center justify-between text-xs mb-2">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                  <div className="flex items-center justify-between text-xs mb-2.5">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
                       {item.category}
                     </span>
-                    <span className="text-[10px] text-slate-400 group-hover:text-[#143a72] font-semibold transition-colors">
-                      Select
+                    <span className="text-slate-400 group-hover:text-[#143a72] transition-colors">
+                      <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
                     </span>
                   </div>
-                  <h3 className="text-xs font-semibold text-slate-800 group-hover:text-[#143a72] transition-colors line-clamp-2 leading-snug">
+                  <h3 className="text-xs font-semibold text-slate-800 group-hover:text-[#143a72] transition-colors leading-relaxed">
                     {item.q}
                   </h3>
-                  <p className="text-[11px] text-slate-500 mt-1 line-clamp-2">
-                    {item.hint}
-                  </p>
-                </div>
-
-                <div className="mt-3 pt-2 border-t border-slate-200/60 flex items-center justify-between text-[10px]">
-                  <span className="text-slate-400 font-mono">Populates input</span>
-                  <span className="text-[#143a72] font-bold group-hover:underline">
-                    Use prompt
-                  </span>
                 </div>
               </div>
             );
