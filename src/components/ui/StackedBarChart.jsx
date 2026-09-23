@@ -35,14 +35,14 @@ export const StackedBarChart = ({
             x2={width - 12}
             y1={gl.y}
             y2={gl.y}
-            stroke="#e2e8f0"
             strokeWidth="1"
+            className="stroke-slate-200 dark:stroke-slate-800 transition-colors"
           />
           <text
             x="42"
             y={gl.y + 3.5}
             textAnchor="end"
-            className="font-mono text-[10px] fill-slate-400"
+            className="font-mono text-[10px] fill-slate-400 dark:fill-slate-500 transition-colors"
           >
             {gl.val}
           </text>
@@ -87,7 +87,7 @@ export const StackedBarChart = ({
               transition={{ duration: 0.4, delay: i * 0.08 + 0.2 }}
               x={x + barWidth / 2}
               textAnchor="middle"
-              className="font-mono text-[11px] font-medium fill-slate-500"
+              className="font-mono text-[11px] font-medium fill-slate-500 dark:fill-slate-400 transition-colors"
             >
               W{i + 1}
             </motion.text>
@@ -97,3 +97,4 @@ export const StackedBarChart = ({
     </svg>
   );
 };
+export default StackedBarChart;

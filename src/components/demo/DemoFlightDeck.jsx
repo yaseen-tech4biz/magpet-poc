@@ -382,7 +382,7 @@ export const DemoFlightDeck = () => {
             setIsOpen(nextState);
             if (nextState) setIsMinimized(false);
           }}
-          className="bg-[#143a72] hover:bg-[#0c2347] text-white px-3.5 py-2 rounded-full shadow-xl flex items-center gap-2 border border-white/80 cursor-pointer transition-all hover:scale-105 active:scale-95"
+          className="bg-[#143a72] hover:bg-[#0c2347] dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-3.5 py-2 rounded-full shadow-xl flex items-center gap-2 border border-white/80 dark:border-slate-700 cursor-pointer transition-all hover:scale-105 active:scale-95"
           title={isOpen ? 'Close Demo Deck' : `Resume Demo Deck (Step ${currentStepIdx + 1} of ${filteredSteps.length})`}
         >
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -403,7 +403,7 @@ export const DemoFlightDeck = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.96 }}
             transition={{ duration: 0.22 }}
-            className={`fixed bottom-20 sm:bottom-22 right-2 sm:right-5 z-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-300 overflow-hidden flex flex-col transition-all ${isMinimized
+            className={`fixed bottom-20 sm:bottom-22 right-2 sm:right-5 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-300 dark:border-slate-700 overflow-hidden flex flex-col transition-all ${isMinimized
                 ? 'w-[320px] sm:w-[360px] p-2.5'
                 : 'w-[340px] sm:w-[410px] max-w-[94vw] p-3 sm:p-4'
               }`}
@@ -412,10 +412,10 @@ export const DemoFlightDeck = () => {
             {isMinimized ? (
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="text-[10px] font-mono font-bold bg-[#143a72] text-white px-1.5 py-0.5 rounded shrink-0">
+                  <span className="text-[10px] font-mono font-bold bg-[#143a72] dark:bg-blue-600 text-white px-1.5 py-0.5 rounded shrink-0">
                     Step {currentStepIdx + 1}/{filteredSteps.length}
                   </span>
-                  <span className="text-xs font-bold text-slate-800 truncate">
+                  <span className="text-xs font-bold text-slate-800 dark:text-white truncate">
                     {currentStep.title}
                   </span>
                 </div>
@@ -423,7 +423,7 @@ export const DemoFlightDeck = () => {
                   <button
                     onClick={handlePrevStep}
                     disabled={currentStepIdx === 0}
-                    className="p-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 disabled:opacity-30 cursor-pointer text-[10px] font-bold"
+                    className="p-1 rounded bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 disabled:opacity-30 cursor-pointer text-[10px] font-bold"
                     title="Previous Step"
                   >
                     Prev
@@ -431,21 +431,21 @@ export const DemoFlightDeck = () => {
                   <button
                     onClick={handleNextStep}
                     disabled={currentStepIdx === filteredSteps.length - 1}
-                    className="p-1 rounded bg-[#143a72] hover:bg-[#0c2347] text-white disabled:opacity-30 cursor-pointer text-[10px] font-bold px-2"
+                    className="p-1 rounded bg-[#143a72] hover:bg-[#0c2347] dark:bg-blue-600 dark:hover:bg-blue-500 text-white disabled:opacity-30 cursor-pointer text-[10px] font-bold px-2"
                     title="Next Step"
                   >
                     Next
                   </button>
                   <button
                     onClick={handleStartOver}
-                    className="p-1 text-slate-500 hover:text-slate-800 text-[10px] font-bold cursor-pointer"
+                    className="p-1 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white text-[10px] font-bold cursor-pointer"
                     title="Start Over from Step 1"
                   >
                     Restart
                   </button>
                   <button
                     onClick={() => setIsMinimized(false)}
-                    className="p-1 text-slate-400 hover:text-slate-700 cursor-pointer text-xs"
+                    className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 cursor-pointer text-xs"
                     title="Expand Guide"
                   >
                     Expand
@@ -456,16 +456,16 @@ export const DemoFlightDeck = () => {
               /* Expanded Full Step-by-Step Guide */
               <>
                 {/* Header Bar */}
-                <div className="flex items-center justify-between pb-2.5 border-b border-slate-200">
+                <div className="flex items-center justify-between pb-2.5 border-b border-slate-200 dark:border-slate-800">
                   <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-md bg-[#143a72] text-white flex items-center justify-center font-mono font-bold text-[10px]">
+                    <div className="w-6 h-6 rounded-md bg-[#143a72] dark:bg-blue-600 text-white flex items-center justify-center font-mono font-bold text-[10px]">
                       POC
                     </div>
                     <div>
-                      <h3 className="font-heading font-bold text-xs sm:text-sm text-slate-900 leading-tight">
+                      <h3 className="font-heading font-bold text-xs sm:text-sm text-slate-900 dark:text-white leading-tight">
                         Demo Flight Deck
                       </h3>
-                      <p className="text-[10px] text-slate-500">
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">
                         Guided Flow · Step {currentStepIdx + 1} of {filteredSteps.length}
                       </p>
                     </div>
@@ -474,21 +474,21 @@ export const DemoFlightDeck = () => {
                   <div className="flex items-center gap-1">
                     <button
                       onClick={handleStartOver}
-                      className="text-slate-500 hover:text-[#143a72] hover:bg-slate-100 px-2 py-1 rounded text-[11px] font-bold cursor-pointer transition-colors border border-slate-200"
+                      className="text-slate-500 dark:text-slate-400 hover:text-[#143a72] dark:hover:text-blue-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-2 py-1 rounded text-[11px] font-bold cursor-pointer transition-colors border border-slate-200 dark:border-slate-700"
                       title="Restart guide back to Step 1"
                     >
                       Start Over
                     </button>
                     <button
                       onClick={() => setIsMinimized(true)}
-                      className="text-slate-400 hover:text-slate-700 p-1 rounded hover:bg-slate-100 text-xs font-semibold cursor-pointer"
+                      className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-semibold cursor-pointer"
                       title="Minimize panel"
                     >
                       Minimize
                     </button>
                     <button
                       onClick={() => setIsOpen(false)}
-                      className="text-slate-400 hover:text-slate-700 p-1 rounded hover:bg-slate-100 text-xs font-bold cursor-pointer"
+                      className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-bold cursor-pointer"
                       title="Close panel (current step is preserved)"
                     >
                       Close
@@ -497,12 +497,12 @@ export const DemoFlightDeck = () => {
                 </div>
 
                 {/* Tab Switcher: Step Guide vs Direct Scenarios */}
-                <div className="flex border-b border-slate-200 mt-2">
+                <div className="flex border-b border-slate-200 dark:border-slate-800 mt-2">
                   <button
                     onClick={() => setActiveTab('guide')}
                     className={`flex-1 pb-1.5 text-center text-xs font-bold transition-colors cursor-pointer ${activeTab === 'guide'
-                        ? 'text-[#143a72] border-b-2 border-[#143a72]'
-                        : 'text-slate-400 hover:text-slate-600'
+                        ? 'text-[#143a72] dark:text-blue-400 border-b-2 border-[#143a72] dark:border-blue-400'
+                        : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'
                       }`}
                   >
                     Step-by-Step Guide ({currentStepIdx + 1}/{filteredSteps.length})
@@ -510,8 +510,8 @@ export const DemoFlightDeck = () => {
                   <button
                     onClick={() => setActiveTab('scenarios')}
                     className={`flex-1 pb-1.5 text-center text-xs font-bold transition-colors cursor-pointer ${activeTab === 'scenarios'
-                        ? 'text-[#143a72] border-b-2 border-[#143a72]'
-                        : 'text-slate-400 hover:text-slate-600'
+                        ? 'text-[#143a72] dark:text-blue-400 border-b-2 border-[#143a72] dark:border-blue-400'
+                        : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'
                       }`}
                   >
                     Quick Scenarios
@@ -522,7 +522,7 @@ export const DemoFlightDeck = () => {
                 {activeTab === 'guide' && (
                   <div className="pt-2.5 pb-1 flex flex-col space-y-2.5">
                     {/* Module Scope Filter Pills: All | Module A | Module B | 25-Min Short */}
-                    <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pb-1 border-b border-slate-100">
+                    <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pb-1 border-b border-slate-100 dark:border-slate-800">
                       {[
                         { id: 'ALL', label: `All (${GUIDE_STEPS.length})` },
                         { id: 'A', label: 'Module A · Kharagpur (6)' },
@@ -533,8 +533,8 @@ export const DemoFlightDeck = () => {
                           key={pill.id}
                           onClick={() => handleFilterChange(pill.id)}
                           className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold transition-all whitespace-nowrap cursor-pointer ${moduleFilter === pill.id
-                              ? 'bg-[#143a72] text-white shadow-2xs'
-                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                              ? 'bg-[#143a72] dark:bg-blue-600 text-white shadow-2xs'
+                              : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
                             }`}
                         >
                           {pill.label}
@@ -544,22 +544,22 @@ export const DemoFlightDeck = () => {
 
                     {/* Overall Progress and Stepper Header */}
                     <div>
-                      <div className="flex items-center justify-between text-[10px] font-mono text-slate-500 mb-1">
+                      <div className="flex items-center justify-between text-[10px] font-mono text-slate-500 dark:text-slate-400 mb-1">
                         <div className="flex items-center gap-1.5">
-                          <span className="font-bold text-[#143a72] bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200">
+                          <span className="font-bold text-[#143a72] dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 px-1.5 py-0.5 rounded border border-blue-200 dark:border-blue-900">
                             STEP {(currentStepIdx + 1).toString().padStart(2, '0')} OF {filteredSteps.length.toString().padStart(2, '0')}
                           </span>
-                          <span className="text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                          <span className="text-emerald-700 dark:text-emerald-300 font-bold bg-emerald-50 dark:bg-emerald-950/50 px-1.5 py-0.5 rounded border border-emerald-200 dark:border-emerald-900">
                             {percentComplete}% COMPLETED
                           </span>
                         </div>
-                        <span className="text-slate-400 uppercase tracking-wider font-semibold truncate ml-2">
+                        <span className="text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold truncate ml-2">
                           {currentStep.module}
                         </span>
                       </div>
 
                       {/* Continuous Progress Bar */}
-                      <div className="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden mb-2">
+                      <div className="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mb-2">
                         <div
                           className="bg-gradient-to-r from-[#143a72] to-emerald-500 h-full transition-all duration-300 rounded-full"
                           style={{ width: `${percentComplete}%` }}
@@ -577,10 +577,10 @@ export const DemoFlightDeck = () => {
                               onClick={() => handleJumpToStep(idx)}
                               title={`Step ${idx + 1}: ${step.title} (${isCompleted ? 'Completed' : isCurrent ? 'Active' : 'Upcoming'})`}
                               className={`h-2 flex-1 rounded-full transition-all cursor-pointer relative ${isCurrent
-                                  ? 'bg-emerald-500 ring-2 ring-emerald-300 shadow-xs'
+                                  ? 'bg-emerald-500 ring-2 ring-emerald-300 dark:ring-emerald-800 shadow-xs'
                                   : isCompleted
-                                    ? 'bg-[#143a72]'
-                                    : 'bg-slate-200 hover:bg-slate-300'
+                                    ? 'bg-[#143a72] dark:bg-blue-600'
+                                    : 'bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700'
                                 }`}
                             />
                           );
@@ -590,8 +590,8 @@ export const DemoFlightDeck = () => {
 
                     {/* Route Alignment Indicator if viewing another screen */}
                     {location.pathname !== currentStep.route && (
-                      <div className="flex items-center justify-between bg-amber-50 border border-amber-200 rounded-lg px-2.5 py-1.5 text-[11px] text-amber-900">
-                        <span className="truncate">Active screen: <code className="font-mono text-[10px] bg-amber-100/80 px-1 py-0.5 rounded">{location.pathname}</code></span>
+                      <div className="flex items-center justify-between bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 rounded-lg px-2.5 py-1.5 text-[11px] text-amber-900 dark:text-amber-200">
+                        <span className="truncate">Active screen: <code className="font-mono text-[10px] bg-amber-100/80 dark:bg-amber-900/60 px-1 py-0.5 rounded">{location.pathname}</code></span>
                         <button
                           onClick={() => navigate(currentStep.route)}
                           className="shrink-0 bg-amber-600 hover:bg-amber-700 text-white font-bold px-2 py-0.5 rounded text-[10px] cursor-pointer ml-2 transition-colors"
@@ -602,32 +602,32 @@ export const DemoFlightDeck = () => {
                     )}
 
                     {/* Active Step Content Card */}
-                    <div className="bg-slate-50/80 rounded-xl p-3 border border-slate-200 space-y-2">
+                    <div className="bg-slate-50/80 dark:bg-slate-800/60 rounded-xl p-3 border border-slate-200 dark:border-slate-700 space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-[9px] font-mono font-bold bg-[#143a72]/10 text-[#143a72] px-2 py-0.5 rounded">
+                        <span className="text-[9px] font-mono font-bold bg-[#143a72]/10 dark:bg-blue-950/50 text-[#143a72] dark:text-blue-300 px-2 py-0.5 rounded">
                           {currentStep.badge}
                         </span>
-                        <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 font-medium">
+                        <span className="text-[10px] font-mono text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/50 px-1.5 py-0.5 rounded border border-emerald-200 dark:border-emerald-900 font-medium">
                           {currentStep.route}
                         </span>
                       </div>
 
-                      <h4 className="font-heading font-bold text-sm text-slate-900 leading-snug">
+                      <h4 className="font-heading font-bold text-sm text-slate-900 dark:text-white leading-snug">
                         {currentStep.title}
                       </h4>
 
-                      <p className="text-xs text-slate-700 leading-relaxed">
+                      <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                         {currentStep.description}
                       </p>
 
-                      <div className="bg-white rounded-lg p-2 border border-slate-200 text-[11px] text-slate-600">
-                        <span className="font-bold text-slate-900">Key Focus: </span>
+                      <div className="bg-white dark:bg-slate-900 rounded-lg p-2 border border-slate-200 dark:border-slate-700 text-[11px] text-slate-600 dark:text-slate-300">
+                        <span className="font-bold text-slate-900 dark:text-white">Key Focus: </span>
                         {currentStep.takeaway}
                       </div>
                     </div>
 
                     {/* Slow Auto-Advance Bar & Control */}
-                    <div className="bg-slate-100 rounded-lg p-2 flex items-center justify-between text-xs">
+                    <div className="bg-slate-100 dark:bg-slate-800/80 rounded-lg p-2 flex items-center justify-between text-xs">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => {
@@ -638,25 +638,25 @@ export const DemoFlightDeck = () => {
                           }}
                           className={`px-2.5 py-1 rounded text-[11px] font-bold cursor-pointer transition-colors ${isAutoPlay
                               ? 'bg-amber-600 hover:bg-amber-700 text-white'
-                              : 'bg-slate-200 hover:bg-slate-300 text-slate-700'
+                              : 'bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200'
                             }`}
                         >
                           {isAutoPlay ? 'Pause Auto' : `Slow Auto (${AUTO_STEP_DURATION_SEC}s)`}
                         </button>
                         {isAutoPlay && (
-                          <span className="text-[11px] font-mono text-slate-600">
+                          <span className="text-[11px] font-mono text-slate-600 dark:text-slate-300">
                             Next in {countdown}s
                           </span>
                         )}
                       </div>
-                      <span className="text-[10px] text-slate-500">
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400">
                         {isAutoPlay ? 'Auto-advancing' : 'Paced for manual talk'}
                       </span>
                     </div>
 
                     {/* Progress Fill Bar when Auto-Play is Active */}
                     {isAutoPlay && (
-                      <div className="w-full bg-slate-200 h-1 rounded-full overflow-hidden">
+                      <div className="w-full bg-slate-200 dark:bg-slate-700 h-1 rounded-full overflow-hidden">
                         <div
                           className="bg-emerald-500 h-full transition-all duration-1000 ease-linear"
                           style={{ width: `${((AUTO_STEP_DURATION_SEC - countdown) / AUTO_STEP_DURATION_SEC) * 100}%` }}
@@ -669,14 +669,14 @@ export const DemoFlightDeck = () => {
                       <button
                         onClick={handlePrevStep}
                         disabled={currentStepIdx === 0}
-                        className="w-full py-2 px-3 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none font-bold text-xs cursor-pointer transition-all text-center"
+                        className="w-full py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-40 disabled:pointer-events-none font-bold text-xs cursor-pointer transition-all text-center"
                       >
                         Previous Step
                       </button>
                       {currentStepIdx < filteredSteps.length - 1 ? (
                         <button
                           onClick={handleNextStep}
-                          className="w-full py-2 px-3 rounded-lg bg-[#143a72] hover:bg-[#0c2347] text-white font-bold text-xs cursor-pointer transition-all shadow-xs text-center"
+                          className="w-full py-2 px-3 rounded-lg bg-[#143a72] hover:bg-[#0c2347] dark:bg-blue-600 dark:hover:bg-blue-500 text-white font-bold text-xs cursor-pointer transition-all shadow-xs text-center"
                         >
                           Next Step
                         </button>
@@ -696,16 +696,16 @@ export const DemoFlightDeck = () => {
                 {activeTab === 'scenarios' && (
                   <div className="space-y-1.5 py-2 overflow-y-auto max-h-[50vh] pr-0.5">
                     {/* Scenario 1 */}
-                    <div className="bg-emerald-50/70 rounded-xl p-2 border border-emerald-200">
+                    <div className="bg-emerald-50/70 dark:bg-emerald-950/30 rounded-xl p-2 border border-emerald-200 dark:border-emerald-900/60">
                       <div className="flex items-center justify-between mb-0.5">
-                        <span className="font-bold text-[11px] text-emerald-950">
+                        <span className="font-bold text-[11px] text-emerald-950 dark:text-emerald-200">
                           1. WhatsApp Technician Flow
                         </span>
-                        <span className="text-[8.5px] font-mono bg-emerald-100 text-emerald-800 px-1 rounded font-bold">
+                        <span className="text-[8.5px] font-mono bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 px-1 rounded font-bold">
                           S1-S2
                         </span>
                       </div>
-                      <p className="text-[9.5px] text-emerald-800/80 mb-1.5 leading-tight">
+                      <p className="text-[9.5px] text-emerald-800/80 dark:text-emerald-300 mb-1.5 leading-tight">
                         Dispatches task, simulates FLIR scan upload, and sign-off.
                       </p>
                       <button
@@ -720,16 +720,16 @@ export const DemoFlightDeck = () => {
                     </div>
 
                     {/* Scenario 2 */}
-                    <div className="bg-rose-50/70 rounded-xl p-2 border border-rose-200">
+                    <div className="bg-rose-50/70 dark:bg-rose-950/30 rounded-xl p-2 border border-rose-200 dark:border-rose-900/60">
                       <div className="flex items-center justify-between mb-0.5">
-                        <span className="font-bold text-[11px] text-rose-950">
+                        <span className="font-bold text-[11px] text-rose-950 dark:text-rose-200">
                           2. Incident & Ticking Cost Clock
                         </span>
-                        <span className="text-[8.5px] font-mono bg-rose-100 text-rose-800 px-1 rounded font-bold">
+                        <span className="text-[8.5px] font-mono bg-rose-100 dark:bg-rose-950/60 text-rose-800 dark:text-rose-300 px-1 rounded font-bold">
                           S3
                         </span>
                       </div>
-                      <p className="text-[9.5px] text-rose-800/80 mb-1.5 leading-tight">
+                      <p className="text-[9.5px] text-rose-800/80 dark:text-rose-300 mb-1.5 leading-tight">
                         EX-02 trip on Kanban with live rupee cost clock.
                       </p>
                       <button
@@ -744,37 +744,37 @@ export const DemoFlightDeck = () => {
                     </div>
 
                     {/* Scenario 3 */}
-                    <div className="bg-blue-50/70 rounded-xl p-2 border border-blue-200">
+                    <div className="bg-blue-50/70 dark:bg-blue-950/30 rounded-xl p-2 border border-blue-200 dark:border-blue-900/60">
                       <div className="flex items-center justify-between mb-0.5">
-                        <span className="font-bold text-[11px] text-blue-950">
+                        <span className="font-bold text-[11px] text-blue-950 dark:text-blue-200">
                           3. Cavities 41-42 Drift
                         </span>
-                        <span className="text-[8.5px] font-mono bg-blue-100 text-blue-800 px-1 rounded font-bold">
+                        <span className="text-[8.5px] font-mono bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 px-1 rounded font-bold">
                           S4-S5
                         </span>
                       </div>
-                      <p className="text-[9.5px] text-blue-800/80 mb-1.5 leading-tight">
+                      <p className="text-[9.5px] text-blue-800/80 dark:text-blue-300 mb-1.5 leading-tight">
                         Inspects 72-cavity drift and flags mold servicing.
                       </p>
                       <button
                         onClick={() => handleJumpToStep(8)}
-                        className="w-full bg-[#143a72] hover:bg-[#0c2347] text-white text-[10px] font-bold py-1 rounded-md cursor-pointer"
+                        className="w-full bg-[#143a72] hover:bg-[#0c2347] dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-[10px] font-bold py-1 rounded-md cursor-pointer"
                       >
                         Inspect Cavity Drift
                       </button>
                     </div>
 
                     {/* Scenario 4 */}
-                    <div className="bg-amber-50/70 rounded-xl p-2 border border-amber-200">
+                    <div className="bg-amber-50/70 dark:bg-amber-950/30 rounded-xl p-2 border border-amber-200 dark:border-amber-900/60">
                       <div className="flex items-center justify-between mb-0.5">
-                        <span className="font-bold text-[11px] text-amber-950">
+                        <span className="font-bold text-[11px] text-amber-950 dark:text-amber-200">
                           4. Financial Recalculation
                         </span>
-                        <span className="text-[8.5px] font-mono bg-amber-100 text-amber-800 px-1 rounded font-bold">
+                        <span className="text-[8.5px] font-mono bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 px-1 rounded font-bold">
                           Global
                         </span>
                       </div>
-                      <p className="text-[9.5px] text-amber-800/80 mb-1.5 leading-tight">
+                      <p className="text-[9.5px] text-amber-800/80 dark:text-amber-300 mb-1.5 leading-tight">
                         Sets resin price to 115 INR/kg and recomputes figures.
                       </p>
                       <button
@@ -789,16 +789,16 @@ export const DemoFlightDeck = () => {
                     </div>
 
                     {/* Scenario 5 */}
-                    <div className="bg-purple-50/70 rounded-xl p-2 border border-purple-200">
+                    <div className="bg-purple-50/70 dark:bg-purple-950/30 rounded-xl p-2 border border-purple-200 dark:border-purple-900/60">
                       <div className="flex items-center justify-between mb-0.5">
-                        <span className="font-bold text-[11px] text-purple-950">
+                        <span className="font-bold text-[11px] text-purple-950 dark:text-purple-200">
                           5. AI Maintenance Copilot
                         </span>
-                        <span className="text-[8.5px] font-mono bg-purple-100 text-purple-800 px-1 rounded font-bold">
+                        <span className="text-[8.5px] font-mono bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300 px-1 rounded font-bold">
                           Copilot
                         </span>
                       </div>
-                      <p className="text-[9.5px] text-purple-800/80 mb-1.5 leading-tight">
+                      <p className="text-[9.5px] text-purple-800/80 dark:text-purple-300 mb-1.5 leading-tight">
                         Natural language queries over logs & spare parts.
                       </p>
                       <button
@@ -812,19 +812,19 @@ export const DemoFlightDeck = () => {
                 )}
 
                 {/* Compact Footer with Environment Reset */}
-                <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-[10px]">
+                <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-[10px]">
                   <div className="flex items-center gap-2">
-                    <span className="text-slate-400 font-mono">Progress Saved</span>
+                    <span className="text-slate-400 dark:text-slate-500 font-mono">Progress Saved</span>
                     <button
                       onClick={handleStartOver}
-                      className="text-slate-600 hover:text-slate-900 font-semibold cursor-pointer underline"
+                      className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-semibold cursor-pointer underline"
                     >
                       Start Over
                     </button>
                   </div>
                   <button
                     onClick={handleResetAll}
-                    className="text-rose-600 hover:text-rose-800 font-semibold cursor-pointer underline"
+                    className="text-rose-600 dark:text-rose-400 hover:text-rose-800 dark:hover:text-rose-300 font-semibold cursor-pointer underline"
                     title="Reset factory data, technician rosters, and guide back to initial demo state"
                   >
                     Reset All Demo Data

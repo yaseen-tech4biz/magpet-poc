@@ -8,11 +8,11 @@ export const ToastContainer = () => {
   const getIcon = (type) => {
     switch (type) {
       case 'success':
-        return <span className="text-emerald-500 font-bold">✓</span>;
+        return <span className="text-emerald-500 dark:text-emerald-400 font-bold">✓</span>;
       case 'warning':
-        return <span className="text-amber-500 font-bold">⚠</span>;
+        return <span className="text-amber-500 dark:text-amber-400 font-bold">⚠</span>;
       case 'error':
-        return <span className="text-rose-500 font-bold">✕</span>;
+        return <span className="text-rose-500 dark:text-rose-400 font-bold">✕</span>;
       case 'whatsapp':
         return (
           <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center text-[10px] font-bold">
@@ -20,22 +20,22 @@ export const ToastContainer = () => {
           </span>
         );
       default:
-        return <span className="text-blue-500 font-bold">ℹ</span>;
+        return <span className="text-blue-500 dark:text-blue-400 font-bold">ℹ</span>;
     }
   };
 
   const getBorderColor = (type) => {
     switch (type) {
       case 'success':
-        return 'border-emerald-300 bg-emerald-50/95';
+        return 'border-emerald-300 dark:border-emerald-800/80 bg-emerald-50/95 dark:bg-emerald-950/90';
       case 'warning':
-        return 'border-amber-300 bg-amber-50/95';
+        return 'border-amber-300 dark:border-amber-800/80 bg-amber-50/95 dark:bg-amber-950/90';
       case 'error':
-        return 'border-rose-300 bg-rose-50/95';
+        return 'border-rose-300 dark:border-rose-800/80 bg-rose-50/95 dark:bg-rose-950/90';
       case 'whatsapp':
-        return 'border-emerald-400 bg-white';
+        return 'border-emerald-400 dark:border-emerald-700 bg-white dark:bg-slate-900';
       default:
-        return 'border-blue-200 bg-white';
+        return 'border-blue-200 dark:border-blue-800 bg-white dark:bg-slate-900';
     }
   };
 
@@ -49,24 +49,24 @@ export const ToastContainer = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className={`pointer-events-auto border rounded-xl p-3.5 shadow-xl flex items-start gap-3 backdrop-blur-md ${getBorderColor(
+            className={`pointer-events-auto border rounded-xl p-3.5 shadow-xl flex items-start gap-3 backdrop-blur-md transition-colors ${getBorderColor(
               toast.type
             )}`}
           >
             <div className="mt-0.5 shrink-0">{getIcon(toast.type)}</div>
             <div className="flex-1 min-w-0">
-              <div className="font-bold text-xs text-slate-900 leading-tight">
+              <div className="font-bold text-xs text-slate-900 dark:text-slate-100 leading-tight">
                 {toast.title}
               </div>
               {toast.message && (
-                <div className="text-[11px] text-slate-600 mt-0.5 leading-normal">
+                <div className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5 leading-normal">
                   {toast.message}
                 </div>
               )}
             </div>
             <button
               onClick={() => removeToast(toast.id)}
-              className="text-slate-400 hover:text-slate-600 text-xs font-bold px-1 cursor-pointer"
+              className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 text-xs font-bold px-1 cursor-pointer"
             >
               ×
             </button>
@@ -76,3 +76,4 @@ export const ToastContainer = () => {
     </div>
   );
 };
+export default ToastContainer;

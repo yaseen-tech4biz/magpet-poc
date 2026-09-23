@@ -109,7 +109,7 @@ export const PreformOverviewPage = () => {
           title="Machine Quality & Output Status · Hooghly Unit 1"
           subtitle="Replacing manual Excel quality reports with real-time shift analytics"
           rightElement={
-            <span className="font-mono text-[10px] text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded font-semibold uppercase tracking-wider">
+            <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded font-semibold uppercase tracking-wider">
               6 Active Injection Systems
             </span>
           }
@@ -117,7 +117,7 @@ export const PreformOverviewPage = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-slate-200 text-slate-400 font-mono text-[11px] uppercase">
+                <tr className="border-b border-slate-200 dark:border-slate-800 text-slate-400 dark:text-slate-500 font-mono text-[11px] uppercase">
                   <th className="py-2.5 px-3 font-semibold">Machine</th>
                   <th className="py-2.5 px-3 font-semibold">Preform Line</th>
                   <th className="py-2.5 px-3 font-semibold text-center">Cavities</th>
@@ -127,42 +127,42 @@ export const PreformOverviewPage = () => {
                   <th className="py-2.5 px-3 font-semibold text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
                 {machineSummaries.map((m) => (
-                  <tr key={m.code} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="py-2.5 px-3 font-mono font-bold text-[#143a72]">
+                  <tr key={m.code} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
+                    <td className="py-2.5 px-3 font-mono font-bold text-[#143a72] dark:text-blue-400">
                       {m.code}
                     </td>
-                    <td className="py-2.5 px-3 text-slate-700">
+                    <td className="py-2.5 px-3 text-slate-700 dark:text-slate-200">
                       <div>{m.name}</div>
-                      <div className="text-[11px] text-slate-400">{m.product}</div>
+                      <div className="text-[11px] text-slate-400 dark:text-slate-500">{m.product}</div>
                     </td>
-                    <td className="py-2.5 px-3 text-center font-mono font-semibold text-slate-800">
+                    <td className="py-2.5 px-3 text-center font-mono font-semibold text-slate-800 dark:text-slate-200">
                       {m.cavities}
                     </td>
                     <td className="py-2.5 px-3 text-right font-mono">
-                      <div className="font-bold text-slate-900">{m.output.toLocaleString()} pcs</div>
-                      <div className="text-[11px] text-slate-500">{m.tonnes} t</div>
+                      <div className="font-bold text-slate-900 dark:text-white">{m.output.toLocaleString()} pcs</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400">{m.tonnes} t</div>
                     </td>
                     <td className="py-2.5 px-3 text-right font-mono">
                       <span className={`px-2 py-0.5 rounded font-bold ${
                         m.rate >= 2.3
-                          ? 'bg-rose-100 text-rose-800'
+                          ? 'bg-rose-100 text-rose-800 dark:bg-rose-950/50 dark:text-rose-300'
                           : m.rate > 1.9
-                          ? 'bg-amber-100 text-amber-800'
-                          : 'bg-emerald-100 text-emerald-800'
+                          ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/50 dark:text-amber-300'
+                          : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300'
                       }`}>
                         {m.rate.toFixed(1)}%
                       </span>
                     </td>
                     <td className="py-2.5 px-3 text-center">
                       {m.hasAlert ? (
-                        <span className="font-mono text-[10px] font-bold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded uppercase inline-flex items-center gap-1">
+                        <span className="font-mono text-[10px] font-bold text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900 px-2 py-0.5 rounded uppercase inline-flex items-center gap-1">
                           <span className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse" />
                           Alerts Active
                         </span>
                       ) : (
-                        <span className="font-mono text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded uppercase">
+                        <span className="font-mono text-[10px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 px-2 py-0.5 rounded uppercase">
                           Normal
                         </span>
                       )}
@@ -171,13 +171,13 @@ export const PreformOverviewPage = () => {
                       <div className="flex items-center justify-end gap-1.5">
                         <Link
                           to={`/preform/machine/${m.code}`}
-                          className="font-semibold text-xs text-[#143a72] hover:text-[#0c2347] bg-blue-50 hover:bg-blue-100 border border-blue-200 px-2.5 py-1 rounded transition-colors"
+                          className="font-semibold text-xs text-[#143a72] dark:text-blue-300 hover:text-[#0c2347] bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/50 border border-blue-200 dark:border-blue-800 px-2.5 py-1 rounded transition-colors"
                         >
                           Drilldown
                         </Link>
                         <Link
                           to={`/preform/cavity/${m.code}`}
-                          className="font-semibold text-xs text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-2.5 py-1 rounded transition-colors"
+                          className="font-semibold text-xs text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 px-2.5 py-1 rounded transition-colors"
                         >
                           Cavity Map
                         </Link>
@@ -200,7 +200,7 @@ export const PreformOverviewPage = () => {
             title="Plant Rejection Trend · Last 60 Days"
             subtitle="Target operational band: 1.5% – 1.8%"
             rightElement={
-              <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">
+              <span className="font-mono text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider">
                 All 6 Machines Aggregate
               </span>
             }
@@ -220,7 +220,7 @@ export const PreformOverviewPage = () => {
               />
             </div>
 
-            <div className="flex items-center gap-2 mt-3 pt-3 border-t border-slate-100 text-xs text-slate-600">
+            <div className="flex items-center gap-2 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block shrink-0" />
               <span>
                 <b>Planted Finding:</b> 3-week upward drift from 1.7% baseline to 2.16%. Driven primarily by weight variation rejects on H-03 (Cavities 41 &amp; 42).
@@ -236,7 +236,7 @@ export const PreformOverviewPage = () => {
           <Card
             title="Active Quality Alerts"
             rightElement={
-              <span className="font-mono text-[11px] text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200 font-semibold flex items-center gap-1.5">
+              <span className="font-mono text-[11px] text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/50 px-2 py-0.5 rounded border border-rose-200 dark:border-rose-900 font-semibold flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-rose-600 inline-block animate-pulse" />
                 {alertsData.length} LIVE
               </span>
@@ -249,25 +249,27 @@ export const PreformOverviewPage = () => {
                   <div
                     key={alt.id}
                     className={`p-3 rounded-lg border ${
-                      isRed ? 'border-rose-200 bg-rose-50/40' : 'border-amber-200 bg-amber-50/40'
+                      isRed 
+                        ? 'border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20' 
+                        : 'border-amber-200 dark:border-amber-900/60 bg-amber-50/40 dark:bg-amber-950/20'
                     }`}
                   >
-                    <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
+                    <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 dark:text-slate-500">
                       <span>{alt.time}</span>
-                      <span className={`font-bold uppercase ${isRed ? 'text-rose-600' : 'text-amber-700'}`}>
+                      <span className={`font-bold uppercase ${isRed ? 'text-rose-600 dark:text-rose-400' : 'text-amber-700 dark:text-amber-400'}`}>
                         {alt.type.replace('_', ' ')}
                       </span>
                     </div>
-                    <div className="text-xs font-bold text-slate-900 mt-1">
+                    <div className="text-xs font-bold text-slate-900 dark:text-white mt-1">
                       {alt.title}
                     </div>
-                    <div className="text-[11px] text-slate-600 mt-0.5">
+                    <div className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">
                       {alt.detail}
                     </div>
                     {alt.link && (
                       <Link
                         to={alt.link}
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-[#143a72] hover:underline mt-2"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-[#143a72] dark:text-blue-400 hover:underline dark:hover:text-blue-300 mt-2"
                       >
                         Open diagnostic view
                       </Link>
@@ -283,7 +285,7 @@ export const PreformOverviewPage = () => {
             title="SAP Business One"
             subtitle="Sits beside SAP B1 · Does not replace it"
             rightElement={
-              <span className="font-mono text-[10px] text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded font-bold uppercase">
+              <span className="font-mono text-[10px] text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-900 px-2 py-0.5 rounded font-bold uppercase">
                 Active Sync
               </span>
             }

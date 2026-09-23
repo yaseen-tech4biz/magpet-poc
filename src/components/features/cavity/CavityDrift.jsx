@@ -34,22 +34,22 @@ export const CavityDrift = () => {
     <div>
       <div className="flex items-center justify-between mb-3">
         <div>
-          <span className="font-heading font-semibold text-slate-800 text-sm">
+          <span className="font-heading font-semibold text-slate-800 dark:text-white text-sm">
             Cavity {selectedCavity} · 21-Day Weight Drift
           </span>
-          <span className="font-mono text-[11px] text-slate-500 ml-2">
+          <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400 ml-2">
             g / daily mean · Target {targetWeight.toFixed(1)}g
           </span>
         </div>
 
         {isHotRunner && (
-          <span className="font-mono text-[10px] font-bold uppercase tracking-wider bg-rose-50 text-rose-700 px-2 py-0.5 rounded border border-rose-200">
+          <span className="font-mono text-[10px] font-bold uppercase tracking-wider bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 px-2 py-0.5 rounded border border-rose-200 dark:border-rose-900">
             Hot Runner Drift
           </span>
         )}
       </div>
 
-      <div className="bg-slate-50/50 p-2.5 rounded-lg border border-slate-100">
+      <div className="bg-slate-50/50 dark:bg-slate-900/60 p-2.5 rounded-lg border border-slate-100 dark:border-slate-800">
         <LineChart
           key={`${selectedMachine}-${selectedCavity}`}
           data={values}
@@ -67,12 +67,12 @@ export const CavityDrift = () => {
 
       <div className="mt-3.5 text-xs leading-relaxed space-y-2">
         {isHotRunner ? (
-          <div className="bg-rose-50 border border-rose-200 rounded-lg p-3 text-rose-900">
+          <div className="bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 rounded-lg p-3 text-rose-900 dark:text-rose-200">
             <span className="font-bold">Hot runner anomaly identified: </span>
             A consistent upward drift of approx. <b>+0.02 g per day</b> (+0.38 g total). This thermal drift on cavities 41 and 42 is the root cause driving weight variation rejects on H-03.
             
-            <div className="mt-2.5 pt-2 border-t border-rose-200/80 flex items-center justify-between">
-              <span className="text-[11px] font-mono text-rose-700">Root Cause: Manifold Zone 3 Tip</span>
+            <div className="mt-2.5 pt-2 border-t border-rose-200/80 dark:border-rose-900/60 flex items-center justify-between">
+              <span className="text-[11px] font-mono text-rose-700 dark:text-rose-400">Root Cause: Manifold Zone 3 Tip</span>
               <button
                 onClick={handleFlagMold}
                 className="bg-rose-600 hover:bg-rose-700 text-white font-semibold text-[11px] px-3 py-1 rounded shadow-2xs cursor-pointer transition-colors"
@@ -82,14 +82,14 @@ export const CavityDrift = () => {
             </div>
           </div>
         ) : (
-          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3 text-emerald-900">
+          <div className="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 rounded-lg p-3 text-emerald-900 dark:text-emerald-200">
             <span className="font-semibold">Normal SPC performance: </span>
             Cavity {selectedCavity} on {selectedMachine} remains within target operational limits ({targetWeight.toFixed(2)}g ±{tolerance}g).
           </div>
         )}
 
         {flaggedNotice && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-2.5 text-blue-900 text-xs font-mono animate-in fade-in">
+          <div className="bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 rounded-lg p-2.5 text-blue-900 dark:text-blue-200 text-xs font-mono animate-in fade-in">
             {flaggedNotice}
           </div>
         )}

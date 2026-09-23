@@ -58,12 +58,12 @@ export const KanbanBoard = () => {
   return (
     <div>
       {/* Top Controls Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-200">
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <h2 className="text-base font-bold text-slate-800 font-heading">
+          <h2 className="text-base font-bold text-slate-800 dark:text-white font-heading">
             Live Plant Breakdown Board
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             Real-time incident clock runs continuously from initial report to verified resolution.
           </p>
         </div>
@@ -78,9 +78,9 @@ export const KanbanBoard = () => {
       </div>
 
       {/* Shift Filter Pills (Spec Section 6.4 Story S3: Washing Line Shift C Cluster) */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-4 bg-white p-2.5 rounded-xl border border-slate-200">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-4 bg-white dark:bg-slate-900 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800">
         <div className="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
-          <span className="text-slate-400 text-[11px] uppercase tracking-wider font-mono mr-1">Shift Filter:</span>
+          <span className="text-slate-400 dark:text-slate-500 text-[11px] uppercase tracking-wider font-mono mr-1">Shift Filter:</span>
           {[
             { key: 'ALL', label: 'All Shifts' },
             { key: 'A', label: 'Shift A (Morning)' },
@@ -92,8 +92,8 @@ export const KanbanBoard = () => {
               onClick={() => setSelectedShift(shift.key)}
               className={`px-3 py-1 rounded-lg text-xs font-medium cursor-pointer transition-all ${
                 selectedShift === shift.key
-                  ? 'bg-[#143a72] text-white font-bold shadow-2xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  ? 'bg-[#143a72] dark:bg-blue-600 text-white font-bold shadow-2xs'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
             >
               {shift.label}
@@ -101,7 +101,7 @@ export const KanbanBoard = () => {
           ))}
         </div>
         {selectedShift === 'C' && (
-          <span className="text-[11px] font-mono text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded font-bold">
+          <span className="text-[11px] font-mono text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900 px-2 py-0.5 rounded font-bold">
             Planted Story S3: Night Shift Cluster (WL-01 Friction Washers)
           </span>
         )}
@@ -113,8 +113,8 @@ export const KanbanBoard = () => {
           onClick={() => setMobileLaneFilter('ALL')}
           className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
             mobileLaneFilter === 'ALL'
-              ? 'bg-[#143a72] text-white shadow-2xs'
-              : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+              ? 'bg-[#143a72] dark:bg-blue-600 text-white shadow-2xs'
+              : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
           }`}
         >
           All Lanes (4)
@@ -125,12 +125,12 @@ export const KanbanBoard = () => {
             onClick={() => setMobileLaneFilter(lane.key)}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all shrink-0 cursor-pointer flex items-center gap-1.5 ${
               mobileLaneFilter === lane.key
-                ? 'bg-[#143a72] text-white font-bold shadow-2xs'
-                : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                ? 'bg-[#143a72] dark:bg-blue-600 text-white font-bold shadow-2xs'
+                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
             }`}
           >
             <span>{lane.title}</span>
-            <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${mobileLaneFilter === lane.key ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-700'}`}>
+            <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${mobileLaneFilter === lane.key ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'}`}>
               {lane.items.length}
             </span>
           </button>
@@ -140,10 +140,10 @@ export const KanbanBoard = () => {
       {/* 4 Kanban Lanes */}
       <div className={`grid grid-cols-1 ${filteredLanes.length > 1 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1'} gap-4`}>
         {filteredLanes.map((lane) => (
-          <div key={lane.key} className="bg-slate-100/70 rounded-xl p-3.5 border border-slate-200/80 flex flex-col">
-            <div className="font-mono text-xs font-bold uppercase tracking-wider text-slate-500 pb-3 mb-3 border-b border-slate-200 flex items-center justify-between">
+          <div key={lane.key} className="bg-slate-100/70 dark:bg-slate-900/60 rounded-xl p-3.5 border border-slate-200/80 dark:border-slate-800 flex flex-col">
+            <div className="font-mono text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 pb-3 mb-3 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
               <span>{lane.title}</span>
-              <span className="bg-slate-200 text-slate-700 px-2 py-0.5 rounded text-[11px]">
+              <span className="bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded text-[11px]">
                 {lane.items.length}
               </span>
             </div>
@@ -157,74 +157,74 @@ export const KanbanBoard = () => {
                 return (
                   <div
                     key={job.id}
-                    className={`bg-white rounded-lg p-3.5 border transition-all ${
+                    className={`bg-white dark:bg-slate-900 rounded-lg p-3.5 border transition-all ${
                       job.crit && !job.isResolved
-                        ? 'border-rose-300 ring-1 ring-rose-200/50 shadow-xs'
-                        : 'border-slate-200 card-shadow'
+                        ? 'border-rose-300 dark:border-rose-900 ring-1 ring-rose-200/50 dark:ring-rose-900/40 shadow-xs'
+                        : 'border-slate-200 dark:border-slate-800 card-shadow'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-bold text-[#143a72] bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
+                      <span className="font-mono text-xs font-bold text-[#143a72] dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 px-2 py-0.5 rounded border border-blue-100 dark:border-blue-900">
                         {job.a}
                       </span>
                       <StatusPill type={job.p}>{job.p}</StatusPill>
                     </div>
 
-                    <div className="text-xs font-semibold text-slate-800 mt-2 mb-1">
+                    <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 mt-2 mb-1">
                       {job.w}
                     </div>
 
-                    <div className="text-[11px] text-slate-500">
+                    <div className="text-[11px] text-slate-500 dark:text-slate-400">
                       {job.cause} · {job.tech}
                     </div>
 
                     {/* Hold Reason Banner */}
                     {job.state === 'WAITING_SPARE' && job.holdReason && (
-                      <div className="mt-2 text-[10.5px] text-amber-800 bg-amber-50 p-1.5 rounded border border-amber-200 font-mono">
+                      <div className="mt-2 text-[10.5px] text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/50 p-1.5 rounded border border-amber-200 dark:border-amber-900 font-mono">
                         Hold: {job.holdReason}
                       </div>
                     )}
 
                     {/* Live Ticking Cost for Ongoing Critical Jobs (Spec F-A2: Resin Value Headline + Contribution Sub-line) */}
                     {job.crit && !job.isResolved && (
-                      <div className="mt-3 pt-2.5 border-t border-dashed border-rose-200 space-y-1">
+                      <div className="mt-3 pt-2.5 border-t border-dashed border-rose-200 dark:border-rose-900/60 space-y-1">
                         <div className="flex items-baseline justify-between">
-                          <span className="font-mono text-[10px] uppercase tracking-wider text-rose-600 font-semibold flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-rose-600 inline-block animate-pulse" />
+                          <span className="font-mono text-[10px] uppercase tracking-wider text-rose-600 dark:text-rose-400 font-semibold flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-rose-600 dark:bg-rose-400 inline-block animate-pulse" />
                             Resin held ({liveHours.toFixed(1)}h)
                           </span>
-                          <span className="font-mono text-sm font-bold text-rose-600">
+                          <span className="font-mono text-sm font-bold text-rose-600 dark:text-rose-400">
                             {formatResinHeld(liveHours)}
                           </span>
                         </div>
-                        <div className="flex items-baseline justify-between text-[10px] font-mono text-slate-500">
+                        <div className="flex items-baseline justify-between text-[10px] font-mono text-slate-500 dark:text-slate-400">
                           <span>Contribution lost</span>
-                          <span className="font-bold text-amber-700">{formatContribLost(liveHours)}</span>
+                          <span className="font-bold text-amber-700 dark:text-amber-400">{formatContribLost(liveHours)}</span>
                         </div>
                       </div>
                     )}
 
                     {/* Final Cost for Resolved Jobs */}
                     {job.isResolved && (
-                      <div className="mt-3 pt-2.5 border-t border-dashed border-slate-200 space-y-1">
+                      <div className="mt-3 pt-2.5 border-t border-dashed border-slate-200 dark:border-slate-800 space-y-1">
                         <div className="flex items-baseline justify-between">
-                          <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500 font-semibold">
+                          <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">
                             Resin value held
                           </span>
-                          <span className="font-mono text-sm font-bold text-slate-700">
+                          <span className="font-mono text-sm font-bold text-slate-700 dark:text-slate-200">
                             {formatResinHeld(job.hrs)}
                           </span>
                         </div>
-                        <div className="flex items-baseline justify-between text-[10px] font-mono text-slate-500">
+                        <div className="flex items-baseline justify-between text-[10px] font-mono text-slate-500 dark:text-slate-400">
                           <span>Contribution lost</span>
-                          <span className="font-bold text-amber-700">{formatContribLost(job.hrs)}</span>
+                          <span className="font-bold text-amber-700 dark:text-amber-400">{formatContribLost(job.hrs)}</span>
                         </div>
                       </div>
                     )}
 
                     {/* Action Buttons across Lanes */}
                     {!job.isResolved && (
-                      <div className="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                      <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px]">
                         {job.state === 'ASSIGNED' && (
                           <button
                             onClick={() => updateJobState(job.id, 'IN_PROGRESS')}
@@ -238,7 +238,7 @@ export const KanbanBoard = () => {
                           <div className="flex items-center gap-1.5 w-full justify-between">
                             <button
                               onClick={() => setHoldModalJobId(job.id)}
-                              className="bg-amber-100 hover:bg-amber-200 text-amber-800 px-2 py-0.5 rounded cursor-pointer font-medium"
+                              className="bg-amber-100 dark:bg-amber-950/60 hover:bg-amber-200 dark:hover:bg-amber-900/60 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded cursor-pointer font-medium"
                             >
                               Wait Spare
                             </button>
@@ -266,7 +266,7 @@ export const KanbanBoard = () => {
               })}
 
               {lane.items.length === 0 && (
-                <div className="p-5 text-center text-xs text-slate-400 italic">
+                <div className="p-5 text-center text-xs text-slate-400 dark:text-slate-500 italic">
                   No active cards in lane
                 </div>
               )}
@@ -278,14 +278,14 @@ export const KanbanBoard = () => {
       {/* Report New Breakdown Modal */}
       {showReportModal && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-2xs flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl max-w-md w-full p-5 shadow-2xl border border-slate-200">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
-              <h3 className="font-bold text-slate-900 text-sm font-heading">
+          <div className="bg-white dark:bg-slate-900 rounded-xl max-w-md w-full p-5 shadow-2xl border border-slate-200 dark:border-slate-800">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
+              <h3 className="font-bold text-slate-900 dark:text-white text-sm font-heading">
                 Report Plant Breakdown Event
               </h3>
               <button
                 onClick={() => setShowReportModal(false)}
-                className="text-slate-400 hover:text-slate-600 text-sm font-bold"
+                className="text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 text-sm font-bold cursor-pointer"
               >
                 ✕
               </button>
@@ -293,11 +293,11 @@ export const KanbanBoard = () => {
 
             <form onSubmit={handleCreateReport} className="space-y-3 text-xs">
               <div>
-                <label className="block font-semibold text-slate-700 mb-1">Asset</label>
+                <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Asset</label>
                 <select
                   value={newAsset}
                   onChange={(e) => setNewAsset(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-300 rounded p-2 text-slate-900 outline-hidden"
+                  className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded p-2 text-slate-900 dark:text-white outline-hidden"
                 >
                   <option value="EX-02">EX-02 · Coperion Extruder 2 (Critical)</option>
                   <option value="WL-01">WL-01 · Herbold Meckesheim Washing Line</option>
@@ -309,32 +309,32 @@ export const KanbanBoard = () => {
               </div>
 
               <div>
-                <label className="block font-semibold text-slate-700 mb-1">Description</label>
+                <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Description</label>
                 <input
                   type="text"
                   value={newDesc}
                   onChange={(e) => setNewDesc(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-300 rounded p-2 text-slate-900 outline-hidden"
+                  className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded p-2 text-slate-900 dark:text-white outline-hidden"
                   placeholder="e.g. Gearbox bearing abnormal vibration and heat"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-semibold text-slate-700 mb-1">Cause Code</label>
+                  <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Cause Code</label>
                   <input
                     type="text"
                     value={newCause}
                     onChange={(e) => setNewCause(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-300 rounded p-2 text-slate-900 outline-hidden"
+                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded p-2 text-slate-900 dark:text-white outline-hidden"
                   />
                 </div>
                 <div>
-                  <label className="block font-semibold text-slate-700 mb-1">Priority</label>
+                  <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Priority</label>
                   <select
                     value={newPriority}
                     onChange={(e) => setNewPriority(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-300 rounded p-2 text-slate-900 outline-hidden"
+                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded p-2 text-slate-900 dark:text-white outline-hidden"
                   >
                     <option value="P1">P1 · Critical (Line Stopped)</option>
                     <option value="P2">P2 · High Risk</option>
@@ -344,11 +344,11 @@ export const KanbanBoard = () => {
               </div>
 
               <div>
-                <label className="block font-semibold text-slate-700 mb-1">Initial Assignee</label>
+                <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Initial Assignee</label>
                 <select
                   value={newTech}
                   onChange={(e) => setNewTech(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-300 rounded p-2 text-slate-900 outline-hidden"
+                  className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded p-2 text-slate-900 dark:text-white outline-hidden"
                 >
                   <option value="Ramesh">Ramesh · Mechanical (Shift A)</option>
                   <option value="Prakash">Prakash · Mechanical (Shift B)</option>
@@ -357,17 +357,17 @@ export const KanbanBoard = () => {
                 </select>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 flex justify-end gap-2">
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-2">
                 <button
                   type="button"
                   onClick={() => setShowReportModal(false)}
-                  className="px-3 py-1.5 rounded text-slate-600 hover:bg-slate-100 font-medium"
+                  className="px-3 py-1.5 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded bg-rose-600 hover:bg-rose-700 text-white font-semibold"
+                  className="px-4 py-1.5 rounded bg-rose-600 hover:bg-rose-700 text-white font-semibold cursor-pointer"
                 >
                   Log Breakdown & Start Cost Clock
                 </button>
@@ -380,23 +380,23 @@ export const KanbanBoard = () => {
       {/* Hold Reason Modal */}
       {holdModalJobId && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-2xs flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl max-w-sm w-full p-5 shadow-2xl border border-slate-200">
-            <h3 className="font-bold text-slate-900 text-sm mb-2 font-heading">
+          <div className="bg-white dark:bg-slate-900 rounded-xl max-w-sm w-full p-5 shadow-2xl border border-slate-200 dark:border-slate-800">
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2 font-heading">
               Place Breakdown on Hold
             </h3>
-            <p className="text-xs text-slate-500 mb-3">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
               Specify what spare part or authorization is required before work can resume:
             </p>
             <input
               type="text"
               value={holdReason}
               onChange={(e) => setHoldReason(e.target.value)}
-              className="w-full bg-slate-50 border border-slate-300 rounded p-2 text-xs text-slate-900 outline-hidden mb-4"
+              className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded p-2 text-xs text-slate-900 dark:text-white outline-hidden mb-4"
             />
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setHoldModalJobId(null)}
-                className="px-3 py-1 text-xs rounded text-slate-600 hover:bg-slate-100"
+                className="px-3 py-1 text-xs rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
               >
                 Cancel
               </button>
@@ -405,7 +405,7 @@ export const KanbanBoard = () => {
                   updateJobState(holdModalJobId, 'WAITING_SPARE', holdReason);
                   setHoldModalJobId(null);
                 }}
-                className="px-3 py-1 text-xs rounded bg-amber-600 hover:bg-amber-700 text-white font-medium"
+                className="px-3 py-1 text-xs rounded bg-amber-600 hover:bg-amber-700 text-white font-medium cursor-pointer"
               >
                 Confirm Hold
               </button>

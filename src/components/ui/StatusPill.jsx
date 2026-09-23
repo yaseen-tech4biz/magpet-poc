@@ -2,16 +2,16 @@ import React from 'react';
 
 export const StatusPill = ({ type = 'default', children, className = '' }) => {
   const styles = {
-    p1: 'bg-rose-50 text-rose-700 border-rose-200',
-    p2: 'bg-amber-50 text-amber-700 border-amber-200',
-    p3: 'bg-slate-100 text-slate-700 border-slate-200',
-    red: 'bg-rose-50 text-rose-700 border-rose-200',
-    amber: 'bg-amber-50 text-amber-700 border-amber-200',
-    green: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    blue: 'bg-blue-50 text-blue-700 border-blue-200',
-    cyan: 'bg-cyan-50 text-cyan-700 border-cyan-200',
-    grey: 'bg-slate-100 text-slate-700 border-slate-200',
-    default: 'bg-slate-100 text-slate-700 border-slate-200'
+    p1: 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900/60',
+    p2: 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-900/60',
+    p3: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700',
+    red: 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900/60',
+    amber: 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-900/60',
+    green: 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-900/60',
+    blue: 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-900/60',
+    cyan: 'bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-900/60',
+    grey: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700',
+    default: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700'
   };
 
   const chosenStyle = styles[type.toLowerCase()] || styles.default;
@@ -29,8 +29,8 @@ export const Button = ({ children, onClick, variant = 'primary', size = 'md', di
   const variants = {
     primary: 'bg-[#143a72] hover:bg-[#0c2347] text-white shadow-xs',
     green: 'bg-emerald-700 hover:bg-emerald-800 text-white shadow-xs',
-    secondary: 'bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs',
-    ghost: 'hover:bg-slate-100 text-slate-600',
+    secondary: 'bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 shadow-xs',
+    ghost: 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300',
     danger: 'bg-rose-600 hover:bg-rose-700 text-white'
   };
 
@@ -50,3 +50,4 @@ export const Button = ({ children, onClick, variant = 'primary', size = 'md', di
     </button>
   );
 };
+export default StatusPill;

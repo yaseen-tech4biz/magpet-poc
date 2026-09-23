@@ -26,7 +26,7 @@ export const LandingPage = () => {
               <img
                 src={parentLogoUrl}
                 alt="Magnum Group Logo"
-                className="h-14 w-auto object-contain bg-white rounded-lg p-2 border border-slate-200 shadow-xs"
+                className="h-14 w-auto object-contain bg-white  rounded-lg p-2 border border-slate-200 dark:border-slate-700 shadow-xs"
                 onError={(e) => { e.target.style.display = 'none'; }}
               />
             )}
@@ -34,17 +34,17 @@ export const LandingPage = () => {
               <img
                 src={logoUrl}
                 alt="Magpet Logo"
-                className="h-14 w-auto object-contain bg-white rounded-lg p-2 border border-slate-200 shadow-xs"
+                className="h-14 w-auto object-contain bg-white  rounded-lg p-2 border border-slate-200 dark:border-slate-700 shadow-xs"
                 onError={(e) => { e.target.style.display = 'none'; }}
               />
             )}
           </div>
         )}
 
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#143a72] tracking-tight font-heading">
-          Magpet <span className="text-slate-700 font-light">Operations Intelligence</span>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#143a72] dark:text-blue-400 tracking-tight font-heading">
+          Magpet <span className="text-slate-700 dark:text-slate-200 font-light">Operations Intelligence</span>
         </h1>
-        <p className="text-sm sm:text-base text-slate-500 mt-2 max-w-xl mx-auto">
+        <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 mt-2 max-w-xl mx-auto">
           One unified live operational cockpit across plants, engineered alongside SAP Business One.
         </p>
 
@@ -56,7 +56,7 @@ export const LandingPage = () => {
         {/* Plant 1: Kharagpur Unit 3 (rPET Resin) */}
         <div
           onClick={() => navigate('/rpet')}
-          className="bg-white rounded-2xl border border-slate-200 overflow-hidden card-shadow card-shadow-hover transition-all cursor-pointer group hover:border-[#143a72] flex flex-col justify-between"
+          className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden card-shadow card-shadow-hover transition-all cursor-pointer group hover:border-[#143a72] dark:hover:border-blue-500 flex flex-col justify-between"
         >
           {/* Plain Dark Typography Hero Panel (Spec Line 66) */}
           <div className="bg-[#0c2347] text-white p-5 border-b border-slate-800">
@@ -76,42 +76,42 @@ export const LandingPage = () => {
 
           <div className="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <p className="text-xs text-slate-500 mb-3">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
                 Herbold Meckesheim washing line, Coperion twin-screw extrusion, and SSP reactor.
               </p>
 
               {/* Product Catalogue Vocabulary (Spec Line 65) */}
-              <div className="mb-4 pt-2 border-t border-slate-100 flex items-center gap-1.5 flex-wrap text-[10px] font-mono">
+              <div className="mb-4 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1.5 flex-wrap text-[10px] font-mono">
                 <span className="text-slate-400 uppercase tracking-wider font-semibold">Catalogue:</span>
-                <span className="bg-emerald-50 text-emerald-800 font-semibold px-2 py-0.5 rounded border border-emerald-200">
+                <span className="bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-semibold px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800/60">
                   rPET Flakes
                 </span>
-                <span className="bg-emerald-50 text-emerald-800 font-semibold px-2 py-0.5 rounded border border-emerald-200">
+                <span className="bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-semibold px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800/60">
                   rPET Pellets
                 </span>
-                <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+                <span className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded">
                   Food-Grade Resin
                 </span>
               </div>
             </div>
 
             <div>
-              <div className="grid grid-cols-3 gap-3 border-t border-slate-100 pt-4">
+              <div className="grid grid-cols-3 gap-3 border-t border-slate-100 dark:border-slate-800 pt-4">
                 <div>
-                  <div className="font-mono text-lg font-bold text-rose-600">3</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5 uppercase tracking-wider font-heading">Open Jobs</div>
+                  <div className="font-mono text-lg font-bold text-rose-600 dark:text-rose-400">3</div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 uppercase tracking-wider font-heading">Open Jobs</div>
                 </div>
                 <div>
-                  <div className="font-mono text-lg font-bold text-amber-600">62%</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5 uppercase tracking-wider font-heading">PM Compliance</div>
+                  <div className="font-mono text-lg font-bold text-amber-600 dark:text-amber-400">62%</div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 uppercase tracking-wider font-heading">PM Compliance</div>
                 </div>
                 <div>
-                  <div className="font-mono text-lg font-bold text-slate-900">{formatResinHeld(31.5)}</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5 uppercase tracking-wider font-heading">Downtime Cost</div>
+                  <div className="font-mono text-lg font-bold text-slate-900 dark:text-slate-100">{formatResinHeld(31.5)}</div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 uppercase tracking-wider font-heading">Downtime Cost</div>
                 </div>
               </div>
 
-              <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-[#143a72] group-hover:translate-x-1 transition-transform">
+              <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-[#143a72] dark:text-blue-400 group-hover:translate-x-1 transition-transform">
                 <span>Open Maintenance Copilot</span>
               </div>
             </div>
@@ -121,7 +121,7 @@ export const LandingPage = () => {
         {/* Plant 2: Hooghly Unit 1 (PET Preforms) */}
         <div
           onClick={() => navigate('/preform')}
-          className="bg-white rounded-2xl border border-slate-200 overflow-hidden card-shadow card-shadow-hover transition-all cursor-pointer group hover:border-[#143a72] flex flex-col justify-between"
+          className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden card-shadow card-shadow-hover transition-all cursor-pointer group hover:border-[#143a72] dark:hover:border-blue-500 flex flex-col justify-between"
         >
           {/* Plain Dark Typography Hero Panel (Spec Line 66) */}
           <div className="bg-[#143a72] text-white p-5 border-b border-slate-800">
@@ -141,45 +141,45 @@ export const LandingPage = () => {
 
           <div className="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <p className="text-xs text-slate-500 mb-3">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
                 Husky fully automatic injection molding lines and ABS semi-automatic jar lines.
               </p>
 
               {/* Product Catalogue Vocabulary (Spec Line 65) */}
-              <div className="mb-4 pt-2 border-t border-slate-100 flex items-center gap-1.5 flex-wrap text-[10px] font-mono">
+              <div className="mb-4 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1.5 flex-wrap text-[10px] font-mono">
                 <span className="text-slate-400 uppercase tracking-wider font-semibold">Catalogue:</span>
-                <span className="bg-blue-50 text-blue-800 font-semibold px-2 py-0.5 rounded border border-blue-200">
+                <span className="bg-blue-50 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800/60">
                   PET Preforms
                 </span>
-                <span className="bg-blue-50 text-blue-800 font-semibold px-2 py-0.5 rounded border border-blue-200">
+                <span className="bg-blue-50 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800/60">
                   PET Bottles
                 </span>
-                <span className="bg-blue-50 text-blue-800 font-semibold px-2 py-0.5 rounded border border-blue-200">
+                <span className="bg-blue-50 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800/60">
                   20 Litre Jars
                 </span>
-                <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+                <span className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded">
                   Caps & Closures
                 </span>
               </div>
             </div>
 
             <div>
-              <div className="grid grid-cols-3 gap-3 border-t border-slate-100 pt-4">
+              <div className="grid grid-cols-3 gap-3 border-t border-slate-100 dark:border-slate-800 pt-4">
                 <div>
-                  <div className="font-mono text-lg font-bold text-amber-600">2.1%</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5 uppercase tracking-wider font-heading">Rejection MTD</div>
+                  <div className="font-mono text-lg font-bold text-amber-600 dark:text-amber-400">2.1%</div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 uppercase tracking-wider font-heading">Rejection MTD</div>
                 </div>
                 <div>
-                  <div className="font-mono text-lg font-bold text-rose-600">{formatRejBill()}</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5 uppercase tracking-wider font-heading">Rejection Bill</div>
+                  <div className="font-mono text-lg font-bold text-rose-600 dark:text-rose-400">{formatRejBill()}</div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 uppercase tracking-wider font-heading">Rejection Bill</div>
                 </div>
                 <div>
-                  <div className="font-mono text-lg font-bold text-rose-600">3</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5 uppercase tracking-wider font-heading">Active Alerts</div>
+                  <div className="font-mono text-lg font-bold text-rose-600 dark:text-rose-400">3</div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 uppercase tracking-wider font-heading">Active Alerts</div>
                 </div>
               </div>
 
-              <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-[#143a72] group-hover:translate-x-1 transition-transform">
+              <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-[#143a72] dark:text-blue-400 group-hover:translate-x-1 transition-transform">
                 <span>Open Quality Intelligence</span>
               </div>
             </div>
@@ -190,3 +190,4 @@ export const LandingPage = () => {
     </Shell>
   );
 };
+export default LandingPage;

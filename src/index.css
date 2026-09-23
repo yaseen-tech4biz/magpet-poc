@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Magpet Brand Identity from magnumgroup.in */
   --themeColor: #143a72;
@@ -48,6 +50,48 @@
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
+.dark {
+  /* Magpet Dark Enterprise Palette */
+  --themeColorDark: #081222;
+  --themeColorLight: #3b82f6;
+  --themeColorSubtle: #0f2347;
+
+  --magnumGreen: #22c55e;
+  --magnumGreenLight: #052e16;
+
+  /* Enterprise Dark Canvas */
+  --bg-app: #090d16;
+  --bg-card: #0f172a;
+  --bg-panel: #131d31;
+  --bg-muted: #1e293b;
+
+  --border-light: #1e293b;
+  --border-subtle: #162032;
+
+  /* Text & Inks */
+  --ink-primary: #f8fafc;
+  --ink-secondary: #cbd5e1;
+  --ink-muted: #94a3b8;
+  --ink-faint: #64748b;
+
+  /* Operational Alert Semantics */
+  --alert-red: #f87171;
+  --alert-red-bg: #450a0a;
+  --alert-red-border: #7f1d1d;
+
+  --alert-amber: #fbbf24;
+  --alert-amber-bg: #451a03;
+  --alert-amber-border: #78350f;
+
+  --alert-green: #4ade80;
+  --alert-green-bg: #052e16;
+  --alert-green-border: #14532d;
+
+  --alert-blue: #38bdf8;
+  --alert-blue-bg: #082f49;
+  --alert-blue-border: #075985;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -78,20 +122,36 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-track {
   background: #f1f5f9;
 }
+.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 9999px;
 }
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }
 
 /* Card Elevation & Shadows */
 .card-shadow {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
 }
+.dark .card-shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+}
 .card-shadow-hover:hover {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+.dark .card-shadow-hover:hover {
+  box-shadow: 0 4px 12px -1px rgba(0, 0, 0, 0.5), 0 2px 6px -2px rgba(0, 0, 0, 0.4);
   transform: translateY(-1px);
 }
 
@@ -103,3 +163,16 @@ h1, h2, h3, h4, h5, h6 {
 .animate-live {
   animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* WhatsApp Mobile Simulation Theme Styles */
+.whatsapp-chat-bg {
+  background-color: #ECE5DD;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 0);
+  background-size: 14px 14px;
+}
+.dark .whatsapp-chat-bg {
+  background-color: #0b141a;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-size: 14px 14px;
+}
+

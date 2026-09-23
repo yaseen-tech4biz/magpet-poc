@@ -18,19 +18,19 @@ export const HorizontalBarChart = ({ rows = [], onSelectRow }) => {
             key={i}
             onClick={() => onSelectRow && onSelectRow(r)}
             className={`flex items-center gap-2.5 sm:gap-3 text-xs p-1 rounded-lg transition-all ${
-              onSelectRow ? 'cursor-pointer hover:bg-slate-50 group' : ''
+              onSelectRow ? 'cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 group' : ''
             }`}
             title={onSelectRow ? `Click to inspect 90-day downtime logs for ${r.l}` : undefined}
           >
             {/* Asset / Category Label */}
-            <div className={`w-14 sm:w-16 font-mono font-bold text-slate-700 shrink-0 text-right text-[11px] sm:text-xs ${
-              onSelectRow ? 'group-hover:text-[#143a72]' : ''
+            <div className={`w-14 sm:w-16 font-mono font-bold text-slate-700 dark:text-slate-300 shrink-0 text-right text-[11px] sm:text-xs transition-colors ${
+              onSelectRow ? 'group-hover:text-[#143a72] dark:group-hover:text-blue-400' : ''
             }`}>
               {r.l}
             </div>
 
             {/* Bar Track & Animated Bar */}
-            <div className="flex-1 h-5 sm:h-5.5 bg-slate-100 rounded-md overflow-hidden relative shadow-inner">
+            <div className="flex-1 h-5 sm:h-5.5 bg-slate-100 dark:bg-slate-800 rounded-md overflow-hidden relative shadow-inner transition-colors">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${pct}%` }}
@@ -45,15 +45,15 @@ export const HorizontalBarChart = ({ rows = [], onSelectRow }) => {
             </div>
 
             {/* Value & Price Tag (Dedicated right-aligned column, never clipped!) */}
-            <div className="w-36 sm:w-48 text-right font-mono text-[10.5px] sm:text-xs text-slate-800 font-semibold whitespace-nowrap shrink-0 flex items-center justify-end gap-1.5">
-              <span className={onSelectRow ? 'group-hover:text-[#143a72]' : ''}>{displayLabel}</span>
+            <div className="w-36 sm:w-48 text-right font-mono text-[10.5px] sm:text-xs text-slate-800 dark:text-slate-200 font-semibold whitespace-nowrap shrink-0 flex items-center justify-end gap-1.5 transition-colors">
+              <span className={onSelectRow ? 'group-hover:text-[#143a72] dark:group-hover:text-blue-400' : ''}>{displayLabel}</span>
               {hasFlag && (
-                <span className="text-rose-600 font-bold bg-rose-50 border border-rose-200 px-1 py-0.2 rounded text-[10px]" title="Repeat failure detected">
+                <span className="text-rose-600 dark:text-rose-400 font-bold bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900/60 px-1 py-0.2 rounded text-[10px]" title="Repeat failure detected">
                   ⚑
                 </span>
               )}
               {onSelectRow && (
-                <span className="text-slate-400 group-hover:text-[#143a72] text-[10px] ml-0.5 font-bold">
+                <span className="text-slate-400 dark:text-slate-500 group-hover:text-[#143a72] dark:group-hover:text-blue-400 text-[10px] ml-0.5 font-bold transition-colors">
                   View
                 </span>
               )}
@@ -64,3 +64,4 @@ export const HorizontalBarChart = ({ rows = [], onSelectRow }) => {
     </div>
   );
 };
+export default HorizontalBarChart;

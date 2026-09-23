@@ -3,18 +3,18 @@ import { motion } from 'framer-motion';
 
 export const KpiCard = ({ value, unit, label, trendText, trendType = 'neutral', colorTheme = 'default' }) => {
   const colorMap = {
-    green: 'text-emerald-700',
-    red: 'text-rose-600',
-    amber: 'text-amber-600',
-    blue: 'text-[#143a72]',
-    default: 'text-slate-900'
+    green: 'text-emerald-700 dark:text-emerald-400',
+    red: 'text-rose-600 dark:text-rose-400',
+    amber: 'text-amber-600 dark:text-amber-400',
+    blue: 'text-[#143a72] dark:text-blue-400',
+    default: 'text-slate-900 dark:text-slate-100'
   };
 
   const trendMap = {
-    up: 'text-rose-600 font-medium',
-    down: 'text-emerald-700 font-medium',
-    neutral: 'text-slate-500',
-    amber: 'text-amber-600 font-medium'
+    up: 'text-rose-600 dark:text-rose-400 font-medium',
+    down: 'text-emerald-700 dark:text-emerald-400 font-medium',
+    neutral: 'text-slate-500 dark:text-slate-400',
+    amber: 'text-amber-600 dark:text-amber-400 font-medium'
   };
 
   return (
@@ -23,7 +23,7 @@ export const KpiCard = ({ value, unit, label, trendText, trendType = 'neutral', 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -2, transition: { duration: 0.2 } }}
-      className="bg-white rounded-xl border border-slate-200 p-5 card-shadow hover:border-slate-300 transition-colors"
+      className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 card-shadow hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
     >
       <div className="flex items-baseline">
         <motion.span
@@ -35,13 +35,13 @@ export const KpiCard = ({ value, unit, label, trendText, trendType = 'neutral', 
           {value}
         </motion.span>
         {unit && (
-          <span className="text-sm font-medium text-slate-500 ml-1.5 font-mono">
+          <span className="text-sm font-medium text-slate-500 dark:text-slate-400 ml-1.5 font-mono">
             {unit}
           </span>
         )}
       </div>
 
-      <div className="text-xs font-semibold text-slate-600 uppercase tracking-wider mt-2 font-heading">
+      <div className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mt-2 font-heading">
         {label}
       </div>
 
@@ -53,3 +53,4 @@ export const KpiCard = ({ value, unit, label, trendText, trendType = 'neutral', 
     </motion.div>
   );
 };
+export default KpiCard;

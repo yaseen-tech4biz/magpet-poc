@@ -28,7 +28,7 @@ export function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        
+
         {/* Module A: Kharagpur rPET */}
         <Route path="/rpet" element={<RpetDashboardPage />} />
         <Route path="/rpet/plan" element={<DailyPlanPage />} />
@@ -50,7 +50,7 @@ export function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <ToastContainer />
-      <DemoFlightDeck />
+      {/* <DemoFlightDeck /> */}
     </BrowserRouter>
   );
 }

@@ -72,14 +72,14 @@ export const LineChart = ({
             x2={width - 16}
             y1={gl.y}
             y2={gl.y}
-            stroke="#e2e8f0"
             strokeWidth="1"
+            className="stroke-slate-200 dark:stroke-slate-800 transition-colors"
           />
           <text
             x="32"
             y={gl.y + 3.5}
             textAnchor="end"
-            className="font-mono text-[10px] fill-slate-400"
+            className="font-mono text-[10px] fill-slate-400 dark:fill-slate-500 transition-colors"
           >
             {gl.val}{unit}
           </text>
@@ -132,10 +132,10 @@ export const LineChart = ({
       {/* X-axis labels */}
       {xl && (
         <>
-          <text x="38" y={height - 4} className="font-mono text-[10px] fill-slate-400">
+          <text x="38" y={height - 4} className="font-mono text-[10px] fill-slate-400 dark:fill-slate-500 transition-colors">
             {xl[0]}
           </text>
-          <text x={width - 16} y={height - 4} textAnchor="end" className="font-mono text-[10px] fill-slate-400">
+          <text x={width - 16} y={height - 4} textAnchor="end" className="font-mono text-[10px] fill-slate-400 dark:fill-slate-500 transition-colors">
             {xl[1]}
           </text>
         </>
@@ -143,3 +143,4 @@ export const LineChart = ({
     </svg>
   );
 };
+export default LineChart;

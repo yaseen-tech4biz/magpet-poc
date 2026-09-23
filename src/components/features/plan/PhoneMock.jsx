@@ -94,13 +94,13 @@ export const PhoneMock = ({ onClose }) => {
         <div className="relative w-full h-full bg-[#111b21] rounded-[34px] overflow-hidden flex flex-col border border-slate-900 shadow-inner">
           
           {/* iOS Status Bar with Live Real Time Clock */}
-          <div className="h-6 bg-[#075E54] text-white px-4 flex items-center justify-between z-30 pt-0.5 shrink-0">
+          <div className="h-6 bg-[#075E54] dark:bg-[#1f2c34] text-white dark:text-[#8696a0] px-4 flex items-center justify-between z-30 pt-0.5 shrink-0 transition-colors">
             <span className="text-[10px] font-semibold tracking-tight font-mono">{realTime}</span>
 
             {/* Dynamic Island */}
             <div className="w-16 h-3 bg-black rounded-full flex items-center justify-end px-1.5 gap-1 shadow-xs">
               <span className="w-1 h-1 rounded-full bg-slate-900 border border-slate-800 inline-block" />
-              <span className="w-0.5 h-0.5 rounded-full bg-[#075e54]/80 inline-block" />
+              <span className="w-0.5 h-0.5 rounded-full bg-[#075e54]/80 dark:bg-[#00a884]/80 inline-block" />
             </div>
 
             {/* Signal & Battery Icons */}
@@ -111,35 +111,35 @@ export const PhoneMock = ({ onClose }) => {
               <svg className="w-2.5 h-2.5 fill-current" viewBox="0 0 24 24">
                 <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4z"/>
               </svg>
-              <div className="w-3.5 h-1.5 border border-white/80 rounded-2xs p-0.5 flex items-center">
-                <div className="h-full w-full bg-white rounded-2xs" />
+              <div className="w-3.5 h-1.5 border border-white/80 dark:border-slate-400 rounded-2xs p-0.5 flex items-center">
+                <div className="h-full w-full bg-white dark:bg-slate-300 rounded-2xs" />
               </div>
             </div>
           </div>
 
           {/* ================= VIEW 1: WHATSAPP CHATS INBOX LIST ================= */}
           {phoneScreen === 'inbox' ? (
-            <div className="flex-1 flex flex-col bg-white overflow-hidden">
+            <div className="flex-1 flex flex-col bg-white dark:bg-[#111b21] overflow-hidden transition-colors">
               
               {/* WhatsApp Business Top Bar */}
-              <div className="bg-[#075E54] text-white px-3 py-2 flex items-center justify-between shadow-xs shrink-0">
+              <div className="bg-[#075E54] dark:bg-[#1f2c34] text-white dark:text-[#e9edef] px-3 py-2 flex items-center justify-between shadow-xs shrink-0 border-b border-transparent dark:border-[#222d34] transition-colors">
                 <div className="flex items-center gap-1.5">
                   <span className="font-bold text-xs tracking-tight">
                     WhatsApp Business
                   </span>
-                  <span className="text-[8.5px] bg-emerald-600 px-1 py-0.2 rounded text-white font-mono">
+                  <span className="text-[8.5px] bg-emerald-600 dark:bg-[#00a884] px-1 py-0.2 rounded text-white dark:text-[#111b21] font-mono font-bold">
                     Unit 3
                   </span>
                 </div>
-                <span className="text-[9px] bg-white/20 px-1.5 py-0.2 rounded font-mono">
+                <span className="text-[9px] bg-white/20 dark:bg-white/10 px-1.5 py-0.2 rounded font-mono text-white dark:text-[#8696a0]">
                   8 Techs
                 </span>
               </div>
 
               {/* Search Bar */}
-              <div className="bg-[#075E54] px-2.5 pb-2 shrink-0">
-                <div className="relative flex items-center bg-white/10 rounded-md px-2 py-1 text-white">
-                  <svg className="w-3 h-3 mr-1 text-white/60 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="bg-[#075E54] dark:bg-[#1f2c34] px-2.5 pb-2 shrink-0 transition-colors">
+                <div className="relative flex items-center bg-white/10 dark:bg-[#111b21] rounded-md px-2 py-1 text-white dark:text-[#e9edef] border border-transparent dark:border-[#222d34]">
+                  <svg className="w-3 h-3 mr-1 text-white/60 dark:text-[#8696a0] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                   <input
@@ -147,12 +147,12 @@ export const PhoneMock = ({ onClose }) => {
                     placeholder="Search technician or trade..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-transparent text-[10px] text-white placeholder-white/60 focus:outline-hidden"
+                    className="w-full bg-transparent text-[10px] text-white dark:text-[#e9edef] placeholder-white/60 dark:placeholder-[#8696a0] focus:outline-hidden"
                   />
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery('')}
-                      className="text-white/60 text-xs px-1 cursor-pointer"
+                      className="text-white/60 dark:text-[#8696a0] text-xs px-1 cursor-pointer hover:text-white dark:hover:text-[#e9edef]"
                     >
                       ×
                     </button>
@@ -161,15 +161,15 @@ export const PhoneMock = ({ onClose }) => {
               </div>
 
               {/* Shift Filter Tabs */}
-              <div className="bg-slate-100 px-2 py-1 flex items-center gap-1 text-[9px] font-bold border-b border-slate-200 shrink-0">
+              <div className="bg-slate-100 dark:bg-[#111b21] px-2 py-1 flex items-center gap-1 text-[9px] font-bold border-b border-slate-200 dark:border-[#222d34] shrink-0 transition-colors">
                 {['ALL', 'A', 'B', 'C'].map((f) => (
                   <button
                     key={f}
                     onClick={() => setInboxFilter(f)}
                     className={`px-2 py-0.5 rounded-full transition-colors cursor-pointer ${
                       inboxFilter === f
-                        ? 'bg-[#075E54] text-white font-bold'
-                        : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                        ? 'bg-[#075E54] dark:bg-[#00a884] text-white dark:text-[#111b21] font-bold'
+                        : 'bg-white dark:bg-[#202c33] text-slate-600 dark:text-[#8696a0] border border-slate-200 dark:border-[#2a3942] hover:bg-slate-50 dark:hover:bg-[#2a3942] dark:hover:text-[#e9edef]'
                     }`}
                   >
                     {f === 'ALL' ? 'All (5)' : `Shift ${f}`}
@@ -178,31 +178,31 @@ export const PhoneMock = ({ onClose }) => {
               </div>
 
               {/* Technician & Group Conversations List (Spacious 400px+ height) */}
-              <div className="flex-1 overflow-y-auto divide-y divide-slate-100">
+              <div className="flex-1 overflow-y-auto divide-y divide-slate-100 dark:divide-[#222d34] bg-white dark:bg-[#111b21] transition-colors">
                 
                 {/* Fixed Group: Magpet Ops Broadcast */}
                 {inboxFilter === 'ALL' && !searchQuery && (
                   <div
                     onClick={() => setActiveTechName('OpsGroup')}
-                    className="p-2.5 hover:bg-indigo-50/60 transition-colors cursor-pointer flex items-center gap-2 bg-slate-50/50"
+                    className="p-2.5 hover:bg-indigo-50/60 dark:hover:bg-[#202c33] transition-colors cursor-pointer flex items-center gap-2 bg-slate-50/50 dark:bg-[#182229]/60"
                   >
                     <div className="relative shrink-0">
-                      <div className="w-8 h-8 rounded-full bg-indigo-700 text-white font-mono font-bold flex items-center justify-center text-[10px] shadow-2xs">
+                      <div className="w-8 h-8 rounded-full bg-indigo-700 dark:bg-indigo-600 text-white font-mono font-bold flex items-center justify-center text-[10px] shadow-2xs">
                         OPS
                       </div>
-                      <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500 border border-white" />
+                      <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500 border border-white dark:border-[#111b21]" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-baseline justify-between">
-                        <span className="font-bold text-[11px] text-indigo-950 truncate">
+                        <span className="font-bold text-[11px] text-indigo-950 dark:text-[#e9edef] truncate">
                           Plant 3 Ops Broadcast
                         </span>
-                        <span className="font-mono text-[8.5px] text-slate-400">
+                        <span className="font-mono text-[8.5px] text-slate-400 dark:text-[#8696a0]">
                           {chats.OpsGroup?.[chats.OpsGroup.length - 1]?.time || realTime}
                         </span>
                       </div>
-                      <div className="text-[9.5px] text-slate-500 truncate mt-0.5">
-                        <span className="font-semibold text-slate-700">Target:</span> 125 MT rPET pellets
+                      <div className="text-[9.5px] text-slate-500 dark:text-[#8696a0] truncate mt-0.5">
+                        <span className="font-semibold text-slate-700 dark:text-slate-300">Target:</span> 125 MT rPET pellets
                       </div>
                     </div>
                   </div>
@@ -218,46 +218,46 @@ export const PhoneMock = ({ onClose }) => {
                     <div
                       key={tech.id}
                       onClick={() => setActiveTechName(tech.name)}
-                      className="p-2.5 hover:bg-slate-50 transition-colors cursor-pointer flex items-center gap-2 group"
+                      className="p-2.5 hover:bg-slate-50 dark:hover:bg-[#202c33] transition-colors cursor-pointer flex items-center gap-2 group"
                     >
                       {/* Avatar */}
                       <div className="relative shrink-0">
                         <div className={`w-8 h-8 rounded-full ${tech.avatarBg} text-white font-bold flex items-center justify-center text-xs shadow-2xs`}>
                           {tech.name[0]}
                         </div>
-                        <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500 border border-white" />
+                        <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500 border border-white dark:border-[#111b21]" />
                       </div>
 
                       {/* Contact & Message Preview */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-baseline justify-between">
-                          <span className="font-bold text-[11px] text-slate-900 truncate group-hover:text-[#075E54]">
+                          <span className="font-bold text-[11px] text-slate-900 dark:text-[#e9edef] truncate group-hover:text-[#075E54] dark:group-hover:text-[#00a884] transition-colors">
                             {tech.fullName}
                           </span>
-                          <span className="font-mono text-[8.5px] text-slate-400">
+                          <span className="font-mono text-[8.5px] text-slate-400 dark:text-[#8696a0]">
                             {lastMsg?.time || realTime}
                           </span>
                         </div>
 
                         <div className="flex items-center gap-1 text-[9px] leading-tight mt-0.5">
-                          <span className="bg-slate-100 text-slate-600 px-1 py-0.2 rounded font-mono text-[8px]">
+                          <span className="bg-slate-100 dark:bg-[#202c33] text-slate-600 dark:text-[#8696a0] px-1 py-0.2 rounded font-mono text-[8px] border border-transparent dark:border-[#2a3942]">
                             Shift {tech.shift}
                           </span>
-                          <span className="text-slate-400">·</span>
-                          <span className="text-slate-500 truncate">{tech.trade}</span>
+                          <span className="text-slate-400 dark:text-[#8696a0]">·</span>
+                          <span className="text-slate-500 dark:text-[#8696a0] truncate">{tech.trade}</span>
                         </div>
 
                         <div className="flex items-center justify-between mt-1">
-                          <p className="text-[10px] text-slate-500 truncate pr-1 flex items-center gap-1">
-                            <span className="text-blue-500 font-bold text-[9px]">✓✓</span>
+                          <p className="text-[10px] text-slate-500 dark:text-[#8696a0] truncate pr-1 flex items-center gap-1">
+                            <span className="text-blue-500 dark:text-[#53bdeb] font-bold text-[9px]">✓✓</span>
                             <span>{lastMsg ? lastMsg.body.replace(/<[^>]*>?/gm, '').slice(0, 26) + '...' : 'Schedule active'}</span>
                           </p>
                           {unread > 0 ? (
-                            <span className="bg-emerald-600 text-white font-bold text-[8.5px] w-3.5 h-3.5 rounded-full flex items-center justify-center shrink-0 shadow-2xs">
+                            <span className="bg-emerald-600 dark:bg-[#00a884] text-white dark:text-[#111b21] font-bold text-[8.5px] w-3.5 h-3.5 rounded-full flex items-center justify-center shrink-0 shadow-2xs">
                               {unread}
                             </span>
                           ) : (
-                            <span className="text-[8.5px] text-emerald-600 font-semibold group-hover:translate-x-0.5 transition-transform">
+                            <span className="text-[8.5px] text-emerald-600 dark:text-[#00a884] font-semibold group-hover:translate-x-0.5 transition-transform">
                               Chat
                             </span>
                           )}
@@ -268,15 +268,15 @@ export const PhoneMock = ({ onClose }) => {
                 })}
 
                 {filteredTechs.length === 0 && (
-                  <div className="p-8 text-center text-slate-400 text-xs">
+                  <div className="p-8 text-center text-slate-400 dark:text-[#8696a0] text-xs">
                     No technicians found matching criteria.
                   </div>
                 )}
               </div>
 
               {/* Bottom Info */}
-              <div className="p-2 bg-slate-50 border-t border-slate-200 text-center shrink-0">
-                <span className="text-[9.5px] text-slate-500 font-medium">
+              <div className="p-2 bg-slate-50 dark:bg-[#182229] border-t border-slate-200 dark:border-[#222d34] text-center shrink-0 transition-colors">
+                <span className="text-[9.5px] text-slate-500 dark:text-[#8696a0] font-medium">
                   Tap any technician to open live chat simulation
                 </span>
               </div>
@@ -286,13 +286,13 @@ export const PhoneMock = ({ onClose }) => {
             <div className="flex-1 flex flex-col overflow-hidden">
               
               {/* WhatsApp Chat Top Header */}
-              <div className="bg-[#075E54] text-white px-2 py-1.5 flex items-center justify-between shadow-xs z-20 shrink-0">
+              <div className="bg-[#075E54] dark:bg-[#1f2c34] text-white dark:text-[#e9edef] px-2 py-1.5 flex items-center justify-between shadow-xs z-20 shrink-0 border-b border-transparent dark:border-[#222d34] transition-colors">
                 <div className="flex items-center gap-1.5 min-w-0">
                   
                   {/* Back to All Chats Button */}
                   <button
                     onClick={() => setPhoneScreen('inbox')}
-                    className="flex items-center gap-0.5 text-white bg-white/15 hover:bg-white/25 px-1.5 py-0.5 rounded text-[10px] font-bold cursor-pointer transition-colors shrink-0"
+                    className="flex items-center gap-0.5 text-white dark:text-[#e9edef] bg-white/15 dark:bg-[#2a3942] hover:bg-white/25 dark:hover:bg-[#374248] px-1.5 py-0.5 rounded text-[10px] font-bold cursor-pointer transition-colors shrink-0"
                     title="Back to All Technicians"
                   >
                     <span>‹</span>
@@ -304,27 +304,27 @@ export const PhoneMock = ({ onClose }) => {
                     <div className={`w-6 h-6 rounded-full ${currentTech.avatarBg} border border-white/20 flex items-center justify-center font-bold text-[10px] text-white shadow-2xs`}>
                       {currentTech.name[0]}
                     </div>
-                    <span className="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-full bg-emerald-400 border border-[#075E54]" />
+                    <span className="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-full bg-emerald-400 border border-[#075E54] dark:border-[#1f2c34]" />
                   </div>
 
                   {/* Name & Subtitle */}
                   <div className="min-w-0">
-                    <div className="font-bold text-[10.5px] truncate leading-tight flex items-center gap-1">
+                    <div className="font-bold text-[10.5px] truncate leading-tight flex items-center gap-1 text-white dark:text-[#e9edef]">
                       <span>{currentTech.name}</span>
-                      <span className="text-[8.5px] font-normal text-emerald-200 font-mono">({currentTech.shift})</span>
+                      <span className="text-[8.5px] font-normal text-emerald-200 dark:text-[#8696a0] font-mono">({currentTech.shift})</span>
                     </div>
-                    <div className="text-[8px] text-emerald-200 truncate leading-tight flex items-center gap-1">
-                      <span className="w-1 h-1 rounded-full bg-emerald-300 inline-block animate-pulse" />
+                    <div className="text-[8px] text-emerald-200 dark:text-[#8696a0] truncate leading-tight flex items-center gap-1">
+                      <span className="w-1 h-1 rounded-full bg-emerald-300 dark:bg-[#00a884] inline-block animate-pulse" />
                       <span>{currentTech.status || 'Online'}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Simulated Call & Action Buttons */}
-                <div className="flex items-center gap-1 text-white/90 shrink-0">
+                <div className="flex items-center gap-1 text-white/90 dark:text-[#8696a0] shrink-0">
                   <button
                     onClick={() => setCallModal('audio')}
-                    className="p-1 hover:bg-white/10 rounded cursor-pointer transition-colors"
+                    className="p-1 hover:bg-white/10 dark:hover:bg-[#2a3942] rounded cursor-pointer transition-colors hover:text-white dark:hover:text-[#e9edef]"
                     title="Simulate Voice Call"
                   >
                     <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
@@ -334,7 +334,7 @@ export const PhoneMock = ({ onClose }) => {
 
                   <button
                     onClick={() => setCallModal('video')}
-                    className="p-1 hover:bg-white/10 rounded cursor-pointer transition-colors"
+                    className="p-1 hover:bg-white/10 dark:hover:bg-[#2a3942] rounded cursor-pointer transition-colors hover:text-white dark:hover:text-[#e9edef]"
                     title="Simulate Video Inspection"
                   >
                     <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
@@ -345,12 +345,12 @@ export const PhoneMock = ({ onClose }) => {
               </div>
 
               {/* Interactive Quick Reply Action Chips Bar */}
-              <div className="bg-[#E2D9CE] px-1.5 py-1 flex items-center gap-1 overflow-x-auto border-b border-slate-300/60 shrink-0 no-scrollbar">
+              <div className="bg-[#E2D9CE] dark:bg-[#182229] px-1.5 py-1 flex items-center gap-1 overflow-x-auto border-b border-slate-300/60 dark:border-[#222d34] shrink-0 no-scrollbar transition-colors">
                 {quickReplies.map((qr, i) => (
                   <button
                     key={i}
                     onClick={() => sendUserChatMessage(activeTechName, qr.text)}
-                    className="whitespace-nowrap bg-white hover:bg-slate-50 text-[8.5px] font-medium text-slate-800 px-2 py-0.5 rounded-full border border-slate-300 shadow-2xs cursor-pointer shrink-0 transition-colors"
+                    className="whitespace-nowrap bg-white dark:bg-[#202c33] hover:bg-slate-50 dark:hover:bg-[#2a3942] text-[8.5px] font-medium text-slate-800 dark:text-[#e9edef] px-2 py-0.5 rounded-full border border-slate-300 dark:border-[#2a3942] shadow-2xs cursor-pointer shrink-0 transition-colors"
                   >
                     {qr.label}
                   </button>
@@ -360,15 +360,11 @@ export const PhoneMock = ({ onClose }) => {
               {/* WhatsApp Chat Messages Stream (Spacious 340px+ scrollable area) */}
               <div
                 ref={chatContainerRef}
-                className="flex-1 min-h-0 bg-[#ECE5DD] overflow-y-auto p-2.5 space-y-2 relative"
-                style={{
-                  backgroundImage: 'radial-gradient(rgba(0,0,0,0.04) 1px, transparent 0)',
-                  backgroundSize: '14px 14px'
-                }}
+                className="flex-1 min-h-0 whatsapp-chat-bg overflow-y-auto p-2.5 space-y-2 relative transition-colors"
               >
                 {/* Timestamp Banner */}
                 <div className="flex justify-center my-0.5">
-                  <span className="bg-white/90 backdrop-blur-2xs text-[8px] font-mono text-slate-500 uppercase px-2 py-0.2 rounded-full shadow-2xs">
+                  <span className="bg-white/90 dark:bg-[#182229]/90 backdrop-blur-2xs text-[8px] font-mono text-slate-500 dark:text-[#8696a0] uppercase px-2 py-0.2 rounded-full shadow-2xs border border-transparent dark:border-[#222d34]">
                     Today · Shift {currentTech.shift} · SAP Sync
                   </span>
                 </div>
@@ -381,25 +377,25 @@ export const PhoneMock = ({ onClose }) => {
                     <div
                       className={`max-w-[90%] rounded-lg px-2.5 py-1.5 text-[10.5px] shadow-2xs relative ${
                         msg.isUser
-                          ? 'bg-[#E7FFDB] text-slate-800 rounded-tr-xs'
-                          : 'bg-white text-slate-800 rounded-tl-xs border border-slate-200/50'
+                          ? 'bg-[#E7FFDB] dark:bg-[#005c4b] text-slate-800 dark:text-[#e9edef] rounded-tr-xs'
+                          : 'bg-white dark:bg-[#202c33] text-slate-800 dark:text-[#e9edef] rounded-tl-xs border border-slate-200/50 dark:border-[#2a3942]/60'
                       }`}
                     >
                       {msg.title && (
-                        <div className="font-mono text-[8.5px] font-bold text-emerald-800 tracking-wider mb-0.5 uppercase pb-0.5 border-b border-emerald-100">
+                        <div className="font-mono text-[8.5px] font-bold text-emerald-800 dark:text-[#00a884] tracking-wider mb-0.5 uppercase pb-0.5 border-b border-emerald-100 dark:border-[#2a3942]">
                           {msg.title}
                         </div>
                       )}
 
                       <div
-                        className="text-[10px] leading-relaxed text-slate-800"
+                        className="text-[10px] leading-relaxed text-slate-800 dark:text-[#e9edef]"
                         dangerouslySetInnerHTML={{ __html: msg.body }}
                       />
 
-                      <div className="flex items-center justify-end gap-1 mt-0.5 text-[8px] text-slate-400 font-mono">
+                      <div className="flex items-center justify-end gap-1 mt-0.5 text-[8px] text-slate-400 dark:text-[#8696a0] font-mono">
                         <span>{msg.time}</span>
                         {msg.isUser && (
-                          <span className="text-blue-500 font-bold">✓✓</span>
+                          <span className="text-blue-500 dark:text-[#53bdeb] font-bold">✓✓</span>
                         )}
                       </div>
                     </div>
@@ -408,14 +404,14 @@ export const PhoneMock = ({ onClose }) => {
               </div>
 
               {/* Rich Media Action Bar: Photo & Voice note simulator */}
-              <div className="bg-[#F0F2F5] px-2 py-1 flex items-center justify-between border-t border-slate-200 text-[9.5px]">
+              <div className="bg-[#F0F2F5] dark:bg-[#182229] px-2 py-1 flex items-center justify-between border-t border-slate-200 dark:border-[#222d34] text-[9.5px] transition-colors">
                 <div className="flex items-center gap-1.5">
                   <button
                     onClick={() => sendPhotoMessage(activeTechName)}
-                    className="flex items-center gap-1 text-slate-700 bg-white hover:bg-slate-100 px-1.5 py-0.5 rounded border border-slate-300 shadow-2xs cursor-pointer font-medium text-[9px]"
+                    className="flex items-center gap-1 text-slate-700 dark:text-[#e9edef] bg-white dark:bg-[#202c33] hover:bg-slate-100 dark:hover:bg-[#2a3942] px-1.5 py-0.5 rounded border border-slate-300 dark:border-[#2a3942] shadow-2xs cursor-pointer font-medium text-[9px] transition-colors"
                     title="Simulate sending a FLIR Thermal Imaging Photo"
                   >
-                    <svg className="w-3 h-3 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-3 h-3 text-slate-600 dark:text-[#8696a0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -424,17 +420,17 @@ export const PhoneMock = ({ onClose }) => {
 
                   <button
                     onClick={() => sendVoiceMessage(activeTechName)}
-                    className="flex items-center gap-1 text-slate-700 bg-white hover:bg-slate-100 px-1.5 py-0.5 rounded border border-slate-300 shadow-2xs cursor-pointer font-medium text-[9px]"
+                    className="flex items-center gap-1 text-slate-700 dark:text-[#e9edef] bg-white dark:bg-[#202c33] hover:bg-slate-100 dark:hover:bg-[#2a3942] px-1.5 py-0.5 rounded border border-slate-300 dark:border-[#2a3942] shadow-2xs cursor-pointer font-medium text-[9px] transition-colors"
                     title="Simulate sending a Voice Note"
                   >
-                    <svg className="w-3 h-3 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-3 h-3 text-slate-600 dark:text-[#8696a0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                     </svg>
                     <span>Voice Note</span>
                   </button>
                 </div>
 
-                <span className="text-[8.5px] font-mono text-slate-400">
+                <span className="text-[8.5px] font-mono text-slate-400 dark:text-[#8696a0]">
                   2-Way Live
                 </span>
               </div>
@@ -442,15 +438,15 @@ export const PhoneMock = ({ onClose }) => {
               {/* Chat Input Bar */}
               <form
                 onSubmit={handleSend}
-                className="bg-[#F0F2F5] p-1.5 flex items-center gap-1 border-t border-slate-200/80 shrink-0"
+                className="bg-[#F0F2F5] dark:bg-[#182229] p-1.5 flex items-center gap-1 border-t border-slate-200/80 dark:border-[#222d34] shrink-0 transition-colors"
               >
-                <div className="flex-1 bg-white rounded-full px-2.5 py-1 flex items-center gap-1 border border-slate-300/80 shadow-2xs">
+                <div className="flex-1 bg-white dark:bg-[#2a3942] rounded-full px-2.5 py-1 flex items-center gap-1 border border-slate-300/80 dark:border-[#374248] shadow-2xs transition-colors">
                   <input
                     type="text"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                     placeholder="Type a message or ACK..."
-                    className="flex-1 bg-transparent text-[10.5px] text-slate-900 placeholder-slate-400 focus:outline-hidden"
+                    className="flex-1 bg-transparent text-[10.5px] text-slate-900 dark:text-[#e9edef] placeholder-slate-400 dark:placeholder-[#8696a0] focus:outline-hidden"
                   />
                 </div>
 
@@ -460,7 +456,7 @@ export const PhoneMock = ({ onClose }) => {
                   className={`w-6 h-6 rounded-full flex items-center justify-center transition-all cursor-pointer ${
                     inputText.trim()
                       ? 'bg-[#00A884] hover:bg-[#008f6f] text-white shadow-xs scale-105'
-                      : 'bg-slate-300 text-slate-400 cursor-not-allowed'
+                      : 'bg-slate-300 dark:bg-[#2a3942] text-slate-400 dark:text-[#8696a0] cursor-not-allowed'
                   }`}
                   title="Send Message"
                 >
@@ -503,8 +499,8 @@ export const PhoneMock = ({ onClose }) => {
           )}
 
           {/* iOS Home Bar Indicator */}
-          <div className="h-3.5 bg-white/95 flex items-center justify-center shrink-0">
-            <div className="w-20 h-1 bg-slate-400 rounded-full" />
+          <div className="h-3.5 bg-white/95 dark:bg-[#111b21] flex items-center justify-center shrink-0 transition-colors">
+            <div className="w-20 h-1 bg-slate-400 dark:bg-[#8696a0]/40 rounded-full" />
           </div>
 
         </div>
@@ -512,7 +508,7 @@ export const PhoneMock = ({ onClose }) => {
 
       {/* Spec F-A3 Required Honest Disclaimer Label */}
       <div className="mt-2.5 text-center">
-        <span className="inline-block text-[10px] font-mono text-slate-500 bg-slate-100 border border-slate-200/80 px-2.5 py-1 rounded-md">
+        <span className="inline-block text-[10px] font-mono text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 px-2.5 py-1 rounded-md">
           Simulated. The pilot uses the WhatsApp Business API.
         </span>
       </div>

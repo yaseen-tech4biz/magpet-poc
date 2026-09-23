@@ -34,8 +34,8 @@ export const DialGauge = ({ pct = 62, size = 120 }) => {
           cy="55"
           r={r}
           fill="none"
-          stroke="#f1f5f9"
           strokeWidth="9"
+          className="stroke-slate-100 dark:stroke-slate-800 transition-colors"
         />
         {/* Animated active ring with Framer Motion */}
         <motion.circle
@@ -69,3 +69,4 @@ export const DialGauge = ({ pct = 62, size = 120 }) => {
     </div>
   );
 };
+export default DialGauge;
