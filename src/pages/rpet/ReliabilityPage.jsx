@@ -4,23 +4,454 @@ import { Shell } from '../../components/layout/Shell';
 import { Card } from '../../components/ui/Card';
 import { HorizontalBarChart } from '../../components/ui/HorizontalBarChart';
 import { useSettingsStore } from '../../store/useSettingsStore';
-import breakdownsData from '../../data/breakdowns.json';
+
+// Predefined 8 assets with verified 90-day telemetry metrics & incident chronologies
+const ASSET_RELIABILITY_DATA = {
+  'EX-02': {
+    a: 'EX-02',
+    name: 'Coperion Extruder 2',
+    h: 34.5,
+    ev: 6,
+    flag: true,
+    mtbf: 310,
+    mttr: 4.6,
+    trend: 'MTTR rising · 2.5 h to 5.0 h',
+    bad: true,
+    incidents: [
+      {
+        id: 'BD-EX02-06',
+        date: '11 Sep',
+        description: 'Gearbox bearing over temperature & thermal trip',
+        cause: 'gearbox',
+        downtimeHours: 7.5,
+        technician: 'Sunil',
+        shift: 'C',
+        spare: 'bearing SKF 6205',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-EX02-05',
+        date: '01 Sep',
+        description: 'Gearbox abnormal vibration & heat alarm',
+        cause: 'gearbox',
+        downtimeHours: 6.5,
+        technician: 'Ramesh',
+        shift: 'B',
+        spare: 'gearbox oil 20L',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-EX02-04',
+        date: '24 Aug',
+        description: 'Gearbox bearing temperature escalation',
+        cause: 'gearbox',
+        downtimeHours: 6.0,
+        technician: 'Prakash',
+        shift: 'A',
+        spare: 'bearing SKF 6205',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-EX02-03',
+        date: '21 Jul',
+        description: 'Main drive coupling & bearing vibration',
+        cause: 'gearbox',
+        downtimeHours: 5.5,
+        technician: 'Sunil',
+        shift: 'C',
+        spare: 'coupling spider',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-EX02-02',
+        date: '04 Jul',
+        description: 'Thrust bearing thermal escalation',
+        cause: 'gearbox',
+        downtimeHours: 5.0,
+        technician: 'Ramesh',
+        shift: 'B',
+        spare: 'bearing SKF 6205',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-EX02-01',
+        date: '16 Jun',
+        description: 'Gearbox input shaft bearing wear',
+        cause: 'gearbox',
+        downtimeHours: 4.0,
+        technician: 'Prakash',
+        shift: 'A',
+        spare: 'bearing SKF 6205',
+        status: 'RESOLVED'
+      }
+    ]
+  },
+  'WL-01': {
+    a: 'WL-01',
+    name: 'Herbold Washing Line',
+    h: 21.0,
+    ev: 7,
+    flag: true,
+    mtbf: 265,
+    mttr: 3.0,
+    trend: '5 of 7 failures in shift C',
+    bad: true,
+    incidents: [
+      {
+        id: 'BD-WL01-07',
+        date: '10 Sep',
+        description: 'Friction washer 2 abnormal vibration',
+        cause: 'bearing failure',
+        downtimeHours: 3.5,
+        technician: 'Sunil',
+        shift: 'C',
+        spare: 'bearing SKF 6308',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-WL01-06',
+        date: '03 Sep',
+        description: 'Friction washer bearing overheating',
+        cause: 'bearing failure',
+        downtimeHours: 3.2,
+        technician: 'Sunil',
+        shift: 'C',
+        spare: 'bearing SKF 6308',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-WL01-05',
+        date: '27 Aug',
+        description: 'Washing line friction washer vibration',
+        cause: 'bearing failure',
+        downtimeHours: 2.8,
+        technician: 'Prakash',
+        shift: 'C',
+        spare: 'bearing SKF 6205',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-WL01-04',
+        date: '18 Aug',
+        description: 'Friction washer 1 bearing seizure',
+        cause: 'bearing failure',
+        downtimeHours: 4.0,
+        technician: 'Ramesh',
+        shift: 'C',
+        spare: 'bearing SKF 6308',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-WL01-03',
+        date: '11 Aug',
+        description: 'Friction washer bearing lubrication fault',
+        cause: 'bearing failure',
+        downtimeHours: 2.5,
+        technician: 'Sunil',
+        shift: 'C',
+        spare: 'gearbox oil 20L',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-WL01-02',
+        date: '24 Jul',
+        description: 'Pre-wash screen bearing vibration',
+        cause: 'bearing failure',
+        downtimeHours: 2.5,
+        technician: 'Prakash',
+        shift: 'A',
+        spare: 'bearing SKF 6205',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-WL01-01',
+        date: '08 Jul',
+        description: 'Float-sink tank agitator bearing wear',
+        cause: 'bearing failure',
+        downtimeHours: 2.5,
+        technician: 'Ramesh',
+        shift: 'B',
+        spare: 'bearing SKF 6205',
+        status: 'RESOLVED'
+      }
+    ]
+  },
+  'SSP-01': {
+    a: 'SSP-01',
+    name: 'SSP Reactor',
+    h: 9.5,
+    ev: 2,
+    flag: false,
+    mtbf: 980,
+    mttr: 4.8,
+    trend: 'stable',
+    bad: false,
+    incidents: [
+      {
+        id: 'BD-SSP01-01',
+        date: '03 Sep',
+        description: 'Rotary valve seal & bearing resistance',
+        cause: 'bearing failure',
+        downtimeHours: 5.5,
+        technician: 'Sunil',
+        shift: 'B',
+        spare: 'gearbox oil 20L',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-SSP01-02',
+        date: '18 Jul',
+        description: 'Vacuum pump mechanical valve trip',
+        cause: 'hydraulic leak',
+        downtimeHours: 4.0,
+        technician: 'Prakash',
+        shift: 'A',
+        spare: 'hydraulic seal kit',
+        status: 'RESOLVED'
+      }
+    ]
+  },
+  'DR-02': {
+    a: 'DR-02',
+    name: 'Flake Dryer 2',
+    h: 7.0,
+    ev: 3,
+    flag: false,
+    mtbf: 640,
+    mttr: 2.3,
+    trend: 'stable',
+    bad: false,
+    incidents: [
+      {
+        id: 'BD-DR02-01',
+        date: '10 Sep',
+        description: 'Outlet temperature sensor erratic',
+        cause: 'sensor fault',
+        downtimeHours: 2.8,
+        technician: 'Joydeep',
+        shift: 'C',
+        spare: 'proximity sensor',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-DR02-02',
+        date: '04 Aug',
+        description: 'Dryer exhaust blower motor trip',
+        cause: 'electrical trip',
+        downtimeHours: 2.4,
+        technician: 'Bikash',
+        shift: 'B',
+        spare: 'contactor 40A',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-DR02-03',
+        date: '25 Jun',
+        description: 'Dryer air filter differential pressure high',
+        cause: 'blockage',
+        downtimeHours: 1.8,
+        technician: 'Amit',
+        shift: 'A',
+        spare: 'filter cartridge',
+        status: 'RESOLVED'
+      }
+    ]
+  },
+  'CH-01': {
+    a: 'CH-01',
+    name: 'Main Chiller',
+    h: 5.5,
+    ev: 2,
+    flag: false,
+    mtbf: 1050,
+    mttr: 2.8,
+    trend: 'stable',
+    bad: false,
+    incidents: [
+      {
+        id: 'BD-CH01-01',
+        date: '24 Aug',
+        description: 'Refrigerant low pressure cut-out',
+        cause: 'hydraulic leak',
+        downtimeHours: 3.2,
+        technician: 'Manoj',
+        shift: 'A',
+        spare: 'hydraulic seal kit',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-CH01-02',
+        date: '02 Jul',
+        description: 'Condenser pump motor overload trip',
+        cause: 'electrical trip',
+        downtimeHours: 2.3,
+        technician: 'Debashis',
+        shift: 'C',
+        spare: 'contactor 40A',
+        status: 'RESOLVED'
+      }
+    ]
+  },
+  'BO-01': {
+    a: 'BO-01',
+    name: 'Bale Opener',
+    h: 4.0,
+    ev: 2,
+    flag: false,
+    mtbf: 1200,
+    mttr: 2.0,
+    trend: 'stable',
+    bad: false,
+    incidents: [
+      {
+        id: 'BD-BO01-01',
+        date: '23 Aug',
+        description: 'Hydraulic cutter arm cylinder pressure drop',
+        cause: 'hydraulic leak',
+        downtimeHours: 2.5,
+        technician: 'Prakash',
+        shift: 'B',
+        spare: 'hydraulic seal kit',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-BO01-02',
+        date: '29 Jun',
+        description: 'Infeed conveyor chain jam',
+        cause: 'belt damage',
+        downtimeHours: 1.5,
+        technician: 'Ramesh',
+        shift: 'A',
+        spare: 'V-belt B68',
+        status: 'RESOLVED'
+      }
+    ]
+  },
+  'CV-03': {
+    a: 'CV-03',
+    name: 'Conveyor 3',
+    h: 3.5,
+    ev: 3,
+    flag: false,
+    mtbf: 1350,
+    mttr: 1.2,
+    trend: 'stable',
+    bad: false,
+    incidents: [
+      {
+        id: 'BD-CV03-01',
+        date: '10 Sep',
+        description: 'Conveyor belt edge damage & misalignment',
+        cause: 'belt damage',
+        downtimeHours: 1.5,
+        technician: 'Bikash',
+        shift: 'C',
+        spare: 'V-belt B68',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-CV03-02',
+        date: '02 Aug',
+        description: 'Drive roller bearing noise',
+        cause: 'bearing failure',
+        downtimeHours: 1.2,
+        technician: 'Ramesh',
+        shift: 'B',
+        spare: 'bearing SKF 6205',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-CV03-03',
+        date: '18 Jun',
+        description: 'Emergency pull-cord switch fault',
+        cause: 'sensor fault',
+        downtimeHours: 0.8,
+        technician: 'Joydeep',
+        shift: 'A',
+        spare: 'proximity sensor',
+        status: 'RESOLVED'
+      }
+    ]
+  },
+  'Others': {
+    a: 'Others',
+    name: 'Utilities & Conveyors',
+    h: 6.0,
+    ev: 5,
+    flag: false,
+    mtbf: 900,
+    mttr: 1.2,
+    trend: 'stable',
+    bad: false,
+    incidents: [
+      {
+        id: 'BD-OTH-01',
+        date: '10 Sep',
+        description: 'ETP-01 Effluent pump cavitation',
+        cause: 'blockage',
+        downtimeHours: 1.8,
+        technician: 'Manoj',
+        shift: 'C',
+        spare: 'filter cartridge',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-OTH-02',
+        date: '28 Aug',
+        description: 'AC-01 Air compressor filter blockage',
+        cause: 'blockage',
+        downtimeHours: 1.4,
+        technician: 'Debashis',
+        shift: 'A',
+        spare: 'filter cartridge',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-OTH-03',
+        date: '02 Aug',
+        description: 'CV-01 Conveyor belt tracking drift',
+        cause: 'belt damage',
+        downtimeHours: 1.1,
+        technician: 'Prakash',
+        shift: 'B',
+        spare: 'V-belt B68',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-OTH-04',
+        date: '15 Jul',
+        description: 'MS-01 Metal separator optical sensor dust',
+        cause: 'sensor fault',
+        downtimeHours: 0.9,
+        technician: 'Amit',
+        shift: 'A',
+        spare: 'proximity sensor',
+        status: 'RESOLVED'
+      },
+      {
+        id: 'BD-OTH-05',
+        date: '24 Jun',
+        description: 'GR-01 Granulator screen mesh tear',
+        cause: 'blockage',
+        downtimeHours: 0.8,
+        technician: 'Ramesh',
+        shift: 'B',
+        spare: 'screen mesh 80',
+        status: 'RESOLVED'
+      }
+    ]
+  }
+};
+
+const PARETO_KEYS = ['EX-02', 'WL-01', 'SSP-01', 'DR-02', 'CH-01', 'BO-01', 'CV-03', 'Others'];
+const MTBF_KEYS = ['EX-02', 'WL-01', 'SSP-01', 'DR-02', 'CH-01'];
 
 export const ReliabilityPage = () => {
   const navigate = useNavigate();
-  const { formatResinHeld, resinBenchmarkPrice, tph } = useSettingsStore();
+  const { formatResinHeld } = useSettingsStore();
   const [selectedAsset, setSelectedAsset] = useState(null);
 
-  const paretoData = [
-    { a: 'EX-02', h: 34.5, ev: 6, flag: true, name: 'Coperion Extruder 2' },
-    { a: 'WL-01', h: 21.0, ev: 7, flag: true, name: 'Herbold Washing Line' },
-    { a: 'SSP-01', h: 9.5, ev: 2, flag: false, name: 'SSP Reactor' },
-    { a: 'DR-02', h: 7.0, ev: 3, flag: false, name: 'Flake Dryer 2' },
-    { a: 'CH-01', h: 5.5, ev: 2, flag: false, name: 'Main Chiller' },
-    { a: 'BO-01', h: 4.0, ev: 2, flag: false, name: 'Bale Opener' },
-    { a: 'CV-03', h: 3.5, ev: 3, flag: false, name: 'Conveyor 3' },
-    { a: 'Others', h: 6.0, ev: 5, flag: false, name: 'Utilities & Conveyors' }
-  ];
+  const paretoData = PARETO_KEYS.map((k) => ASSET_RELIABILITY_DATA[k]);
 
   const paretoRows = paretoData.map((p) => ({
     l: p.a,
@@ -29,18 +460,17 @@ export const ReliabilityPage = () => {
     c: p.flag ? '#dc2626' : '#143a72'
   }));
 
-  const mtbfData = [
-    { a: 'EX-02', mtbf: 310, mttr: 4.6, ev: 6, trend: 'MTTR rising · 2.5 h to 5.0 h', bad: true },
-    { a: 'WL-01', mtbf: 265, mttr: 3.0, ev: 7, trend: '5 of 7 failures in shift C', bad: true },
-    { a: 'SSP-01', mtbf: 980, mttr: 4.8, ev: 2, trend: 'stable', bad: false },
-    { a: 'DR-02', mtbf: 640, mttr: 2.3, ev: 3, trend: 'stable', bad: false },
-    { a: 'CH-01', mtbf: 1050, mttr: 2.8, ev: 2, trend: 'stable', bad: false }
-  ];
+  const mtbfData = MTBF_KEYS.map((k) => ASSET_RELIABILITY_DATA[k]);
 
   const handleSelectAsset = (assetCode) => {
-    const assetMeta = paretoData.find((p) => p.a === assetCode) || { a: assetCode, h: 0, ev: 0, name: assetCode };
-    const incidents = breakdownsData.filter((b) => b.asset === assetCode).slice(0, 6);
-    setSelectedAsset({ ...assetMeta, incidents });
+    const data = ASSET_RELIABILITY_DATA[assetCode] || {
+      a: assetCode,
+      name: assetCode,
+      h: 0,
+      ev: 0,
+      incidents: []
+    };
+    setSelectedAsset(data);
   };
 
   return (
@@ -109,8 +539,12 @@ export const ReliabilityPage = () => {
                   6 events recorded. Repair MTTR is escalating from 2.5 h to 5.0 h. Pattern strongly indicates progressive mechanical wear of the main gearbox bearing.
                 </div>
                 <div className="mt-2.5 pt-2 border-t border-rose-100 dark:border-rose-900/40 flex items-center justify-between text-[11px] font-medium text-rose-700 dark:text-rose-400">
-                  <span>Cumulative Downtime: 34.5 h ({formatResinHeld(34.5)})</span>
-                  <span className="group-hover:translate-x-1 transition-transform">Inspect 6 Events</span>
+                  <span>
+                    Cumulative Downtime: 34.5 h ({formatResinHeld(34.5)})
+                  </span>
+                  <span className="group-hover:translate-x-1 transition-transform">
+                    Inspect 6 Events
+                  </span>
                 </div>
               </div>
 
@@ -133,7 +567,9 @@ export const ReliabilityPage = () => {
                   7 events recorded. 5 out of 7 failures concentrated exclusively in Shift C. Signature indicates night operational procedure/lubrication deviation rather than component defect.
                 </div>
                 <div className="mt-2.5 pt-2 border-t border-rose-100 dark:border-rose-900/40 flex items-center justify-between text-[11px] font-medium text-rose-700 dark:text-rose-400">
-                  <span>Cumulative Downtime: 21.0 h ({formatResinHeld(21.0)})</span>
+                  <span>
+                    Cumulative Downtime: 21.0 h ({formatResinHeld(21.0)})
+                  </span>
                   <span className="group-hover:translate-x-1 transition-transform">Inspect Shift Pattern</span>
                 </div>
               </div>
@@ -222,35 +658,60 @@ export const ReliabilityPage = () => {
               <div className="grid grid-cols-3 gap-3 font-mono">
                 <div className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
                   <div className="text-slate-400 dark:text-slate-500 text-[10px] uppercase">Total Downtime</div>
-                  <div className="text-lg font-bold text-slate-900 dark:text-slate-100 mt-0.5">{selectedAsset.h || 0} Hours</div>
+                  <div className="text-lg font-bold text-slate-900 dark:text-slate-100 mt-0.5">
+                    {selectedAsset.h.toFixed(1)} Hours
+                  </div>
                 </div>
                 <div className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
                   <div className="text-slate-400 dark:text-slate-500 text-[10px] uppercase">Resin Value Held</div>
-                  <div className="text-lg font-bold text-rose-600 dark:text-rose-400 mt-0.5">{formatResinHeld(selectedAsset.h || 0)}</div>
+                  <div className="text-lg font-bold text-rose-600 dark:text-rose-400 mt-0.5">
+                    {formatResinHeld(selectedAsset.h)}
+                  </div>
                 </div>
                 <div className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
                   <div className="text-slate-400 dark:text-slate-500 text-[10px] uppercase">Breakdown Events</div>
-                  <div className="text-lg font-bold text-slate-900 dark:text-slate-100 mt-0.5">{selectedAsset.ev || selectedAsset.incidents?.length || 0} Incidents</div>
+                  <div className="text-lg font-bold text-slate-900 dark:text-slate-100 mt-0.5">
+                    {selectedAsset.ev} Incident{selectedAsset.ev !== 1 ? 's' : ''}
+                  </div>
                 </div>
               </div>
 
               {selectedAsset.incidents && selectedAsset.incidents.length > 0 ? (
                 <div className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
-                  <div className="bg-slate-50 dark:bg-slate-950 px-3 py-2 border-b border-slate-200 dark:border-slate-800 font-mono text-[11px] font-bold text-slate-600 dark:text-slate-400 uppercase">
-                    Incident Timeline ({selectedAsset.a})
+                  <div className="bg-slate-50 dark:bg-slate-950 px-3 py-2 border-b border-slate-200 dark:border-slate-800 font-mono text-[11px] font-bold text-slate-600 dark:text-slate-400 uppercase flex items-center justify-between">
+                    <span>Incident Timeline ({selectedAsset.a})</span>
+                    <span className="text-[10px] text-slate-400 font-normal">
+                      Showing all {selectedAsset.incidents.length} recorded event{selectedAsset.incidents.length !== 1 ? 's' : ''}
+                    </span>
                   </div>
                   <div className="max-h-60 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800 text-xs">
                     {selectedAsset.incidents.map((inc) => (
-                      <div key={inc.id} className="p-2.5 flex items-center justify-between gap-3">
-                        <div>
-                          <div className="font-semibold text-slate-800 dark:text-slate-200">{inc.description}</div>
-                          <div className="text-slate-400 dark:text-slate-500 text-[11px] font-mono mt-0.5">
-                            Cause: <span className="text-slate-700 dark:text-slate-300 font-bold">{inc.cause}</span> · Tech: {inc.technician} (Shift {inc.shift}) · Spare: {inc.spare || 'None'}
+                      <div key={inc.id} className="p-2.5 flex items-start sm:items-center justify-between gap-3 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-1.5 font-semibold text-slate-800 dark:text-slate-200">
+                            {inc.date && (
+                              <span className="font-mono text-[10px] font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700 shrink-0">
+                                {inc.date}
+                              </span>
+                            )}
+                            <span className="truncate">{inc.description}</span>
+                            {inc.status === 'IN_PROGRESS' && (
+                              <span className="text-[9px] font-mono font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 px-1.5 py-0.5 rounded shrink-0">
+                                ACTIVE
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-slate-400 dark:text-slate-500 text-[11px] font-mono mt-1">
+                            Cause: <span className="text-slate-700 dark:text-slate-300 font-bold">{inc.cause}</span> · Tech: {inc.technician || 'Unassigned'} (Shift {inc.shift}) · Spare: {inc.spare || 'None'}
                           </div>
                         </div>
                         <div className="text-right shrink-0 font-mono">
-                          <div className="font-bold text-rose-700 dark:text-rose-400">{inc.downtimeHours} h</div>
-                          <div className="text-[10px] text-slate-400 dark:text-slate-500">{formatResinHeld(inc.downtimeHours)}</div>
+                          <div className="font-bold text-rose-700 dark:text-rose-400 text-xs">
+                            {inc.downtimeHours != null ? `${Number(inc.downtimeHours).toFixed(1)} h` : 'Live'}
+                          </div>
+                          <div className="text-[10px] text-slate-400 dark:text-slate-500">
+                            {inc.downtimeHours != null ? formatResinHeld(inc.downtimeHours) : 'In Progress'}
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -273,23 +734,12 @@ export const ReliabilityPage = () => {
               >
                 Ask "Why does {selectedAsset.a} keep failing?"
               </button>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setSelectedAsset(null)}
-                  className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors"
-                >
-                  Close
-                </button>
-                <button
-                  onClick={() => {
-                    setSelectedAsset(null);
-                    navigate('/rpet/breakdowns');
-                  }}
-                  className="px-4 py-1.5 rounded-lg bg-[#143a72] text-white text-xs font-bold hover:bg-[#0c2347] transition-colors cursor-pointer shadow-2xs"
-                >
-                  View on Breakdown Board
-                </button>
-              </div>
+              <button
+                onClick={() => setSelectedAsset(null)}
+                className="px-4 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 cursor-pointer transition-colors"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
