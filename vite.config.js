@@ -58,6 +58,7 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
+        inlineWorkboxRuntime: true,
         runtimeCaching: [
           {
             // Google Fonts stylesheets (fonts.googleapis.com)
