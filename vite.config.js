@@ -10,16 +10,6 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'inline',
-      includeAssets: [
-        'favicon.png',
-        'favicon.svg',
-        'icons.svg',
-        'magpet-logo.png',
-        'magnumgroup-logo.png',
-        'assets/favicon.png',
-        'assets/magpet-logo.png',
-        'assets/magnumgroup-logo.png'
-      ],
       manifest: {
         name: 'Magpet Operations Intelligence',
         short_name: 'Magpet Copilot',
@@ -52,7 +42,7 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff,woff2}'],
+        globPatterns: ['**/*.{js,css,html,ico,svg,woff,woff2}'],
         navigateFallback: '/index.html',
         navigateFallbackAllowlist: [/^(?!\/__).*/],
         cleanupOutdatedCaches: true,
