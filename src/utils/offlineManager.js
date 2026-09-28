@@ -19,13 +19,14 @@ const CRITICAL_ROUTES = [
 ];
 
 /**
- * Register Service Worker via Vite PWA
+ * Register Service Worker via Vite PWA and native fallback
  */
 export const registerServiceWorker = () => {
   if (typeof window === 'undefined' || !('serviceWorker' in navigator)) {
     return null;
   }
 
+  // Register via Vite PWA virtual module
   try {
     const updateSW = registerSW({
       immediate: true,
@@ -43,7 +44,23 @@ export const registerServiceWorker = () => {
 
     return updateSW;
   } catch (error) {
-    console.warn('[OfflineManager] PWA register error:', error);
+    console.warn('[OfflineManager] PWA register error, falling back to native registration:', error);
+    
+    // Native fallback registration
+    try {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        .then((registration) => {
+          console.log('[PWA] ServiceWorker registered with native fallback:', registration.scope);
+          if (navigator.onLine) {
+            warmOfflineCache();
+          }
+        })
+        .catch((err) => {
+          console.warn('[OfflineManager] Native SW register failed:', err);
+        });
+    } catch {
+      // Ignore
+    }
     return null;
   }
 };

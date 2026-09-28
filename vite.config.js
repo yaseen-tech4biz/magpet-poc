@@ -9,7 +9,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      injectRegister: 'auto',
+      injectRegister: 'inline',
       includeAssets: [
         'favicon.png',
         'favicon.svg',
@@ -56,6 +56,8 @@ export default defineConfig({
         navigateFallback: '/index.html',
         navigateFallbackAllowlist: [/^(?!\/__).*/],
         cleanupOutdatedCaches: true,
+        clientsClaim: true,
+        skipWaiting: true,
         runtimeCaching: [
           {
             // Google Fonts stylesheets (fonts.googleapis.com)
