@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import { useToastStore } from './useToastStore';
 
 const TECHNICIANS = [
@@ -158,7 +159,9 @@ const INITIAL_CHATS = {
   ]
 };
 
-export const usePlanStore = create((set, get) => ({
+export const usePlanStore = create(
+  persist(
+    (set, get) => ({
   plan: INITIAL_PLAN,
   technicians: TECHNICIANS,
   activeTechName: 'Ramesh',
@@ -525,4 +528,18 @@ export const usePlanStore = create((set, get) => ({
       type: 'info'
     });
   }
-}));
+}),
+    {
+      name: 'magpet_plan_storage_v1',
+      partialize: (state) => ({
+        plan: state.plan,
+        technicians: state.technicians,
+        activeTechName: state.activeTechName,
+        phoneScreen: state.phoneScreen,
+        chats: state.chats,
+        unreadCounts: state.unreadCounts,
+        searchTerm: state.searchTerm
+      })
+    }
+  )
+);

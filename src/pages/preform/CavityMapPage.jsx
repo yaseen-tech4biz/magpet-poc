@@ -5,11 +5,13 @@ import { Card } from '../../components/ui/Card';
 import { CavityGrid } from '../../components/features/cavity/CavityGrid';
 import { CavityDrift } from '../../components/features/cavity/CavityDrift';
 import { useCavityStore } from '../../store/useCavityStore';
+import { useSettingsStore } from '../../store/useSettingsStore';
 
 export const CavityMapPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { selectedMachine, setSelectedMachine, machines, getCurrentMachineInfo, getCavityStats } = useCavityStore();
+  const { machineWeights } = useSettingsStore();
+  const { selectedMachine, setSelectedMachine, machines, getCurrentMachineInfo, getCavityStats, refreshCavities } = useCavityStore();
 
   useEffect(() => {
     if (id && id !== selectedMachine) {
@@ -17,8 +19,13 @@ export const CavityMapPage = () => {
     }
   }, [id, selectedMachine, setSelectedMachine]);
 
+  useEffect(() => {
+    refreshCavities(selectedMachine, machineWeights?.[selectedMachine]);
+  }, [selectedMachine, machineWeights, refreshCavities]);
+
   const machineInfo = getCurrentMachineInfo();
   const stats = getCavityStats();
+  const activeWeight = Number(machineWeights?.[selectedMachine]) || machineInfo.productWeight;
 
   const handleMachineChange = (e) => {
     const newMachine = e.target.value;
@@ -36,7 +43,7 @@ export const CavityMapPage = () => {
               <strong className="text-slate-900 dark:text-white font-bold">Hooghly Unit 1</strong> · Cavity Weight Matrix · {machineInfo.code}
             </span>
             <span className="font-mono text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap hidden md:inline">
-              Target: {machineInfo.productWeight}g ({machineInfo.product})
+              Target: {activeWeight}g ({machineInfo.product})
             </span>
           </div>
 
@@ -49,7 +56,7 @@ export const CavityMapPage = () => {
             >
               {machines.map((m) => (
                 <option key={m.code} value={m.code} className="dark:bg-slate-800 dark:text-slate-200">
-                  {m.code} · {m.name} ({m.cavities} cav · {m.productWeight}g)
+                  {m.code} · {m.name} ({m.cavities} cav · {Number(machineWeights?.[m.code]) || m.productWeight}g)
                 </option>
               ))}
             </select>
@@ -89,7 +96,7 @@ export const CavityMapPage = () => {
         <div className="lg:col-span-7">
           <Card
             title={`${machineInfo.cavities} Cavities Matrix · ${machineInfo.code}`}
-            subtitle={`Target: ${machineInfo.productWeight}g ±0.15g · Current Shift Sampling`}
+            subtitle={`Target: ${activeWeight}g ±0.15g · Current Shift Sampling`}
             rightElement={
               <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded font-semibold uppercase tracking-wider">
                 Click Cavity to Inspect

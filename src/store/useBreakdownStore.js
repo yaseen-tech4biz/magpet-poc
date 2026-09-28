@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 const INITIAL_JOBS = [
   {
@@ -63,73 +64,84 @@ const RESOLVED_JOBS = [
   }
 ];
 
-export const useBreakdownStore = create((set, get) => ({
-  activeJobs: INITIAL_JOBS,
-  resolvedJobs: RESOLVED_JOBS,
-  currentTime: Date.now(),
-
-  tickTime: () => set({ currentTime: Date.now() }),
-
-  // Move job state: ASSIGNED -> IN_PROGRESS -> WAITING_SPARE -> RESOLVED_TODAY
-  updateJobState: (jobId, newState, holdReason = '') => {
-    const { activeJobs, resolvedJobs, currentTime } = get();
-    const jobIndex = activeJobs.findIndex((j) => j.id === jobId);
-
-    if (jobIndex === -1) return;
-    const job = { ...activeJobs[jobIndex] };
-
-    if (newState === 'RESOLVED_TODAY') {
-      // Calculate final downtime duration in hours
-      const finalHrs = Math.max(0.5, Number(((currentTime - job.startTime) / 3600000).toFixed(1)));
-      const resolvedJob = {
-        ...job,
-        state: 'RESOLVED_TODAY',
-        hrs: finalHrs,
-        isResolved: true,
-        cause: `Reported to Resolved in ${finalHrs} h · ${job.tech || 'Team'}`
-      };
-
-      set({
-        activeJobs: activeJobs.filter((j) => j.id !== jobId),
-        resolvedJobs: [resolvedJob, ...resolvedJobs]
-      });
-    } else {
-      job.state = newState;
-      if (holdReason) job.holdReason = holdReason;
-      if (newState === 'IN_PROGRESS') job.holdReason = '';
-
-      const updated = [...activeJobs];
-      updated[jobIndex] = job;
-      set({ activeJobs: updated });
-    }
-  },
-
-  // Report New Breakdown in Real Time
-  reportBreakdown: (assetCode, workDesc, cause, priority = 'P2', technician = 'Ramesh') => {
-    const newJob = {
-      id: 'BD-' + Math.floor(1000 + Math.random() * 9000),
-      a: assetCode,
-      w: workDesc,
-      cause: cause,
-      p: priority,
-      state: 'ASSIGNED',
-      tech: technician,
-      sinceHoursAgo: 0.1,
-      startTime: Date.now(),
-      live: true,
-      crit: priority === 'P1' || assetCode.startsWith('EX') || assetCode.startsWith('WL'),
-      holdReason: ''
-    };
-
-    set({ activeJobs: [newJob, ...get().activeJobs] });
-  },
-
-  // Reset to initial demo state
-  resetBreakdowns: () => {
-    set({
+export const useBreakdownStore = create(
+  persist(
+    (set, get) => ({
       activeJobs: INITIAL_JOBS,
       resolvedJobs: RESOLVED_JOBS,
-      currentTime: Date.now()
-    });
-  }
-}));
+      currentTime: Date.now(),
+
+      tickTime: () => set({ currentTime: Date.now() }),
+
+      // Move job state: ASSIGNED -> IN_PROGRESS -> WAITING_SPARE -> RESOLVED_TODAY
+      updateJobState: (jobId, newState, holdReason = '') => {
+        const { activeJobs, resolvedJobs, currentTime } = get();
+        const jobIndex = activeJobs.findIndex((j) => j.id === jobId);
+
+        if (jobIndex === -1) return;
+        const job = { ...activeJobs[jobIndex] };
+
+        if (newState === 'RESOLVED_TODAY') {
+          // Calculate final downtime duration in hours
+          const finalHrs = Math.max(0.5, Number(((currentTime - job.startTime) / 3600000).toFixed(1)));
+          const resolvedJob = {
+            ...job,
+            state: 'RESOLVED_TODAY',
+            hrs: finalHrs,
+            isResolved: true,
+            cause: `Reported to Resolved in ${finalHrs} h · ${job.tech || 'Team'}`
+          };
+
+          set({
+            activeJobs: activeJobs.filter((j) => j.id !== jobId),
+            resolvedJobs: [resolvedJob, ...resolvedJobs]
+          });
+        } else {
+          job.state = newState;
+          if (holdReason) job.holdReason = holdReason;
+          if (newState === 'IN_PROGRESS') job.holdReason = '';
+
+          const updated = [...activeJobs];
+          updated[jobIndex] = job;
+          set({ activeJobs: updated });
+        }
+      },
+
+      // Report New Breakdown in Real Time
+      reportBreakdown: (assetCode, workDesc, cause, priority = 'P2', technician = 'Ramesh') => {
+        const newJob = {
+          id: 'BD-' + Math.floor(1000 + Math.random() * 9000),
+          a: assetCode,
+          w: workDesc,
+          cause: cause,
+          p: priority,
+          state: 'ASSIGNED',
+          tech: technician,
+          sinceHoursAgo: 0.1,
+          startTime: Date.now(),
+          live: true,
+          crit: priority === 'P1' || assetCode.startsWith('EX') || assetCode.startsWith('WL'),
+          holdReason: ''
+        };
+
+        set({ activeJobs: [newJob, ...get().activeJobs] });
+      },
+
+      // Reset to initial demo state
+      resetBreakdowns: () => {
+        set({
+          activeJobs: INITIAL_JOBS,
+          resolvedJobs: RESOLVED_JOBS,
+          currentTime: Date.now()
+        });
+      }
+    }),
+    {
+      name: 'magpet_breakdown_storage_v1',
+      partialize: (state) => ({
+        activeJobs: state.activeJobs,
+        resolvedJobs: state.resolvedJobs
+      })
+    }
+  )
+);

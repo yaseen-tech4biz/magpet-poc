@@ -4,6 +4,7 @@ import { Shell } from '../../components/layout/Shell';
 import { Card } from '../../components/ui/Card';
 import { StackedBarChart } from '../../components/ui/StackedBarChart';
 import { HorizontalBarChart } from '../../components/ui/HorizontalBarChart';
+import { useSettingsStore } from '../../store/useSettingsStore';
 import qualityHistoryData from '../../data/qualityHistory.json';
 import machinesData from '../../data/machines.json';
 import cavityWeightsData from '../../data/cavityWeights.json';
@@ -11,6 +12,7 @@ import cavityWeightsData from '../../data/cavityWeights.json';
 export const MachineH03Page = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { machineWeights } = useSettingsStore();
   const [selectedMachine, setSelectedMachine] = useState(id || 'H-03');
 
   useEffect(() => {
@@ -34,6 +36,7 @@ export const MachineH03Page = () => {
   ];
 
   const currentMachineObj = machines.find((m) => m.id === selectedMachine) || machines[0];
+  const activeMachineTargetWeight = Number(machineWeights?.[selectedMachine]) || currentMachineObj.productWeight;
 
   // 8 weeks defect counts computed dynamically from qualityHistory.json
   const defectWeeks = useMemo(() => {
@@ -238,7 +241,7 @@ export const MachineH03Page = () => {
           {/* Machine Cavity Health Summary Card (Spec F-B2) */}
           <Card
             title="Cavity Health Summary"
-            subtitle={`${currentMachineObj.cavities} Cavities · ${currentMachineObj.productWeight}g Target`}
+            subtitle={`${currentMachineObj.cavities} Cavities · ${activeMachineTargetWeight}g Target`}
             rightElement={
               <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded font-semibold uppercase">
                 {currentMachineObj.id} Tooling

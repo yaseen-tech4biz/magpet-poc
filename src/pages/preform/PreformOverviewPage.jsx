@@ -37,16 +37,21 @@ export const PreformOverviewPage = () => {
       const rate = output ? Number(((rejects / output) * 100).toFixed(2)) : 0;
       
       // Use reactive weight from settings store if customized, otherwise productWeight
-      const weight = machineWeights[mach.code] || mach.productWeight;
+      const weight = Number(machineWeights?.[mach.code]) || mach.productWeight;
       const tonnes = Number(((output * weight) / 1e6).toFixed(2));
 
       totalPcs += output;
       totalT += (output * weight) / 1e6;
 
+      // Extract base product name and build dynamic weight title
+      const baseProduct = mach.product.replace(/^[\d.]+\s*g\s*/i, '');
+      const dynamicProduct = `${weight}g ${baseProduct}`;
+
       return {
         code: mach.code,
         name: mach.name,
-        product: mach.product,
+        product: dynamicProduct,
+        weight,
         cavities: mach.cavities,
         output,
         tonnes,
@@ -135,7 +140,7 @@ export const PreformOverviewPage = () => {
                     </td>
                     <td className="py-2.5 px-3 text-slate-700 dark:text-slate-200">
                       <div>{m.name}</div>
-                      <div className="text-[11px] text-slate-400 dark:text-slate-500">{m.product}</div>
+                      <div className="text-[11px] text-[#143a72] dark:text-blue-400 font-mono font-medium">{m.product}</div>
                     </td>
                     <td className="py-2.5 px-3 text-center font-mono font-semibold text-slate-800 dark:text-slate-200">
                       {m.cavities}

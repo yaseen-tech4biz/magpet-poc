@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useCavityStore } from '../../../store/useCavityStore';
+import { useSettingsStore } from '../../../store/useSettingsStore';
 import { LineChart } from '../../ui/LineChart';
 
 export const CavityDrift = () => {
+  const { machineWeights } = useSettingsStore();
   const { selectedCavity, selectedMachine, getCurrentDrift, getCurrentMachineInfo } = useCavityStore();
   const driftPoints = getCurrentDrift();
   const values = driftPoints.map((p) => p.weight);
@@ -12,7 +14,7 @@ export const CavityDrift = () => {
 
   const isHotRunner = selectedMachine === 'H-03' && (selectedCavity === 41 || selectedCavity === 42);
 
-  const targetWeight = driftPoints[0]?.target || machineInfo?.productWeight || 26.0;
+  const targetWeight = Number(machineWeights?.[selectedMachine]) || driftPoints[0]?.target || machineInfo?.productWeight || 26.0;
   const isLargeJar = targetWeight >= 500;
   const tolerance = isLargeJar ? 0.5 : 0.04;
   const band = [
