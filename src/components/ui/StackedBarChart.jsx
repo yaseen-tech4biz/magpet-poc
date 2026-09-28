@@ -7,7 +7,7 @@ export const StackedBarChart = ({
   width = 640,
   height = 230,
   yAxisUnit = '%',
-  yAxisLabel = '% of output',
+  yAxisLabel = '% OF OUTPUT',
   maxVal = null
 }) => {
   if (!weeks || weeks.length === 0) return null;
@@ -37,10 +37,10 @@ export const StackedBarChart = ({
       {/* Y-axis title */}
       {yAxisLabel && (
         <text
-          x="44"
+          x="48"
           y="13"
-          textAnchor="end"
-          className="font-mono text-[9px] font-bold fill-slate-400 dark:fill-slate-500 tracking-wider uppercase"
+          textAnchor="start"
+          className="font-mono text-[9px] font-bold fill-slate-500 dark:fill-slate-400 tracking-wider uppercase"
         >
           {yAxisLabel}
         </text>

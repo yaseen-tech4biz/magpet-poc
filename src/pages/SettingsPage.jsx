@@ -84,10 +84,10 @@ export const SettingsPage = () => {
       subtitle="Defaults come from Magpet's published capacity. Edit these numbers and watch every KPI and financial figure across the app recompute dynamically in real time."
     >
       <div className="space-y-8 max-w-4xl">
-        
+
         {/* Financial & Capacity Assumption Inputs */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          
+
           <Card>
             <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 font-heading">
               rPET Line Rate · Tonnes / Hour
@@ -178,7 +178,7 @@ export const SettingsPage = () => {
               </span>
             </div>
             <div className="w-full font-mono text-xl font-bold text-[#143a72] dark:text-blue-400 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg p-3 flex items-center justify-between transition-colors">
-              <span>Machines Active: 6</span>
+              <span>6</span>
               <span className="text-xs text-slate-500 dark:text-slate-400 font-normal">
                 4 Husky · 2 ABS
               </span>
