@@ -11,15 +11,16 @@ export const TaskCard = ({ task, shift, taskIndex }) => {
 
   const isGap = task.st === 'gap';
 
-  const filteredTechs = technicians.filter((t) => {
+  // Filter technicians strictly by the task's shift (show only their shift, not total across all shifts)
+  const shiftTechs = shift ? technicians.filter((t) => t.shift === shift) : technicians;
+
+  const filteredTechs = shiftTechs.filter((t) => {
     if (!techSearch.trim()) return true;
     const query = techSearch.toLowerCase();
     return (
       t.name.toLowerCase().includes(query) ||
       (t.fullName && t.fullName.toLowerCase().includes(query)) ||
-      (t.trade && t.trade.toLowerCase().includes(query)) ||
-      `shift ${t.shift}`.toLowerCase().includes(query) ||
-      t.shift.toLowerCase() === query.trim()
+      (t.trade && t.trade.toLowerCase().includes(query))
     );
   });
 
@@ -175,7 +176,7 @@ export const TaskCard = ({ task, shift, taskIndex }) => {
             </div>
           )}
         </div>
-      </div>
+      </div> 
 
       {/* Technician Assignment / Reassignment Dropdown Selector */}
       {showAssignModal && (
@@ -185,7 +186,7 @@ export const TaskCard = ({ task, shift, taskIndex }) => {
             <div className="flex items-center gap-1.5">
               <span className="text-slate-900 dark:text-white font-bold">Select Technician:</span>
               <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 bg-slate-200/80 dark:bg-slate-700 px-1.5 py-0.5 rounded-full">
-                {filteredTechs.length} available
+                {shift ? `Shift ${shift} · ` : ''}{filteredTechs.length} available
               </span>
             </div>
             <button
@@ -200,13 +201,13 @@ export const TaskCard = ({ task, shift, taskIndex }) => {
             </button>
           </div>
 
-          {/* Quick Filter Search for Fast Access across 199+ Technicians */}
+          {/* Quick Filter Search for Fast Access within this shift */}
           <div className="relative">
             <input
               type="text"
               value={techSearch}
               onChange={(e) => setTechSearch(e.target.value)}
-              placeholder="Search name, designation, shift..."
+              placeholder={shift ? `Search Shift ${shift} technicians...` : 'Search name, designation...'}
               className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-md px-2.5 py-1.5 text-xs text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-hidden focus:border-[#143a72] dark:focus:border-blue-500 focus:ring-1 focus:ring-[#143a72] dark:focus:ring-blue-500 transition-colors"
             />
             {techSearch && (
@@ -224,7 +225,7 @@ export const TaskCard = ({ task, shift, taskIndex }) => {
           <div className="max-h-48 overflow-y-auto rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 divide-y divide-slate-100 dark:divide-slate-800 shadow-inner">
             {filteredTechs.length === 0 ? (
               <div className="p-3.5 text-center text-slate-400 dark:text-slate-500 text-xs">
-                No technician found matching "{techSearch}"
+                {shift ? `No Shift ${shift} technician found matching "${techSearch}"` : `No technician found matching "${techSearch}"`}
               </div>
             ) : (
               filteredTechs.map((t) => {
