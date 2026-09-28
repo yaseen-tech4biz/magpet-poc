@@ -5,28 +5,47 @@ export const StackedBarChart = ({
   weeks = [],
   defectColors = ['#dc2626', '#0284c7', '#d97706', '#9333ea', '#2563eb'],
   width = 640,
-  height = 230
+  height = 230,
+  yAxisUnit = '%',
+  yAxisLabel = '% of output',
+  maxVal = null
 }) => {
   if (!weeks || weeks.length === 0) return null;
 
-  const totals = weeks.map((w) => w.reduce((a, b) => a + b, 0));
-  const max = Math.max(...totals, 1);
+  const totals = weeks.map((w) => Number(w.reduce((a, b) => a + b, 0).toFixed(2)));
+  const calculatedMax = Math.max(...totals, 0.1);
+  const max = maxVal || (yAxisUnit === '%' ? 4.0 : calculatedMax);
 
   const step = (width - 70) / weeks.length;
   const barWidth = step * 0.6;
   const baseY = height - 28;
 
-  // Grid steps
-  const gridSteps = 3;
+  // Grid steps (0.0%, 1.0%, 2.0%, 3.0%, 4.0%)
+  const gridSteps = 4;
   const gridLines = [];
   for (let s = 0; s <= gridSteps; s++) {
     const v = (max * s) / gridSteps;
     const y = baseY - ((height - 48) * s) / gridSteps;
-    gridLines.push({ y, val: Math.round(v) });
+    gridLines.push({
+      y,
+      val: yAxisUnit === '%' ? `${v.toFixed(1)}%` : Math.round(v)
+    });
   }
 
   return (
     <svg className="w-full h-auto" viewBox={`0 0 ${width} ${height}`}>
+      {/* Y-axis title */}
+      {yAxisLabel && (
+        <text
+          x="44"
+          y="13"
+          textAnchor="end"
+          className="font-mono text-[9px] font-bold fill-slate-400 dark:fill-slate-500 tracking-wider uppercase"
+        >
+          {yAxisLabel}
+        </text>
+      )}
+
       {/* Grid lines */}
       {gridLines.map((gl, i) => (
         <g key={i}>
@@ -39,7 +58,7 @@ export const StackedBarChart = ({
             className="stroke-slate-200 dark:stroke-slate-800 transition-colors"
           />
           <text
-            x="42"
+            x="44"
             y={gl.y + 3.5}
             textAnchor="end"
             className="font-mono text-[10px] fill-slate-400 dark:fill-slate-500 transition-colors"
@@ -79,6 +98,18 @@ export const StackedBarChart = ({
                 />
               );
             })}
+
+            {/* Total value label above bar */}
+            <motion.text
+              initial={{ opacity: 0, y: baseY }}
+              animate={{ opacity: 1, y: currentY - 4 }}
+              transition={{ duration: 0.5, delay: i * 0.08 + 0.3 }}
+              x={x + barWidth / 2}
+              textAnchor="middle"
+              className="font-mono text-[9px] font-bold fill-slate-700 dark:fill-slate-300 transition-colors"
+            >
+              {totals[i].toFixed(1)}%
+            </motion.text>
 
             {/* Week label */}
             <motion.text

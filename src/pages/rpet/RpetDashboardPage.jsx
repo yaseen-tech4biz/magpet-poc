@@ -62,7 +62,7 @@ export const RpetDashboardPage = () => {
           <div>
             <div className="flex items-center gap-2">
               <span className="bg-rose-600 text-white font-mono text-[10px] font-bold px-1.5 py-0.2 rounded uppercase">
-                Plant Story S2
+                INCIDENT
               </span>
               <h2 className="text-base font-bold text-slate-900 dark:text-slate-100 font-heading group-hover:text-rose-900 dark:group-hover:text-rose-300 transition-colors">
                 EX-02 tripped last night · Gearbox bearing over temperature

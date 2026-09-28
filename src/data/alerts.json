@@ -4,7 +4,7 @@
     "time": "07:41",
     "type": "cavity_drift",
     "title": "H-03 cavity 41, 42 weight drift",
-    "detail": "+0.4 g over 3 weeks · rule: > 1.5% off target, 3 shifts",
+    "detail": "+0.38 g over 3 weeks · rule: > 1.5% off target, 3 shifts",
     "link": "/preform/cavity/H-03",
     "severity": "red"
   },

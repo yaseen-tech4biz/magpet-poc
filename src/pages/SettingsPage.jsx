@@ -132,7 +132,7 @@ export const SettingsPage = () => {
               className="w-full font-mono text-xl font-bold text-[#143a72] dark:text-blue-400 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg p-3 focus:outline-hidden focus:border-[#143a72] dark:focus:border-blue-400 focus:bg-white dark:focus:bg-slate-900 transition-colors"
             />
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-2">
-              Gross margin placeholder per kg of resin processed.
+              Indicative margin per kg; adjust to actuals.
             </p>
           </Card>
 
@@ -171,44 +171,29 @@ export const SettingsPage = () => {
           <Card>
             <div className="flex items-center justify-between mb-2">
               <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider font-heading">
-                Average Preform Weight
+                Machines Active
               </label>
               <span className="font-mono text-[10px] bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800 font-bold">
-                6 Machines Active
+                Hooghly Unit 1
               </span>
             </div>
-            {(() => {
-              const weightValues = Object.values(machineWeights || {}).map(Number).filter((n) => !isNaN(n) && n > 0);
-              const avgPreformWeight = weightValues.length
-                ? (weightValues.reduce((a, b) => a + b, 0) / weightValues.length).toFixed(1)
-                : '228.5';
-              const minPreformWeight = weightValues.length ? Math.min(...weightValues).toFixed(1) : '19.5';
-              const maxPreformWeight = weightValues.length ? Math.max(...weightValues).toFixed(1) : '680.0';
-              return (
-                <div className="w-full font-mono text-base font-bold text-[#143a72] dark:text-blue-400 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg p-3 flex items-center justify-between transition-colors">
-                  <span>{avgPreformWeight}g Mean</span>
-                  <span className="text-xs text-slate-500 dark:text-slate-400 font-normal">
-                    {minPreformWeight}g - {maxPreformWeight}g
-                  </span>
-                </div>
-              );
-            })()}
+            <div className="w-full font-mono text-xl font-bold text-[#143a72] dark:text-blue-400 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg p-3 flex items-center justify-between transition-colors">
+              <span>Machines Active: 6</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-normal">
+                4 Husky · 2 ABS
+              </span>
+            </div>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-2">
-              Editable individually below to simulate custom customer preform runs.
+              All 6 injection moulding systems active in Hooghly Unit 1.
             </p>
           </Card>
 
         </div>
 
-        {/* Editable Machine Registry Preform Weights (Spec Section 10) */}
+        {/* Editable Machine Registry Preform Weights */}
         <Card
           title="Hooghly Unit 1 · Preform Weight by Machine"
-          subtitle="Editable per machine table as specified in Section 10. Adjust preform weight targets live."
-          rightElement={
-            <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              Spec Table 6.5 & 10
-            </span>
-          }
+          subtitle="Editable per machine table. Adjust preform weight targets live."
         >
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs border-collapse">
@@ -223,12 +208,12 @@ export const SettingsPage = () => {
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-mono">
                 {[
-                  { code: 'H-01', vendor: 'Husky Fully Automatic', cavities: 96, product: 'Water preforms (19.5 g)', defaultW: 19.5, shiftPcs: 42380 },
-                  { code: 'H-02', vendor: 'Husky Fully Automatic', cavities: 96, product: 'Water preforms (19.5 g)', defaultW: 19.5, shiftPcs: 41920 },
-                  { code: 'H-03', vendor: 'Husky Fully Automatic', cavities: 72, product: 'CSD preforms (26.0 g) · S5', defaultW: 26.0, shiftPcs: 30450 },
-                  { code: 'H-04', vendor: 'Husky Fully Automatic', cavities: 72, product: 'CSD preforms (26.0 g)', defaultW: 26.0, shiftPcs: 31200 },
-                  { code: 'S-01', vendor: 'ABS Semi Automatic', cavities: 4, product: '20 Litre jar preforms (680 g)', defaultW: 680.0, shiftPcs: 1820 },
-                  { code: 'S-02', vendor: 'ABS Semi Automatic', cavities: 4, product: '20 Litre jar preforms (680 g)', defaultW: 680.0, shiftPcs: 1780 }
+                  { code: 'H-01', vendor: 'Husky Fully Automatic', cavities: 96, product: 'Water preforms (19.5 g)', defaultW: 19.5, shiftPcs: 460000 },
+                  { code: 'H-02', vendor: 'Husky Fully Automatic', cavities: 96, product: 'Water preforms (19.5 g)', defaultW: 19.5, shiftPcs: 450000 },
+                  { code: 'H-03', vendor: 'Husky Fully Automatic', cavities: 72, product: 'CSD preforms (26.0 g)', defaultW: 26.0, shiftPcs: 253300 },
+                  { code: 'H-04', vendor: 'Husky Fully Automatic', cavities: 72, product: 'CSD preforms (26.0 g)', defaultW: 26.0, shiftPcs: 250000 },
+                  { code: 'S-01', vendor: 'ABS Semi Automatic', cavities: 4, product: '20 Litre jar preforms (680 g)', defaultW: 680.0, shiftPcs: 2870 },
+                  { code: 'S-02', vendor: 'ABS Semi Automatic', cavities: 4, product: '20 Litre jar preforms (680 g)', defaultW: 680.0, shiftPcs: 2800 }
                 ].map((m) => {
                   const currentVal = machineWeights?.[m.code] ?? m.defaultW;
                   const currentNum = Number(currentVal) || m.defaultW;
@@ -375,7 +360,7 @@ export const SettingsPage = () => {
             </div>
 
             <p className="text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed">
-              Magpet Operations Intelligence is engineered for 100% offline resilience. All application assets, SCADA telemetry models, WhatsApp dispatch threads, breakdown Kanban states, and financial calculation engines are stored locally in CacheStorage and persistent local state. The application can run offline for indefinite periods without data loss, reloads, or errors.
+              Works offline and syncs automatically when the connection returns.
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-2">

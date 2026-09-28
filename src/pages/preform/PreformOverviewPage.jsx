@@ -24,26 +24,27 @@ export const PreformOverviewPage = () => {
     });
   }, []);
 
-  // Today's machine metrics computed dynamically
+  // 24-hour machine metrics as specified
+  const LAST_24H_DATA = {
+    'H-01': { output: 1380000, tonnes: 26.91, rate: 1.8 },
+    'H-02': { output: 1350000, tonnes: 26.33, rate: 1.9 },
+    'H-03': { output: 760000, tonnes: 19.76, rate: 3.1 },
+    'H-04': { output: 750000, tonnes: 19.50, rate: 2.2 },
+    'S-01': { output: 8600, tonnes: 5.85, rate: 1.6 },
+    'S-02': { output: 8400, tonnes: 5.71, rate: 1.7 }
+  };
+
   const { todayPreforms, todayTonnes, machineSummaries } = useMemo(() => {
-    const todayRecords = qualityHistoryData.filter((r) => r.date === '2026-09-11');
     let totalPcs = 0;
     let totalT = 0;
 
     const summaries = machinesData.map((mach) => {
-      const recs = todayRecords.filter((r) => r.machine === mach.code);
-      const output = recs.reduce((sum, r) => sum + r.output, 0);
-      const rejects = recs.reduce((sum, r) => sum + r.totalRejects, 0);
-      const rate = output ? Number(((rejects / output) * 100).toFixed(2)) : 0;
-      
-      // Use reactive weight from settings store if customized, otherwise productWeight
+      const stats = LAST_24H_DATA[mach.code] || { output: 0, tonnes: 0, rate: 0 };
       const weight = Number(machineWeights?.[mach.code]) || mach.productWeight;
-      const tonnes = Number(((output * weight) / 1e6).toFixed(2));
+      
+      totalPcs += stats.output;
+      totalT += stats.tonnes;
 
-      totalPcs += output;
-      totalT += (output * weight) / 1e6;
-
-      // Extract base product name and build dynamic weight title
       const baseProduct = mach.product.replace(/^[\d.]+\s*g\s*/i, '');
       const dynamicProduct = `${weight}g ${baseProduct}`;
 
@@ -53,16 +54,16 @@ export const PreformOverviewPage = () => {
         product: dynamicProduct,
         weight,
         cavities: mach.cavities,
-        output,
-        tonnes,
-        rate,
+        output: stats.output,
+        tonnes: stats.tonnes,
+        rate: stats.rate,
         hasAlert: mach.code === 'H-03'
       };
     });
 
     return {
       todayPreforms: totalPcs,
-      todayTonnes: Number(totalT.toFixed(1)),
+      todayTonnes: Number(totalT.toFixed(2)),
       machineSummaries: summaries
     };
   }, [machineWeights]);
@@ -81,7 +82,7 @@ export const PreformOverviewPage = () => {
           value={dailyRunRateTonnes.toString()}
           unit="t/d"
           label="Output run rate"
-          trendText={`${(todayPreforms / 1000).toFixed(1)}k preforms · ${todayTonnes}t shift total`}
+          trendText="4.26M preforms in last 24 h"
           trendType="neutral"
           colorTheme="default"
         />
@@ -102,7 +103,7 @@ export const PreformOverviewPage = () => {
         <KpiCard
           value={alertsData.length.toString()}
           label="Active alerts"
-          trendText="2 on H-03 (Cavities 41, 42)"
+          trendText="1 on H-03 (Cavities 41, 42)"
           trendType="up"
           colorTheme="red"
         />
@@ -126,7 +127,7 @@ export const PreformOverviewPage = () => {
                   <th className="py-2.5 px-3 font-semibold">Machine</th>
                   <th className="py-2.5 px-3 font-semibold">Preform Line</th>
                   <th className="py-2.5 px-3 font-semibold text-center">Cavities</th>
-                  <th className="py-2.5 px-3 font-semibold text-right">Output Today</th>
+                  <th className="py-2.5 px-3 font-semibold text-right">OUTPUT (LAST 24 H)</th>
                   <th className="py-2.5 px-3 font-semibold text-right">Rejection %</th>
                   <th className="py-2.5 px-3 font-semibold text-center">Status</th>
                   <th className="py-2.5 px-3 font-semibold text-right">Actions</th>
@@ -147,7 +148,7 @@ export const PreformOverviewPage = () => {
                     </td>
                     <td className="py-2.5 px-3 text-right font-mono">
                       <div className="font-bold text-slate-900 dark:text-white">{m.output.toLocaleString()} pcs</div>
-                      <div className="text-[11px] text-slate-500 dark:text-slate-400">{m.tonnes} t</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400">{m.tonnes.toFixed(2)} t</div>
                     </td>
                     <td className="py-2.5 px-3 text-right font-mono">
                       <span className={`px-2 py-0.5 rounded font-bold ${
@@ -228,7 +229,7 @@ export const PreformOverviewPage = () => {
             <div className="flex items-center gap-2 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block shrink-0" />
               <span>
-                <b>Planted Finding:</b> 3-week upward drift from 1.7% baseline to 2.16%. Driven primarily by weight variation rejects on H-03 (Cavities 41 &amp; 42).
+                3-week upward drift from 1.7% baseline to 2.16%. Driven primarily by weight variation rejects on H-03 (Cavities 41 &amp; 42).
               </span>
             </div>
           </Card>

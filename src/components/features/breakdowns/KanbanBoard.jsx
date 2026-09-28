@@ -77,7 +77,7 @@ export const KanbanBoard = () => {
         </button>
       </div>
 
-      {/* Shift Filter Pills (Spec Section 6.4 Story S3: Washing Line Shift C Cluster) */}
+      {/* Shift Filter Pills */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4 bg-white dark:bg-slate-900 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800">
         <div className="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
           <span className="text-slate-400 dark:text-slate-500 text-[11px] uppercase tracking-wider font-mono mr-1">Shift Filter:</span>
@@ -85,7 +85,7 @@ export const KanbanBoard = () => {
             { key: 'ALL', label: 'All Shifts' },
             { key: 'A', label: 'Shift A (Morning)' },
             { key: 'B', label: 'Shift B (Evening)' },
-            { key: 'C', label: 'Shift C (Night · S3)' }
+            { key: 'C', label: 'Shift C (Night)' }
           ].map((shift) => (
             <button
               key={shift.key}
@@ -102,7 +102,7 @@ export const KanbanBoard = () => {
         </div>
         {selectedShift === 'C' && (
           <span className="text-[11px] font-mono text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900 px-2 py-0.5 rounded font-bold">
-            Planted Story S3: Night Shift Cluster (WL-01 Friction Washers)
+            Night Shift Cluster (WL-01 Friction Washers)
           </span>
         )}
       </div>

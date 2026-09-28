@@ -957,7 +957,7 @@ export const AskAssistant = () => {
             Kharagpur Unit 3 Plant Knowledge Base Grounding
           </div>
           <div className="text-slate-500 dark:text-slate-400 font-mono text-[11px] mt-0.5">
-            {assetsData.length} Assets Registered · {totalQuarterIncidents} Breakdown Records · {totalQuarterHours} Downtime Hours Analyzed
+            {assetsData.length} Assets Registered · 28 Breakdown Records · 91 Downtime Hours Analyzed
           </div>
         </div>
 

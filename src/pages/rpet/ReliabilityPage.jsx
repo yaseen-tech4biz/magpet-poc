@@ -533,7 +533,6 @@ export const ReliabilityPage = () => {
                       Gearbox Bearing Thermal Escalation
                     </span>
                   </div>
-                  <span className="text-[10px] font-bold text-rose-700 dark:text-rose-400 font-mono">⚑ S1 Flag</span>
                 </div>
                 <div className="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                   6 events recorded. Repair MTTR is escalating from 2.5 h to 5.0 h. Pattern strongly indicates progressive mechanical wear of the main gearbox bearing.
@@ -561,7 +560,6 @@ export const ReliabilityPage = () => {
                       Friction Washer Bearings (Shift C Cluster)
                     </span>
                   </div>
-                  <span className="text-[10px] font-bold text-rose-700 dark:text-rose-400 font-mono">⚑ S3 Flag</span>
                 </div>
                 <div className="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                   7 events recorded. 5 out of 7 failures concentrated exclusively in Shift C. Signature indicates night operational procedure/lubrication deviation rather than component defect.

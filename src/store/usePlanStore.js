@@ -4,9 +4,9 @@ import { useToastStore } from './useToastStore';
 
 const TECHNICIANS = [
   { id: 'T1', name: 'Ramesh', fullName: 'Ramesh Sharma', trade: 'Mechanical Specialist', shift: 'A', shiftHours: '06:00–14:00', phone: '+91 98765 00101', avatarBg: 'bg-emerald-700', status: 'Online · At Extrusion Line' },
-  { id: 'T2', name: 'Prakash', fullName: 'Prakash Patel', trade: 'Mechanical Maintenance', shift: 'B', shiftHours: '14:00–22:00', phone: '+91 98765 00102', avatarBg: 'bg-blue-700', status: 'Online · Washing Line Bay' },
+  { id: 'T2', name: 'Prakash', fullName: 'Prakash Patel', trade: 'Mechanical Maintenance', shift: 'A', shiftHours: '06:00–14:00', phone: '+91 98765 00102', avatarBg: 'bg-blue-700', status: 'Online · Washing Line Bay' },
   { id: 'T3', name: 'Sunil', fullName: 'Sunil Soren', trade: 'Night Shift Lead', shift: 'C', shiftHours: '22:00–06:00', phone: '+91 98765 00103', avatarBg: 'bg-purple-700', status: 'Standby · Handover Complete' },
-  { id: 'T4', name: 'Bikash', fullName: 'Bikash Das', trade: 'Electrical & Automation', shift: 'A', shiftHours: '06:00–14:00', phone: '+91 98765 00104', avatarBg: 'bg-amber-700', status: 'Online · Control Room PLC' },
+  { id: 'T4', name: 'Bikash', fullName: 'Bikash Das', trade: 'Electrical & Automation', shift: 'B', shiftHours: '14:00–22:00', phone: '+91 98765 00104', avatarBg: 'bg-amber-700', status: 'Online · Control Room PLC' },
   { id: 'T5', name: 'Joydeep', fullName: 'Joydeep Mukherjee', trade: 'Instrumentation & Sensors', shift: 'B', shiftHours: '14:00–22:00', phone: '+91 98765 00105', avatarBg: 'bg-teal-700', status: 'Online · Calibrating Sensors' },
   { id: 'T6', name: 'Alok', fullName: 'Alok Verma', trade: 'Electrical Systems', shift: 'C', shiftHours: '22:00–06:00', phone: '+91 98765 00106', avatarBg: 'bg-indigo-700', status: 'Standby · Night Electrical' },
   { id: 'T7', name: 'Manoj', fullName: 'Manoj Roy', trade: 'Utilities & Chillers', shift: 'A', shiftHours: '06:00–14:00', phone: '+91 98765 00107', avatarBg: 'bg-cyan-700', status: 'Online · Compressor Room' },
@@ -100,7 +100,7 @@ const INITIAL_CHATS = {
       id: 'b1',
       from: 'system',
       title: 'MAGPET MAINTENANCE DISPATCH',
-      body: 'Shift A electrical check scheduled for <b>EX-01 screen changer</b> and hydraulic pressure pack.',
+      body: 'Shift B electrical check scheduled for <b>EX-01 screen changer</b> and hydraulic pressure pack.',
       time: getTimeAgo(35),
       isUser: false
     },
@@ -530,7 +530,7 @@ export const usePlanStore = create(
   }
 }),
     {
-      name: 'magpet_plan_storage_v1',
+      name: 'magpet_plan_storage_v2',
       partialize: (state) => ({
         plan: state.plan,
         technicians: state.technicians,

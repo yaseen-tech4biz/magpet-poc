@@ -71,7 +71,7 @@ export const CavityGrid = () => {
         }`}>
           {cavities.map((c, idx) => {
             const isSelected = selectedCavity === c.cavityNumber;
-            const isPlantedStory = selectedMachine === 'H-03' && (c.cavityNumber === 41 || c.cavityNumber === 42);
+            const isCriticalDrift = selectedMachine === 'H-03' && (c.cavityNumber === 41 || c.cavityNumber === 42);
 
             return (
               <motion.button
@@ -93,12 +93,12 @@ export const CavityGrid = () => {
                     ? 'ring-2 ring-[#143a72] dark:ring-blue-400 ring-offset-1 dark:ring-offset-slate-900 z-10 shadow-md font-bold'
                     : 'shadow-2xs'
                 } ${
-                  isPlantedStory ? 'ring-2 ring-rose-500 ring-offset-1 dark:ring-offset-slate-900 animate-pulse' : ''
+                  isCriticalDrift ? 'ring-2 ring-rose-500 ring-offset-1 dark:ring-offset-slate-900 animate-pulse' : ''
                 }`}
                 title={`Cavity ${c.cavityNumber}: ${c.deviation > 0 ? '+' : ''}${c.deviation}g (Target: ${c.target}g)`}
               >
                 <span>{c.cavityNumber}</span>
-                {isPlantedStory && (
+                {isCriticalDrift && (
                   <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-rose-600 ring-2 ring-white dark:ring-slate-900" />
                 )}
               </motion.button>

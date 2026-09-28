@@ -32,7 +32,7 @@ const GUIDE_STEPS = [
     category: 'A',
     isShortPath: true,
     route: '/rpet',
-    badge: 'SCADA TELEMETRY (S2)',
+    badge: 'SCADA TELEMETRY',
     highlight: 'Live 5.4 t/h Rate & Shift C Trip Alert',
     description: 'Monitors real-time extrusion line telemetry and immediately flags Shift C\'s 3.5h unplanned trip on EX-02.',
     takeaway: 'Quantifies ₹16.4 Lakh in food-grade resin held back by last night\'s downtime event.',
@@ -88,7 +88,7 @@ const GUIDE_STEPS = [
     category: 'A',
     isShortPath: true,
     route: '/rpet/reliability',
-    badge: 'RELIABILITY PARETO (S1)',
+    badge: 'RELIABILITY PARETO',
     highlight: 'Extruder EX-02 Identified as Top Offender',
     description: 'Aggregates 90 days of downtime to identify Extruder EX-02 as the chronic bottleneck (34.5 hours down, 6 repeat events).',
     takeaway: 'Shows rising MTTR trend (2.5h to 5h) and repeat failure flags (6 events · 30 d rule).',
@@ -130,7 +130,7 @@ const GUIDE_STEPS = [
     category: 'B',
     isShortPath: false,
     route: '/preform/machine/H-03',
-    badge: 'MACHINE DRILLDOWN (F-B2, S6)',
+    badge: 'MACHINE DRILLDOWN (F-B2)',
     highlight: 'Shift C Black Specks 1.6× & Defect Stacked Trend',
     description: 'Exposes Shift C black specks (2.9% vs 1.8%/1.9% day shifts) and surging weight variation rejects on H-03.',
     takeaway: 'Points directly to overnight resin dehumidification and dryer hopper handling.',
@@ -144,8 +144,8 @@ const GUIDE_STEPS = [
     category: 'B',
     isShortPath: true,
     route: '/preform/cavity/H-03',
-    badge: 'CAVITY HEATMAP (F-B3, S5)',
-    highlight: 'Cavities 41 & 42 Overweight (+0.4g) Drift',
+    badge: 'CAVITY HEATMAP (F-B3)',
+    highlight: 'Cavities 41 & 42 Overweight (+0.38g) Drift',
     description: 'Interactive heatmaps for 96, 72, and 4-cavity tooling. Highlights H-03 Cavities 41 & 42 thermal drift in Manifold Zone 3.',
     takeaway: '21-day drift line justifies mold servicing before defective preforms reach bottle blowers.',
     actionType: 'NAVIGATE'
@@ -702,7 +702,7 @@ export const DemoFlightDeck = () => {
                           1. WhatsApp Technician Flow
                         </span>
                         <span className="text-[8.5px] font-mono bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 px-1 rounded font-bold">
-                          S1-S2
+                          DISPATCH
                         </span>
                       </div>
                       <p className="text-[9.5px] text-emerald-800/80 dark:text-emerald-300 mb-1.5 leading-tight">
@@ -726,7 +726,7 @@ export const DemoFlightDeck = () => {
                           2. Incident & Ticking Cost Clock
                         </span>
                         <span className="text-[8.5px] font-mono bg-rose-100 dark:bg-rose-950/60 text-rose-800 dark:text-rose-300 px-1 rounded font-bold">
-                          S3
+                          KANBAN
                         </span>
                       </div>
                       <p className="text-[9.5px] text-rose-800/80 dark:text-rose-300 mb-1.5 leading-tight">
@@ -750,7 +750,7 @@ export const DemoFlightDeck = () => {
                           3. Cavities 41-42 Drift
                         </span>
                         <span className="text-[8.5px] font-mono bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 px-1 rounded font-bold">
-                          S4-S5
+                          MOLD
                         </span>
                       </div>
                       <p className="text-[9.5px] text-blue-800/80 dark:text-blue-300 mb-1.5 leading-tight">
